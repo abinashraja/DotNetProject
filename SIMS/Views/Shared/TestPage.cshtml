@@ -1,0 +1,233 @@
+﻿
+@{
+//Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/PageJS/TestPage.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+
+
+
+<!DOCTYPE html>
+<style>
+    body, html {
+        font-family: 'Roboto', sans-serif !important;
+    }
+
+    .minwidth {
+        min-width: 10%;
+    }
+
+    .Shading {
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+    }
+
+    .downmargin {
+        margin-bottom: 1%;
+    }
+    .numberCircle {
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    background: rgba(171, 168, 168, 0.12);
+    border: 2px solid rgba(171, 168, 168, 0.12);
+    color: black;
+    text-align: center;
+    font: 19px Arial, sans-serif;
+    display: inline-block;
+	margin: 1%;	
+	cursor:pointer;
+}
+.numberCircle:hover
+{
+	background-color:#109AA0;
+	border: 2px solid #109AA0;
+	color:white;
+}
+.backcolorselected
+{
+	background-color:green;
+	border: 2px solid green;
+	color:white;
+}
+.backcolorreview
+{
+	background-color:orange;
+	border: 2px solid orange;
+	color:white;
+}
+</style>
+<html>
+<head>
+
+    <title>Test Page</title>
+</head>
+<body>
+    <div ng-app="TestPage" ng-controller="TestPageModel">
+
+        <div id="QuestionSide" ng-show="ShowQuestion">
+            <div class="row Shading" style="margin: 2%;">
+                <div class="col-md-8" style="margin-top: 1%;">                    
+                    <input type="button" id="{{ts.Id}}" value="{{ts.TestSectionName}}" class="btn Shading" ng-class="$index==0?'btn-success':''" style="margin-right: 1%;" ng-repeat="ts in TestSectionList" ng-click="GetSctionQuestion(ts,$index)" />
+                </div>
+                <div class="col-md-4">
+                    <div class="row" style="margin-left: 80%;">
+                        <img src="/Home/GetUserImage" width="50" />
+                    </div>
+                    <div class="row" style="margin-left: 81%;">
+                        <span>@User.UserName</span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-7" style="min-height: 25%;">
+                        <div class="row" style="margin-bottom: 5%;">
+                            <div class="col-md-11" ng-bind-html="SectionQuestionOption.SourceText">
+
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 5%;">
+                            <div class="col-md-1">{{SectionQuestionOption.QuestionNo}})</div>
+                            <div class="col-md-11" ng-bind-html="SectionQuestionOption.QuestionText">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 5%;" ng-repeat="qp in SectionQuestionOption.TestQuestionoptionList" ng-if="!SectionQuestionOption.HaveMultiAns">
+                            <div class="col-md-1">
+                                <img src="~/Content/Images/radiobuttonchecked.png" ng-show="qp.Selected" style="width: 27px;" />
+
+                                <img src="~/Content/Images/radiobuttonunchecked.png" ng-hide="qp.Selected" style="width: 27px;" ng-click="RadioCheck(qp,0)" />
+                            </div>
+                            <div class="col-md-1">{{GetCharvalue($index)}})</div>
+                            <div class="col-md-10" ng-bind-html="qp.OptionText">
+
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 5%;" ng-repeat="qp in SectionQuestionOption.TestQuestionoptionList" ng-if="SectionQuestionOption.HaveMultiAns">
+                            <div class="col-md-1">
+                                @*<img src="~/Content/Images/radiobuttonchecked.png" ng-show="qp.Selected" style="width: 27px;" />
+
+                                <img src="~/Content/Images/radiobuttonunchecked.png" ng-hide="qp.Selected" style="width: 27px;" ng-click="RadioCheck(qp,0)" />*@
+                                <img src="~/Content/Images/CheckChecked.png" ng-show="qp.Selected" style="width: 27px;" ng-click="checkBoxCheck(qp)" />
+                                <img src="~/Content/Images/CheckBox.png"  ng-hide="qp.Selected" style="width: 27px;" ng-click="checkBoxCheck(qp)" />
+                                
+
+                            </div>
+                            <div class="col-md-1">{{GetCharvalue($index)}})</div>
+                            <div class="col-md-10" ng-bind-html="qp.OptionText">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">                     
+                        <div class="panel-group">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" style="text-align: center;">Select Question</div>
+                                <div class="panel-body">
+                                    <div class="col-md-2" style="margin-bottom: 1%;" ng-repeat="qn in TotalQuestionForSection">
+                                       <div class="numberCircle" ng-class="ShowButtonType(qn)" ng-click="GetQuestionNo(qn)">{{qn.Qno}}</div>
+                                    </div>
+                                </div>
+                                <div class="panel-heading" style="text-align: center;">
+                                    <span style="font-size:35px;"><span id="time"></span> Minute</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="panel panel-primary" ng-hide="HaveTest">
+                        <div class="panel-heading" style="text-align: center;">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span ng-show="ShowOptionSelectionBelow">Options to select</span>
+                                </div>
+                                <div class="col-md-10">
+                                    <div style="float:left;" data-toggle="modal" data-target=".bs-example-modal-sm">
+                                     <u>Instruction</u>
+                                    </div>                                   
+                                    <input type="button" class="btn btn-success Shading" value="Reset" ng-click="ResetOption()" ng-disabled="submitclicked" />
+                                   
+                                    <input type="button" class="btn btn-success Shading" value="Mark For Review" ng-click="SaveAndNext('2')" ng-disabled="submitclicked" />
+                                   
+                                    <input type="button" class="btn btn-success Shading" value="Save & Next" ng-click="SaveAndNext('1')" ng-disabled="submitclicked" />
+                                   
+                                    <input type="button" class="btn btn-success Shading" value="Submit" ng-click="SubmitTest()" ng-disabled="submitclicked" />
+                                   
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary" ng-hide="ShowQuestion">
+            <div class="panel-heading" style="text-align: center;">
+                All the best for the result.
+            </div>
+        </div>
+
+        <div class="modal fade bs-example-modal-sm" id="UserModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class=" modal-lg" style="width: 90%;margin-left: 5%;margin-top: 2%;">
+                <div class="col-md-12 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>Instruction</strong>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="panel-group">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">Test Instruction.</div>
+                                        <div class="panel-body" ng-bind-html="TestInstruction"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+<script>
+    $(function () {
+        $(this).bind("contextmenu", function (e) {
+            e.preventDefault();
+        });
+    });
+
+</script>

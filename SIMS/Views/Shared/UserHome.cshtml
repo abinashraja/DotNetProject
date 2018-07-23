@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewBag.Title = "UserHome";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+
+
+
+<style>
+    .tiles {
+        font-size: 30px;
+        text-align: center;
+    }
+</style>
+
+<script src="~/Scripts/PageJS/UserHome.js"></script>
+
+<div ng-if="ShowOrnot">
+
+
+    <!-- top tiles -->
+    <div class="row tile_count">
+        <div class="col-md-2 col-sm-2 col-xs-2" style="color: #ef1515;height: 81px;text-align: center;">
+            <span class="count_top">Subject</span>
+            <div class="count tiles">{{DashBoardData.TotalSubject}}</div>
+        </div>
+
+        <div class="col-md-2 col-sm-2 col-xs-2" style="color: #ef1515;height: 81px;text-align: center;">
+            <span class="count_top">Courses</span>
+            <div class="count tiles">{{DashBoardData.TotalCourse}}</div>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2" style="color: #ef1515;height: 81px;text-align: center;">
+            <span class="count_top">Classes</span>
+            <div class="count tiles">{{DashBoardData.TotalClasss}}</div>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2" style="color: #ef1515;height: 81px;text-align: center;">
+            <span class="count_top">Sections</span>
+            <div class="count tiles">{{DashBoardData.TotalSection}}</div>
+
+        </div>      
+        
+        <div class="col-md-2 col-sm-2 col-xs-2" style="color: #ef1515;height: 81px;text-align: center;">
+            <span class="count_top">Faculty</span>
+            <div class="count tiles">{{DashBoardData.TotalFaculty}}</div>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2" style="color: #ef1515;height: 81px;text-align: center;">
+            <span class="count_top">Student</span>
+            <div class="count tiles">{{DashBoardData.TotalStudent}}</div>
+
+        </div>
+        
+    </div>
+    <div class="row tile_count">
+      
+    </div>
+
+    <!-- /top tiles -->
+    <br />
+    <div class="row" role="main">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Quick Mail<small></small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <input type="text" class="form-control downmargin" placeholder="To" ng-model="MailData.MailTo" />
+                    <input type="text" class="form-control downmargin" placeholder="Subject" ng-model="MailData.MailHeading" />
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Message" rows="10" ng-model="MailData.MailBody"></textarea>
+                    </div>
+                    <input type="button" value="Send" class="btn" ng-click="SendMail()" ng-disabled="EnableDIsable()" />
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Upcoming event<small></small></h2>
+                    <input type="button" value="Create event" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm-event" ng-click="ClrEventValue()" />
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <article class="media event" ng-repeat="ev in AllEventList">
+                        <a class="pull-left date">
+                            <p class="month">{{ev.Eventmonth}}</p>
+                            <p class="day">{{ev.EventDay}}</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">{{ev.EventName}}</a>
+                            <p>{{ev.EventDescription}}</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="text-center">
+                    <a href="/UserHome/fullcalendar">
+                        <strong>See All Events</strong>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+
+</div>
+<div class="modal fade bs-example-modal-sm-event fade" id="eventmodel" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Create event</strong>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9 downmargin">
+                            <span style="color:red;">* marked are mendatory fileld.</span>
+                        </div>
+                    </div>
+                    <div class="row bottom">
+                        <div class="col-md-3 col-sm-3 " align="center"></div>
+
+                        <div class=" col-md-9 col-sm-9 ">
+
+                            <div class="row downmargin">
+                                <div class="col-md-12">
+                                    <input class="form-control input-md" type="text" ng-model="EventCreate.EventName" placeholder="Event Name*" maxlength="50">
+                                </div>
+                            </div>
+                            <div class="row downmargin">
+                                <div class="col-md-12">
+                                    <input class="form-control input-md" datepicker type="text" ng-model="EventCreate.EventDate" placeholder="Event Date *">
+                                </div>
+                            </div>
+                            <div class="row downmargin">                               
+                                <div class="col-md-6">                                    
+                                    <select ng-model="EventHour" class="form-control dropdownstyle" ng-options="x for x in HourTime"></select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select ng-model="EventMin" class="form-control dropdownstyle" ng-options="y for y in MinTime"></select>
+                                </div>
+                                
+                            </div>
+                            <div class="row downmargin">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" placeholder="Event Description*" rows="5" ng-model="EventCreate.EventDescription" maxlength="500"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                       
+
+                    </div>
+                    <div class="form-group last">
+                        <div class="row pull-right" style="margin-top:1%;">
+                            <button type="submit" class="btn btn-success btn-lg Shading" ng-click="SaveEvent()">
+                                Save
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "TestSection";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+<script src="~/Scripts/PageJS/MailConfig.js"></script>
+<!DOCTYPE html>
+
+<head>
+    <style>
+        .tileclass {
+            min-height: 70px;
+            border: 1px solid groove;
+            text-align: center;
+        }
+
+            .tileclass:hover {
+                background-color: #009688;
+                color: white;
+            }
+    </style>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+</head>
+
+<div>
+
+    <div class="row showing" style="margin-top: 5%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+        <div class="col-md-6">
+            <h3><i class="fa fa-hand-o-right"></i> Mail Configuration</h3>
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+    </div>
+    <div class="row" style="margin-top:2%;">
+        <div class="col-md-3 Shading tileclass">
+            <h4>User Creation</h4>
+            <img src="~/Content/Images/CheckBox.png" style="width: 20%;" ng-hide="MailConfiguration.UserCreation" ng-click="selectuser(0)"/>
+            <img src="~/Content/Images/CheckChecked.png"  style="width: 20%;" ng-show="MailConfiguration.UserCreation" ng-click="selectuser(1)"/>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3 Shading tileclass">
+
+            <h4>Test Assign</h4>
+            <img src="~/Content/Images/CheckBox.png" style="width: 20%;" ng-hide="MailConfiguration.TestAssign"  ng-click="selecttest(0)"/>
+            <img src="~/Content/Images/CheckChecked.png" style="width: 20%;" ng-show="MailConfiguration.TestAssign"  ng-click="selecttest(1)"/>
+
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3 Shading tileclass">
+            <h4>After Login</h4>
+            <img src="~/Content/Images/CheckBox.png" style="width: 20%;"   ng-hide="MailConfiguration.Login" ng-click="selectlogin(0)"/>
+            <img src="~/Content/Images/CheckChecked.png" style="width: 20%;" ng-show="MailConfiguration.Login"  ng-click="selectlogin(1)"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top:2%;">
+        <div class="col-md-3 Shading tileclass">
+            <h4>Change Password</h4>
+            <img src="~/Content/Images/CheckBox.png" style="width: 20%;" ng-hide="MailConfiguration.ChangePassword"  ng-click="selectchpassword(0)"/>
+            <img src="~/Content/Images/CheckChecked.png" style="width: 20%;" ng-show="MailConfiguration.ChangePassword"  ng-click="selectchpassword(1)" />
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3 Shading tileclass">
+            <h4>Result After Test</h4>
+            <img src="~/Content/Images/CheckBox.png" style="width: 20%;" ng-hide="MailConfiguration.ResultAfterTest" ng-click="selectresultafter(0)"/>
+            <img src="~/Content/Images/CheckChecked.png" style="width: 20%;"  ng-show="MailConfiguration.ResultAfterTest" ng-click="selectresultafter(1)" />
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3 Shading tileclass">
+            <h4>Question paper</h4>
+            <img src="~/Content/Images/CheckBox.png" style="width: 20%;"  ng-hide="MailConfiguration.Questionpaper" ng-click="selectquestion(0)" />
+            <img src="~/Content/Images/CheckChecked.png" style="width: 20%;" ng-show="MailConfiguration.Questionpaper"  ng-click="selectquestion(1)" />
+        </div>
+    </div>
+    <div style="float:right;margin-right:2%;" class="topmargin">
+
+        <button type="submit" class="btn btn-success btn-md Shading" ng-click="SaveUser()">
+            Save
+        </button>
+    </div>
+</div>
+
+
+

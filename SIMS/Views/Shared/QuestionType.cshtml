@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "QuestionType";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+<script src="~/Scripts/PageJS/QuestionType.js"></script>
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Organization Setup</title> 
+</head>
+
+<div>
+    
+    <div class="row showing" style="margin-top: 8%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+        <div class="col-md-6">
+            <h2><i class="fa fa-hand-o-right"></i> Question Type</h2>
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+            <input type="button" value="Create Question Type" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="MakeObjectEMpty()"/>
+
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+          
+        </div>
+    </div>
+    <div class="row topmarginmap">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <input type="text" class="pull-right form-control" ng-model="searchText" placeholder="Search" id="searchtextbox" />
+        </div>
+    </div>
+    <div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 1%;" ng-show="myData.length"></div>
+    <div class="watermark" ng-show="!myData.length" style="margin-top: 5%;">
+        <i class="fa fa-thumbs-o-down"></i>No data available
+    </div>
+    <div class="modal fade bs-example-modal-sm" id="QuestionTypeModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class=" modal-lg" style="width: 90%;margin-left: 5%;margin-top: 2%;">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>{{NewQuestionType.Operation}} QuestionType</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9 downmargin">
+                                <span style="color:red;">* marked are mendatory fileld.</span>
+                            </div>
+                        </div>
+                        <div class="row bottom">
+                            <div class="col-md-3 col-lg-3 " align="center"> </div>
+
+                            <div class=" col-md-9 col-lg-9 ">
+                                <div class="row downmargin">
+                                    
+                                    <div class="col-md-6">
+                                    <input class="form-control input-md"  type="text" ng-model="NewQuestionType.TypeCode" placeholder="Code *">
+                                        @*<md-input-container style="width:100%;">
+                                            <label>Code<span style="color:red;">*</span></label><input ng-model="NewQuestionType.TypeCode">
+                                        </md-input-container>*@
+                                    </div>
+                                    
+                                    <div class="col-md-4">
+                                    <input class="form-control input-md"  type="text" ng-model="NewQuestionType.TypeName" placeholder="Name *">
+                                        @*<md-input-container style="width:100%;">
+                                            <label>Name<span style="color:red;">*</span></label><input ng-model="NewQuestionType.TypeName">
+                                        </md-input-container>*@
+                                    </div>
+                                </div>                                
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-10 col-sm-2">
+                                <button type="submit" class="btn btn-success btn-lg Shading " ng-click="SaveQuestionType()">
+                                    Save
+                                </button>    
+                                @*<md-button class="md-raised"  ng-click="SaveQuestionType()">Save</md-button>*@                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<script>
+   $(document).ready(function () {
+   $("#PreSide").hide();
+   $("#ShowPre").click(function(){
+   $("#PreSide").show();
+   });
+    });
+</script>                               		
+

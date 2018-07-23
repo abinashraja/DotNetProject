@@ -1,0 +1,247 @@
+﻿
+@{
+    ViewBag.Title = "Question";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+<script src="~/Scripts/PageJS/Question.js"></script>
+
+@*<script src="~/Scripts/EditorJs/sample.js"></script>
+    <link href="~/Content/Editor Css/samples.css" rel="stylesheet" />*@
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> Create Question</title>
+    <style type="text/css">
+        html, body {
+            overflow: visible;
+        }
+
+        .downmargin {
+            margin-bottom: 2%;
+        }
+
+        .tabelwidth {
+            width: 20%;
+        }
+
+        .editorheader {
+            margin-left: 0%;
+            margin-right: 0%;
+            margin-bottom: 1%;
+            background-color: #E6E7E6;
+            height: 34px;
+        }
+    </style>
+</head>
+
+<div id="main">
+    <div class="row showing" style="margin-top: 8%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+        <div class="col-md-6">
+            <h2><i class="fa fa-hand-o-right"></i> Question</h2>
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+            
+
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+            <p>
+                <button type="button" class="btn btn-default btn-sm active Shading topmargin" ng-click="ShowInsertQuestion()">
+                   Create Question
+                </button>
+                @*<md-button class="md-raised" ng-click="ShowInsertQuestion()">Create Question</md-button>*@
+                <button type="button" class="btn btn-default btn-sm Shading topmargin"ng-click="ShowViewQuestion()">
+                    View Question
+                </button>
+                @*<md-button class="md-raised" ng-click="ShowViewQuestion()"> View Question</md-button>*@
+                <button type="button" class="btn btn-default btn-sm Shading topmargin" data-toggle="modal" data-target=".bs-example-modal-sm-Import">
+                    Import Question
+                </button>
+                @*<md-button class="md-raised" data-toggle="modal" data-target=".bs-example-modal-sm-Import"> Import</md-button>*@
+            </p>
+
+        </div>
+        <div class="col-md-2"></div>
+        
+
+    </div>
+    <div id="QuestionInsert">
+        <div class="grid-container" style="width: 90%;margin-left: 5%;">
+            <div class="grid-width-100 downmargin">
+                <div class="row bottom" style="margin-top: 3%;">
+                    <div class=" col-md-12 col-lg-12 ">
+                        <div class="row downmargin">
+                            <div class="col-md-3">Question Type</div>
+                            <div class="col-md-3">
+                                <select class="form-control" ng-model="QuestionTypeId" ng-change="GetQuestionTypeResource()" ng-disabled="disabledthisone" ng-options="c.QuestionTypeId as c.QuestionTypeName for c in QuestionTypeList" class="dropdownstyle"></select>
+                            </div>
+                            <div class="col-md-3">Question Source</div>
+                            <div class="col-md-3">
+                                <select class="form-control" ng-model="QuestionSourceId" ng-options="c.SourceId as c.SourceName for c in QuestionSourceList" ng-disabled="disabledthisone" class="dropdownstyle"></select>
+                            </div>
+
+                        </div>
+                        <div class="row downmargin">                     
+                            <div class="col-md-3">                                
+                              <label>Question Marks<span style="color:red;">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+                                <input ng-model="QuestionMark" type="text" class="form-control" ng-disabled="NewTest.IsPublish==true">
+
+                            </div>
+                            <div class="col-md-5"><input type="checkbox" ng-model="HaveMultipleAnswer" /> Have multiple answer</div>
+                            <div class="col-md-1"></div>
+                        
+
+                        </div>
+                        <div class="row downmargin">
+                            <textarea data-ng-model="QuestionInfo" id="editor" data-ck-editor>{{QuestionInfo}}</textarea>
+                        </div>
+                    </div>
+
+                </div>
+                @*<div class="row editorheader">
+                        <div class="col-md-6">
+                            <span style="margin-left: 1%;"> Please Enter Question here</span>
+                        </div>
+                        <div class="col-md-6">
+                            <button ng-click="addEditor()">New Editor</button>
+                        </div>
+
+                    </div>*@
+
+            </div>
+
+            <div ng-repeat="editor in ckEditors">
+                <div class="row editorheader">
+                    <input style="margin-left: 2%;" type="checkbox" ng-model="editor.Selected" />
+
+                    @*<md-checkbox style="margin-left: 2%;" ng-model="editor.Selected">
+                    </md-checkbox>*@
+                    <span style="margin-left: 1%;">Check if this is Answer</span>
+                </div>
+                <textarea data-ng-model="editor.OptionText" data-ck-editor>{{editor.OptionText}}</textarea>
+                <br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-5">
+                <button type="button" class="btn btn-info Shading" style="margin-left: 18%;" ng-click="addEditor()">Add New Option</button>
+                @*<md-button class="md-raised" style="margin-left: 18%;" ng-click="addEditor()">Add New Option</md-button>*@
+                <input type="button" class="btn btn-info Shading" value="Save" ng-click="SaveQuestion()" />
+                @*<md-button class="md-raised"  value="Save" ng-click="SaveQuestion()">Save</md-button>*@
+            </div>
+        </div>
+    </div>
+    <div id="Questionview">
+        <div class="container" style="margin-top: 2%;">
+            <div class="row">
+                @*<div class="col-md-6"></div>
+                <div class="col-md-3"></div>*@
+                <div class="col-md-12">
+                    @*<input type="text" class="form-control" placeholder="Search" name="q" ng-model="searchText">*@
+                  
+                </div>               
+            </div>
+        </div>
+        <div class="row topmarginmap">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <input type="text" class="pull-right form-control" ng-model="searchText" placeholder="Search" id="searchtextbox" />
+            </div>
+        </div>
+        <div class="ngGridStyle" ng-grid="myGrid" ng-show="myData.length"></div>       
+        <div class="watermark topmargin" ng-show="!myData.length" style="margin-top:5%;">
+            <i class="fa fa-thumbs-o-down"></i>No data available
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-sm-Import" id="importModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class=" modal-lg" style="width: 90%;margin-left: 5%;margin-top: 2%;">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Import User</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row bottom">
+                            <div class="col-md-3 col-lg-3 " align="center"></div>
+
+                            <div class=" col-md-9 col-lg-9 ">
+                                Download Template:<a href="~/TemplateFolder/Question Import.xlsx">Download</a>
+                            </div>
+
+                        </div>
+                        <div class="row downmargin">
+                            <div class="col-md-2">Question Type</div>
+                            <div class="col-md-4">
+                                <select class="form-control" ng-model="QuestionTypeId" ng-change="GetQuestionTypeResource()" ng-disabled="disabledthisone" ng-options="c.QuestionTypeId as c.QuestionTypeName for c in QuestionTypeList" class="dropdownstyle"></select>
+                            </div>
+                        </div>
+
+                        <div class="row bottom">
+                            <div class="col-md-3 col-lg-3 " align="center"></div>
+
+                            <div class=" col-md-9 col-lg-9 ">
+                                @*<input type="file" file-model="myFile" ng-model="file" />*@
+
+                                <div class="inputBtnSection">
+
+                                    <input id="uploadFile" class="disableInputField" placeholder="Choose File" disabled="disabled" />
+
+
+                                    <label class="fileUpload">
+                                        <input id="uploadBtn" type="file" class="upload" file-model="myFile" ng-model="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                                        <span class="uploadBtn">Upload / Browse File ..</span>
+                                    </label>
+
+
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-10 col-sm-2">
+                                @*<md-button class="md-raised" ng-click="uploadFile()">Upload</md-button>*@
+                                <button type="submit" class="btn btn-success btn-lg Shading" ng-click="uploadFile()">
+                                    Upload
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="NoOfOption"/>
+<script>
+    $(document).ready(function () {
+     
+        document.getElementById("uploadBtn").onchange = function () {
+            document.getElementById("uploadFile").value = this.value;
+        };
+    });    
+</script>
+

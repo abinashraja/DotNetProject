@@ -1,0 +1,212 @@
+﻿@{
+    ViewBag.Title = "Role";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+
+<script src="~/Scripts/PageJS/Role.js"></script>
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Role Setup</title>
+    <style type="text/css">
+        html, body {
+            overflow: visible;
+        }
+
+        .downmargin {
+            margin-bottom: 2%;
+        }
+
+        .tabelwidth {
+            width: 20%;
+        }
+    </style>
+</head>
+
+<div>
+
+    <div class="row showing" style="margin-top: 5%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+        <div class="col-md-6">
+            <h2><i class="fa fa-hand-o-right"></i> Role</h2>
+        </div>
+        <div class="col-md-1 col-sm-1">
+
+
+        </div>
+        <div class="col-md-1 col-sm-1">
+        </div>
+        <div class="col-md-1 col-sm-1">
+            <input type="button" value="privilege" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm-roll" ng-disabled="checkdisabled()" ng-click="Assignprivilege()" />
+
+        </div>
+        <div class="col-md-1 col-sm-1">
+        </div>
+        <div class="col-md-1 col-sm-1">
+            <input type="button" value="Create Role" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="MakeObjectEMpty()" />
+        </div>
+    </div>
+    <div class="row topmarginmap">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <input type="text" class="pull-right form-control" ng-model="searchText" placeholder="Search" id="searchtextbox" />
+        </div>
+
+    </div>
+    <div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 1%;" ng-show="myData.length"></div>
+    <div class="watermark" ng-show="!myData.length" style="margin-top: 5%;">
+        <i class="fa fa-thumbs-o-down"></i>No data available
+    </div>
+    <div class="modal fade bs-example-modal-sm" id="RoleModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-md" style="margin-left: 25%;margin-top: 2%;">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>{{NewRole.Operation}} Role</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9 downmargin">
+                                <span style="color:red;">* marked are mendatory fileld.</span>
+                            </div>
+                        </div>
+                        <div class="row bottom">                          
+
+                            <div class="col-md-12 col-lg-12">
+                                <div class="row downmargin">
+                                    <div class="col-md-2">
+
+                                        <spna>Code *</spna>
+
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <input class="form-control input-md" type="text" ng-model="NewRole.Code">
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <spna>Name *</spna>
+
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <input class="form-control input-md" type="text" ng-model="NewRole.Name">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-10 col-sm-2">                               
+                                <button type="submit" class="btn btn-success btn-md Shading" ng-click="SaveRole()">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-sm-roll" id="PrevileageModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="margin-left: 18%;margin-top: 2%;">
+        <div class="modal-lg">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>privilege</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row bottom">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Selected Role:{{SelectedRowROle.Name}}</h5>
+                                            </div>
+
+                                        </div>
+
+                                        <ul class="nav nav-pills">
+                                            <li ng-repeat="m in ModuleList" ng-class="{active:$index==0}" @*ng-if="selectModuleforuser(m)"*@ ng-click="GetModulePage(m)" id="{{m.Id}}"><a data-toggle="pill" href="#{{m.Code}}">{{m.Name}}</a></li>
+                                        </ul>
+
+                                        <div class="tab-content" style="margin-top: 2%;">
+                                            <div id="{{p.Code}}" class="tab-pane fade in" ng-repeat="p in ModuleList" ng-class="GetCLassName(p)">
+                                                <table class="table table-bordered  text-center">
+                                                    <thead>
+                                                        <tr class="tableheader">
+                                                            <th class="text-center">Pages</th>
+                                                            <th class="text-center">Operation</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="pa in p.modulepagelist">
+                                                            <td>{{pa.Name}}</td>
+                                                            <td>
+                                                                <label class="checkbox-inline">
+                                                                    @*<md-checkbox ng-model=pa.Create ng-click="ItisClicked(pa.Create)">
+                                                                        </md-checkbox>*@
+                                                                    <input type="checkbox" ng-model=pa.Create ng-click="ItisClicked(pa.Create)" />
+                                                                    Create
+                                                                </label>
+                                                                <label class="checkbox-inline">
+                                                                    @*<md-checkbox ng-model=pa.Update>
+                                                                        </md-checkbox>*@
+                                                                    <input type="checkbox" ng-model=pa.Update ng-click="ItisClicked(pa.Create)" />
+                                                                    Update
+                                                                </label>
+                                                                <label class="checkbox-inline">
+
+                                                                    @*<md-checkbox ng-model=pa.Delete>
+                                                                        </md-checkbox>*@
+                                                                    <input type="checkbox" ng-model=pa.Delete ng-click="ItisClicked(pa.Create)" />
+                                                                    Delete
+                                                                </label>
+                                                                <label class="checkbox-inline">
+                                                                    @*<md-checkbox ng-model=pa.View>
+                                                                        </md-checkbox>*@
+                                                                    <input type="checkbox" ng-model=pa.View ng-click="ItisClicked(pa.Create)" />
+                                                                    View
+                                                                </label>
+                                                            </td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-10 col-sm-2">
+                                <button type="submit" class="UpdateButton btn btn-success btn-md Shading" ng-click="Saveprivilege()">
+                                    Save
+                                </button>
+                                @*<md-button class="md-raised" ng-click="Saveprivilege()">Save</md-button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#PreSide").hide();
+        $("#ShowPre").click(function () {
+            $("#PreSide").show();
+        });
+    });
+</script>

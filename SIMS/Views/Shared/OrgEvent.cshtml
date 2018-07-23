@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "UserHome";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+@*<link href="~/Content/Calander/fullcalendar.min.css" rel="stylesheet" />
+    <link href="~/Content/Calander/fullcalendar.print.css" rel="stylesheet" />
+    <script src="~/Scripts/Calander/fastclick.js"></script>
+    <script src="~/Scripts/Calander/nprogress.js"></script>
+    <script src="~/Scripts/Calander/moment.min.js"></script>
+    <script src="~/Scripts/Calander/fullcalendar.min.js"></script>*@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.css" type="text/css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js"></script>
+
+<style>
+    .tiles {
+        font-size: 30px;
+        text-align: center;
+    }
+</style>
+<script src="~/Scripts/PageJS/OrgEvent.js"></script>
+    <div class="row">
+        <br />
+        <div class="col-xs-12">
+            <div id="bootstrapModalFullCalendar"></div>
+        </div>
+    </div>
+<div id="fullCalModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                <h4 id="modalTitle" class="modal-title"></h4>
+            </div>
+            <div id="modalBody" class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

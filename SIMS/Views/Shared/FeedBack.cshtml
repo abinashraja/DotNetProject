@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+<script src="~/Scripts/PageJS/FeedBack.js"></script>
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Operation</title>
+   
+</head>
+
+
+    <div class="row showing" style="margin-top: 8%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+        <div class="col-md-6">
+            <h2><i class="fa fa-hand-o-right"></i> Feed Back</h2>
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+           
+
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+           
+        </div>
+    </div>
+
+    
+
+
+
+
+
+        <div class="row topmargin downmargin">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <input class="form-control input-md" type="text" placeholder="Subject" ng-model="Newfeedback.MessageHeader">
+                @*<md-input-container style="width:100%;">
+                        <label style="color:red;">Subject<span style="color:red;">*</span></label><input ng-model="Newfeedback.MessageHeader">
+                    </md-input-container>*@
+            </div>
+
+        </div>
+        <div class="row downmargin">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <textarea rows="8" cols="20" placeholder="Message" class="form-control input-md" ng-model="Newfeedback.MessageInfo"></textarea>
+                @*<md-input-container class="md-block">
+                        <label style="color:red;">Message</label>
+                        <input ng-model="Newfeedback.MessageInfo">
+                    </md-input-container>*@
+            </div>
+
+        </div>
+        <div class="form-group last">
+            <div class="col-sm-offset-10 col-sm-2">
+                <button type="submit" class="btn btn-success btn-lg Shading " ng-click="SaveFeedBack()">
+                    Submit
+                </button>
+                @*<md-button class="md-raised" ng-click="SaveFeedBack()">Submit</md-button>*@
+            </div>
+        </div>
+
+
+
+
+

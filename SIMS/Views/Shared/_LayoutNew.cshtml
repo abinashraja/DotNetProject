@@ -1,0 +1,477 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Assesment Portal</title>
+
+    @* Jquery *@
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    @* Bootstrap *@
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+    @* Angular js *@
+    <script src="~/Scripts/angular.min.js"></script>
+
+
+    @*fonts*@
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    @* Notify Js and css *@
+    <script src="~/Scripts/An-Notify/ng-notify.js"></script>
+    <link href="~/Content/NG-Notify/ng-notify.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js"></script>
+
+
+
+    @* CK Editor Js *@
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="//cdn.ckeditor.com/4.5.6/full-all/ckeditor.js"></script>
+
+    @* Upload css *@
+    <link href="~/Content/Upload css/Uploadcss.css" rel="stylesheet" />
+
+
+    @* Grid JS Start *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.css">
+
+    @* Grid Js  End  start *@
+
+    @* Confirm Box *@
+
+
+    <style type="text/css">
+        body, html {
+            font-family: 'Roboto', sans-serif !important;
+        }
+
+       
+
+        .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+            background-color: rgb(0, 150, 136);            
+        }
+
+        .watermark {
+            position: absolute;
+            top: 80px;
+            opacity: 0.25;
+            font-size: 3em;
+            width: 100%;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .parentDisable {
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+            z-index: 2000;
+            height: 100%;
+            width: 100%;
+            z-index: 2000 !important;
+        }
+
+        .ngGridStyle {
+            width: 100%;
+            height: 500px;
+        }
+
+        .ngGrid {
+            background-color: #fdfdfd;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        .ngHeaderContainer {
+            background-color: #fff !important;
+            color: #000 !important;
+            text-align: center !important;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        .ngFooterPanel {
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        .btnclass {
+            text-align: center !important;
+        }
+
+        .ngRow:hover {
+            background-color: #98f6f3 !important;
+        }
+
+        .ngRow.odd:hover {
+            background-color: #ddd !important;
+        }
+
+        .ngRow.even:hover {
+            background-color: #ddd !important;
+        }
+
+
+        .ngRow.odd {
+            background-color: #f7f7f7 !important /*rgba(0, 55, 212, 0.43)*/;
+            color: #333;
+        }
+
+        .ngRow.even {
+            background-color: #fff !important;
+            color: #333;
+            min-height: 30px !important;
+        }
+
+        .downmargin {
+            margin-bottom: 1%;
+        }
+
+        .topmargin {
+            margin-top: 2%;
+        }
+        /*Table over color*/
+
+        .table tr:nth-child(odd):hover {
+            background-color: #ddd !important;
+        }
+
+        .table tr:nth-child(even):hover {
+            background-color: #ddd !important;
+        }
+
+
+        .table tr:nth-child(odd) {
+            background-color: #f7f7f7 !important /*rgba(0, 55, 212, 0.43)*/;
+            color: #333;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #fff !important;
+            color: #333;
+            min-height: 30px !important;
+        }
+
+
+        /*End*/
+
+
+
+        /*.label-default {
+            background-color: #d9534f;
+        }*/
+        .ui-jqgrid tr.jqgrow td {
+            height: 50px;
+        }
+
+        /*Later */
+        .btn {
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+            background-color: #009688;
+            color: white;
+        }
+
+        .showing, list-group, list-group-item {
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        .Shading {
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        .list-group-item:hover {
+            background-color: #ddd !important;
+        }
+
+        .active {
+            background-color: #009688 !important;
+        }
+
+        .row {
+            margin-left: 0px !important;
+            margin-right: 0px !important;
+        }
+
+        .label-danger {
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        a {
+            color: #b63b4d;
+            text-decoration: none;
+        }
+
+        .accordion {
+            width: 100%;
+            max-width: 360px;
+            margin: 13px auto 20px;
+            background: #FFF;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+        }
+
+            .accordion .link {
+                cursor: pointer;
+                display: block;
+                padding: 15px 15px 15px 42px;
+                color: #4D4D4D;
+                font-size: 14px;
+                font-weight: 700;
+                border-bottom: 1px solid #CCC;
+                position: relative;
+                -webkit-transition: all 0.4s ease;
+                -o-transition: all 0.4s ease;
+                transition: all 0.4s ease;
+            }
+
+            .accordion li:last-child .link {
+                border-bottom: 0;
+            }
+
+            .accordion li i {
+                position: absolute;
+                top: 16px;
+                left: 12px;
+                font-size: 18px;
+                color: #595959;
+                -webkit-transition: all 0.4s ease;
+                -o-transition: all 0.4s ease;
+                transition: all 0.4s ease;
+            }
+
+                .accordion li i.fa-chevron-down {
+                    right: 12px;
+                    left: auto;
+                    font-size: 16px;
+                }
+
+            .accordion li.open .link {
+                color: #b63b4d;
+            }
+
+            .accordion li.open i {
+                color: #b63b4d;
+            }
+
+                .accordion li.open i.fa-chevron-down {
+                    -webkit-transform: rotate(180deg);
+                    -ms-transform: rotate(180deg);
+                    -o-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                }
+
+        .submenu {
+            display: none;
+            background: #F7F7F7;
+            font-size: 14px;
+        }
+
+            .submenu li {
+                border-bottom: 1px solid #4b4a5e;
+            }
+
+            .submenu a {
+                display: block;
+                text-decoration: none;
+                color: #000;
+                padding: 12px;
+                padding-left: 42px;
+                -webkit-transition: all 0.25s ease;
+                -o-transition: all 0.25s ease;
+                transition: all 0.25s ease;
+                text-decoration: none !important;
+            }
+
+                .submenu a:hover {
+                    background: #ddd;
+                    color: #009688;
+                }
+
+        .activepage {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body id="Bodyid" ng-app="EPortal" ng-cloak ng-controller="EPortalCont">
+    <div>
+        <div class="row" style="background-color: #009688; min-height: 50px;">
+            <div class="col-md-8 col-sm-8" style="margin-top: 1%;">
+                <span style="margin-left: 10%; color: white; font-size: 24px;">Online Examination System</span>
+            </div>
+            <div class="col-md-4 col-sm-4 pull-right" style="margin-top: 1%;">
+                <div class="row">  
+                    <div class="col-md-6 col-sm-6" style="color: white;">
+                        <ul class="nav nav-pills">
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="color: white;font-size: 20px;">Message <b class="caret"></b></a>
+                                <ul class="dropdown-menu">                                    
+                                    <li><a href="#">This is a message 1 This is a message 1
+                                            This is a message 1</a></li>
+                                    <li><a href="#">This is a message 1 This is a message 1 This is a message 1</a></li>                                    
+                                    <li><a href="#">This is a message 1 This is a message 1</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>   
+                                
+                    <div class="col-md-6 col-sm-6" style="color: white;">                        
+                        <ul class="nav nav-pills">
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="color: white;font-size: 20px;">@HttpContext.Current.User.Identity.Name <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li data-toggle="modal" data-target=".bs-example-modal-sm-1"><a href="#">Change Password</a></li>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Help</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/Home/Signout">Log out</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                    @*<div class="col-md-2 col-sm-2">
+                        <a href="/Home/UserHome"><img src="~/Content/Images/Home.png" style="width:30px;height:40px;" /></a>
+                    </div>*@
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-3" style="min-height: 90%;">
+                <ul id="accordion" class="accordion">
+                    @Html.Raw(@ViewBag.nevigationBar)                   
+                </ul>
+            </div>
+            <div class="col-md-9 col-sm-9" style="min-height: 90%;">
+                <div id='ajax_loader' style="position: fixed; display: none;margin-top: -22%;margin-left: 0%;" class="parentDisable">
+                    <img src="~/Content/gears.gif" id="ajax_loader" style="margin-top:40%;margin-left:40%;align-items:center" />
+                    
+                </div>
+                @RenderBody()                
+
+            </div>
+        </div>       
+    </div>
+    <div class="modal fade bs-example-modal-sm-1 fade" id="passwordmodel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Change Password</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9 downmargin">
+                                <span style="color:red;">* marked are mendatory fileld.</span>
+                            </div>
+                        </div>
+                        <div class="row bottom">
+                            <div class="col-md-3 col-sm-3 " align="center"></div>
+
+                            <div class=" col-md-9 col-sm-9 ">
+
+                                <div class="row downmargin">
+                                    <div class="col-md-12">
+                                        <input class="form-control input-md" type="text" ng-model="ChangePassword.oldpassword" placeholder="Old Password *">
+                                        @*<md-input-container style="width:100%;">
+                                                <label>Current Password<span style="color:red;">*</span></label><input ng-model="ChangePassword.oldpassword">
+                                            </md-input-container>*@
+                                    </div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-12">
+                                        <input class="form-control input-md" type="password" ng-model="ChangePassword.newpassword" placeholder="New Password *">
+                                        @*<md-input-container style="width:100%;">
+                                                <label>New Password<span style="color:red;">*</span></label><input ng-model="ChangePassword.newpassword">
+                                            </md-input-container>*@
+                                    </div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-12">
+                                        <input class="form-control input-md" type="password" ng-model="ChangePassword.renewpassword" placeholder="Confirm New Password *">
+                                        @*<md-input-container style="width:100%;">
+                                                <label>Confirm New Password<span style="color:red;">*</span></label><input ng-model="ChangePassword.renewpassword">
+                                            </md-input-container>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="row">
+                                <button type="submit" class="btn btn-success btn-lg Shading" ng-click="Changepassword()">
+                                    Save
+                                </button>
+                                @*<md-button class="md-raised" ng-click="Changepassword()">Change</md-button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+    $(document).ready(function () {
+        var scope = angular.element($("#Bodyid")).scope();
+        scope.callmethod();
+
+        $(document).ajaxStop(function () {
+            $("#ajax_loader").hide();
+
+        });
+        $(document).ajaxStart(function () {
+            $("#ajax_loader").show();
+        });
+    });
+    $(function () {
+        var Accordion = function (el, multiple) {
+            this.el = el || {};
+            this.multiple = multiple || false;
+
+            // Variables privadas
+            var links = this.el.find('.link');
+            // Evento
+            links.on('click', { el: this.el, multiple: this.multiple }, this.dropdown)
+        }
+
+        Accordion.prototype.dropdown = function (e) {
+            var $el = e.data.el;
+            $this = $(this),
+            $next = $this.next();
+
+            $next.slideToggle();
+            $this.parent().toggleClass('open');
+
+            if (!e.data.multiple) {
+                $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+            };
+        }
+        var accordion = new Accordion($('#accordion'), false);
+    });
+
+</script>

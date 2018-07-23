@@ -1,0 +1,3167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicYear">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PeriodFrom" Type="datetime" Nullable="false" />
+          <Property Name="PeriodTo" Type="datetime" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Creator" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="Modifier" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ApplicantTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMailConfiguration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserCreationMail" Type="bit" Nullable="false" />
+          <Property Name="TestAssignMail" Type="bit" Nullable="false" />
+          <Property Name="SendResultAfterTestMail" Type="bit" Nullable="false" />
+          <Property Name="AfterLoginMail" Type="bit" Nullable="false" />
+          <Property Name="AfterChangePasswordMail" Type="bit" Nullable="false" />
+          <Property Name="OrganizationId" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="GroupUserCode" Type="varchar" MaxLength="20" />
+          <Property Name="GroupUserName" Type="varchar" MaxLength="50" />
+          <Property Name="OganizationId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupUserApplicant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="GroupUserId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OganizationId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SequenceNo" Type="int" />
+        </EntityType>
+        <EntityType Name="ModulePage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModuleId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PageId" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="20" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="10" />
+          <Property Name="ESTDate" Type="datetime" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="10" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="OrgState" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="Pin" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="OrganizationPage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PageId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrgEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EventCode" Type="varchar" MaxLength="20" />
+          <Property Name="EventName" Type="varchar" MaxLength="50" />
+          <Property Name="EventDate" Type="datetime" />
+          <Property Name="EventType" Type="bit" />
+          <Property Name="EventDescription" Type="varchar" MaxLength="500" />
+          <Property Name="OganizationId" Type="varchar" MaxLength="200" />
+          <Property Name="Periodid" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SequenceNo" Type="int" />
+          <Property Name="ForAdmin" Type="bit" />
+        </EntityType>
+        <EntityType Name="Previleage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoleId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PageId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OperationId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="PCreate" Type="bit" />
+          <Property Name="PUpdate" Type="bit" />
+          <Property Name="PDelete" Type="bit" />
+          <Property Name="PView" Type="bit" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Question" Type="text" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="QuestionTypeId" Type="varchar" MaxLength="255" />
+          <Property Name="SourceId" Type="varchar" MaxLength="255" />
+          <Property Name="QuestionMarks" Type="int" Nullable="false" />
+          <Property Name="HaveMultiAns" Type="bit" />
+        </EntityType>
+        <EntityType Name="QuestionAnswar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionAnswarId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionOption" Type="text" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="SequenceNo" Type="int" />
+        </EntityType>
+        <EntityType Name="Questionsource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionTypeId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SourceCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SourceName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResourceText" Type="text" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionsourceGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionSourceId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TypeCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubjectDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SubjectId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CourseId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PeriodFrom" Type="datetime" />
+          <Property Name="PeriodTo" Type="datetime" />
+          <Property Name="IsPublish" Type="bit" Nullable="false" />
+          <Property Name="Islocked" Type="bit" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ExamTIme" Type="int" />
+          <Property Name="HourTime" Type="int" />
+          <Property Name="MinTime" Type="int" />
+        </EntityType>
+        <EntityType Name="TestInstruction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InstructionText" Type="text" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="TestId" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestSectionId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="SequenceNo" Type="int" />
+        </EntityType>
+        <EntityType Name="TestSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestSectionCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestSectionName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ParentId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="optionId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAnswerMark">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserFeedBack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MessageHeader" Type="text" />
+          <Property Name="MessageInfo" Type="text" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ApplicantTo" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LogInId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UserType" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" />
+          <Property Name="IsApplicant" Type="bit" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+          <Property Name="PhotoPath" Type="varchar" MaxLength="2000" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="NoOfLogin" Type="int" />
+        </EntityType>
+        <EntityType Name="UserMark">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Mark" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="TestSectionId" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoleId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTestTIme">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TestId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="QuestionRemainTime" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__AcademicY__Organ__29221CFB">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYear">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applicant__Organ__5165187F">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="ApplicantTest" Type="Self.ApplicantTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicantTest">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Class__Organizat__7A672E12">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Course__Organiza__778AC167">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupUser__Appli__73BA3083">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="GroupUserApplicant" Type="Self.GroupUserApplicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupUserApplicant">
+              <PropertyRef Name="ApplicantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupUser__Group__72C60C4A">
+          <End Role="GroupUser" Type="Self.GroupUser" Multiplicity="1" />
+          <End Role="GroupUserApplicant" Type="Self.GroupUserApplicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupUserApplicant">
+              <PropertyRef Name="GroupUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupUser__Ogani__6FE99F9F">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="GroupUser" Type="Self.GroupUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupUser">
+              <PropertyRef Name="OganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupUser__Ogani__74AE54BC">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="GroupUserApplicant" Type="Self.GroupUserApplicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupUserApplicant">
+              <PropertyRef Name="OganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModulePag__Modul__21B6055D">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="ModulePage" Type="Self.ModulePage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ModulePage">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModulePag__PageI__22AA2996">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="ModulePage" Type="Self.ModulePage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ModulePage">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__Organ__6477ECF3">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="OrganizationPage" Type="Self.OrganizationPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrganizationPage">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__PageI__6383C8BA">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="OrganizationPage" Type="Self.OrganizationPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrganizationPage">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Previleag__Organ__276EDEB3">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Previleage" Type="Self.Previleage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Previleage">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Previleag__PageI__267ABA7A">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="Previleage" Type="Self.Previleage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Previleage">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Previleag__RoleI__25869641">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
+          <End Role="Previleage" Type="Self.Previleage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Previleage">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__Organi__30F848ED">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionA__Organ__398D8EEE">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="QuestionAnswar" Type="Self.QuestionAnswar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionAnswar">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionA__Quest__37A5467C">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionAnswar" Type="Self.QuestionAnswar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionAnswar">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionA__Quest__38996AB5">
+          <End Role="QuestionOption" Type="Self.QuestionOption" Multiplicity="1" />
+          <End Role="QuestionAnswar" Type="Self.QuestionAnswar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionOption">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionAnswar">
+              <PropertyRef Name="QuestionAnswarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionO__Organ__34C8D9D1">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="QuestionOption" Type="Self.QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionOption">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionO__Quest__33D4B598">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionOption" Type="Self.QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionOption">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__Organ__403A8C7D">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Questionsource" Type="Self.Questionsource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionsource">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__Organ__44FF419A">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="QuestionsourceGroup" Type="Self.QuestionsourceGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionsourceGroup">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__Quest__3F466844">
+          <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="1" />
+          <End Role="Questionsource" Type="Self.Questionsource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionsource">
+              <PropertyRef Name="QuestionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__Quest__4316F928">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionsourceGroup" Type="Self.QuestionsourceGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionsourceGroup">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__Quest__440B1D61">
+          <End Role="Questionsource" Type="Self.Questionsource" Multiplicity="1" />
+          <End Role="QuestionsourceGroup" Type="Self.QuestionsourceGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questionsource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionsourceGroup">
+              <PropertyRef Name="QuestionSourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionT__Organ__3C69FB99">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionType">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleMaste__Organ__182C9B23">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoleMaster">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Section__Organiz__7D439ABD">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Subject__Organiz__01142BA1">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubjectDe__Cours__17036CC0">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="SubjectDetails" Type="Self.SubjectDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectDetails">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubjectDe__Organ__17F790F9">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="SubjectDetails" Type="Self.SubjectDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectDetails">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubjectDe__Subje__160F4887">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="SubjectDetails" Type="Self.SubjectDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectDetails">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Test__Organizati__2A4B4B5E">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestInstr__Organ__4D94879B">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="TestInstruction" Type="Self.TestInstruction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestInstruction">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestInstr__TestI__4E88ABD4">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestInstruction" Type="Self.TestInstruction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestInstruction">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestQuest__Organ__4AB81AF0">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="TestQuestion" Type="Self.TestQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestQuestion">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestQuest__Quest__49C3F6B7">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="TestQuestion" Type="Self.TestQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestQuestion">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestQuest__TestI__47DBAE45">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestQuestion" Type="Self.TestQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestQuestion">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestQuest__TestS__48CFD27E">
+          <End Role="TestSection" Type="Self.TestSection" Multiplicity="1" />
+          <End Role="TestQuestion" Type="Self.TestQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestSection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestQuestion">
+              <PropertyRef Name="TestSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestSecti__Organ__2E1BDC42">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="TestSection" Type="Self.TestSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestSection">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestSecti__Paren__2D27B809">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestSection" Type="Self.TestSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestSection">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserAnswe__Organ__5441852A">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserAnswer" Type="Self.UserAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserAnswer">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserAnswe__Organ__571DF1D5">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserAnswerMark" Type="Self.UserAnswerMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserAnswerMark">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserFeedB__Organ__5FB337D6">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserFeedBack" Type="Self.UserFeedBack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserFeedBack">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInfo__Organi__145C0A3F">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInfo__UserTy__15502E78">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserMark__Organi__5CD6CB2B">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserMark" Type="Self.UserMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMark">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRole__Organi__1B0907CE">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserTestT__Organ__59FA5E80">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserTestTIme" Type="Self.UserTestTIme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTestTIme">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EPortalModelStoreContainer">
+          <EntitySet Name="AcademicYear" EntityType="Self.AcademicYear" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicantTest" EntityType="Self.ApplicantTest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMailConfiguration" EntityType="Self.EMailConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupUser" EntityType="Self.GroupUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupUserApplicant" EntityType="Self.GroupUserApplicant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModulePage" EntityType="Self.ModulePage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganizationPage" EntityType="Self.OrganizationPage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrgEvent" EntityType="Self.OrgEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Previleage" EntityType="Self.Previleage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionAnswar" EntityType="Self.QuestionAnswar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionOption" EntityType="Self.QuestionOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questionsource" EntityType="Self.Questionsource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionsourceGroup" EntityType="Self.QuestionsourceGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestInstruction" EntityType="Self.TestInstruction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestQuestion" EntityType="Self.TestQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestSection" EntityType="Self.TestSection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAnswer" EntityType="Self.UserAnswer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAnswerMark" EntityType="Self.UserAnswerMark" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserFeedBack" EntityType="Self.UserFeedBack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMark" EntityType="Self.UserMark" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTestTIme" EntityType="Self.UserTestTIme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AcademicY__Organ__29221CFB" Association="Self.FK__AcademicY__Organ__29221CFB">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="AcademicYear" EntitySet="AcademicYear" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicant__Organ__5165187F" Association="Self.FK__Applicant__Organ__5165187F">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="ApplicantTest" EntitySet="ApplicantTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Class__Organizat__7A672E12" Association="Self.FK__Class__Organizat__7A672E12">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Course__Organiza__778AC167" Association="Self.FK__Course__Organiza__778AC167">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupUser__Appli__73BA3083" Association="Self.FK__GroupUser__Appli__73BA3083">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="GroupUserApplicant" EntitySet="GroupUserApplicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupUser__Group__72C60C4A" Association="Self.FK__GroupUser__Group__72C60C4A">
+            <End Role="GroupUser" EntitySet="GroupUser" />
+            <End Role="GroupUserApplicant" EntitySet="GroupUserApplicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupUser__Ogani__6FE99F9F" Association="Self.FK__GroupUser__Ogani__6FE99F9F">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="GroupUser" EntitySet="GroupUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupUser__Ogani__74AE54BC" Association="Self.FK__GroupUser__Ogani__74AE54BC">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="GroupUserApplicant" EntitySet="GroupUserApplicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModulePag__Modul__21B6055D" Association="Self.FK__ModulePag__Modul__21B6055D">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="ModulePage" EntitySet="ModulePage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModulePag__PageI__22AA2996" Association="Self.FK__ModulePag__PageI__22AA2996">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="ModulePage" EntitySet="ModulePage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__Organ__6477ECF3" Association="Self.FK__Organizat__Organ__6477ECF3">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="OrganizationPage" EntitySet="OrganizationPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__PageI__6383C8BA" Association="Self.FK__Organizat__PageI__6383C8BA">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="OrganizationPage" EntitySet="OrganizationPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Previleag__Organ__276EDEB3" Association="Self.FK__Previleag__Organ__276EDEB3">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Previleage" EntitySet="Previleage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Previleag__PageI__267ABA7A" Association="Self.FK__Previleag__PageI__267ABA7A">
+            <End Role="Page" EntitySet="Page" />
+            <End Role="Previleage" EntitySet="Previleage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Previleag__RoleI__25869641" Association="Self.FK__Previleag__RoleI__25869641">
+            <End Role="RoleMaster" EntitySet="RoleMaster" />
+            <End Role="Previleage" EntitySet="Previleage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__Organi__30F848ED" Association="Self.FK__Question__Organi__30F848ED">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionA__Organ__398D8EEE" Association="Self.FK__QuestionA__Organ__398D8EEE">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="QuestionAnswar" EntitySet="QuestionAnswar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionA__Quest__37A5467C" Association="Self.FK__QuestionA__Quest__37A5467C">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionAnswar" EntitySet="QuestionAnswar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionA__Quest__38996AB5" Association="Self.FK__QuestionA__Quest__38996AB5">
+            <End Role="QuestionOption" EntitySet="QuestionOption" />
+            <End Role="QuestionAnswar" EntitySet="QuestionAnswar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionO__Organ__34C8D9D1" Association="Self.FK__QuestionO__Organ__34C8D9D1">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="QuestionOption" EntitySet="QuestionOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionO__Quest__33D4B598" Association="Self.FK__QuestionO__Quest__33D4B598">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionOption" EntitySet="QuestionOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__Organ__403A8C7D" Association="Self.FK__Questions__Organ__403A8C7D">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Questionsource" EntitySet="Questionsource" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__Organ__44FF419A" Association="Self.FK__Questions__Organ__44FF419A">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="QuestionsourceGroup" EntitySet="QuestionsourceGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__Quest__3F466844" Association="Self.FK__Questions__Quest__3F466844">
+            <End Role="QuestionType" EntitySet="QuestionType" />
+            <End Role="Questionsource" EntitySet="Questionsource" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__Quest__4316F928" Association="Self.FK__Questions__Quest__4316F928">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionsourceGroup" EntitySet="QuestionsourceGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__Quest__440B1D61" Association="Self.FK__Questions__Quest__440B1D61">
+            <End Role="Questionsource" EntitySet="Questionsource" />
+            <End Role="QuestionsourceGroup" EntitySet="QuestionsourceGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionT__Organ__3C69FB99" Association="Self.FK__QuestionT__Organ__3C69FB99">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="QuestionType" EntitySet="QuestionType" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleMaste__Organ__182C9B23" Association="Self.FK__RoleMaste__Organ__182C9B23">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="RoleMaster" EntitySet="RoleMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Section__Organiz__7D439ABD" Association="Self.FK__Section__Organiz__7D439ABD">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Subject__Organiz__01142BA1" Association="Self.FK__Subject__Organiz__01142BA1">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubjectDe__Cours__17036CC0" Association="Self.FK__SubjectDe__Cours__17036CC0">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubjectDe__Organ__17F790F9" Association="Self.FK__SubjectDe__Organ__17F790F9">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubjectDe__Subje__160F4887" Association="Self.FK__SubjectDe__Subje__160F4887">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Test__Organizati__2A4B4B5E" Association="Self.FK__Test__Organizati__2A4B4B5E">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestInstr__Organ__4D94879B" Association="Self.FK__TestInstr__Organ__4D94879B">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="TestInstruction" EntitySet="TestInstruction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestInstr__TestI__4E88ABD4" Association="Self.FK__TestInstr__TestI__4E88ABD4">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestInstruction" EntitySet="TestInstruction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestQuest__Organ__4AB81AF0" Association="Self.FK__TestQuest__Organ__4AB81AF0">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="TestQuestion" EntitySet="TestQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestQuest__Quest__49C3F6B7" Association="Self.FK__TestQuest__Quest__49C3F6B7">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="TestQuestion" EntitySet="TestQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestQuest__TestI__47DBAE45" Association="Self.FK__TestQuest__TestI__47DBAE45">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestQuestion" EntitySet="TestQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestQuest__TestS__48CFD27E" Association="Self.FK__TestQuest__TestS__48CFD27E">
+            <End Role="TestSection" EntitySet="TestSection" />
+            <End Role="TestQuestion" EntitySet="TestQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestSecti__Organ__2E1BDC42" Association="Self.FK__TestSecti__Organ__2E1BDC42">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="TestSection" EntitySet="TestSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestSecti__Paren__2D27B809" Association="Self.FK__TestSecti__Paren__2D27B809">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestSection" EntitySet="TestSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAnswe__Organ__5441852A" Association="Self.FK__UserAnswe__Organ__5441852A">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="UserAnswer" EntitySet="UserAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAnswe__Organ__571DF1D5" Association="Self.FK__UserAnswe__Organ__571DF1D5">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="UserAnswerMark" EntitySet="UserAnswerMark" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserFeedB__Organ__5FB337D6" Association="Self.FK__UserFeedB__Organ__5FB337D6">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="UserFeedBack" EntitySet="UserFeedBack" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInfo__Organi__145C0A3F" Association="Self.FK__UserInfo__Organi__145C0A3F">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInfo__UserTy__15502E78" Association="Self.FK__UserInfo__UserTy__15502E78">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserMark__Organi__5CD6CB2B" Association="Self.FK__UserMark__Organi__5CD6CB2B">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="UserMark" EntitySet="UserMark" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRole__Organi__1B0907CE" Association="Self.FK__UserRole__Organi__1B0907CE">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserTestT__Organ__59FA5E80" Association="Self.FK__UserTestT__Organ__59FA5E80">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="UserTestTIme" EntitySet="UserTestTIme" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApplicantTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplicantId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Applicant__Organ__5165187F" FromRole="ApplicantTest" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Class__Organizat__7A672E12" FromRole="Class" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Course__Organiza__778AC167" FromRole="Course" ToRole="Organization" />
+          <NavigationProperty Name="SubjectDetails" Relationship="Self.FK__SubjectDe__Cours__17036CC0" FromRole="Course" ToRole="SubjectDetails" />
+        </EntityType>
+        <EntityType Name="EMailConfiguration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserCreationMail" Type="Boolean" Nullable="false" />
+          <Property Name="TestAssignMail" Type="Boolean" Nullable="false" />
+          <Property Name="SendResultAfterTestMail" Type="Boolean" Nullable="false" />
+          <Property Name="AfterLoginMail" Type="Boolean" Nullable="false" />
+          <Property Name="AfterChangePasswordMail" Type="Boolean" Nullable="false" />
+          <Property Name="OrganizationId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupUserCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GroupUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OganizationId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GroupUserApplicants" Relationship="Self.FK__GroupUser__Group__72C60C4A" FromRole="GroupUser" ToRole="GroupUserApplicant" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__GroupUser__Ogani__6FE99F9F" FromRole="GroupUser" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="GroupUserApplicant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupUserId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplicantId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OganizationId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GroupUser" Relationship="Self.FK__GroupUser__Group__72C60C4A" FromRole="GroupUserApplicant" ToRole="GroupUser" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__GroupUser__Appli__73BA3083" FromRole="GroupUserApplicant" ToRole="UserInfo" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__GroupUser__Ogani__74AE54BC" FromRole="GroupUserApplicant" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SequenceNo" Type="Int32" />
+          <NavigationProperty Name="ModulePages" Relationship="Self.FK__ModulePag__Modul__21B6055D" FromRole="Module" ToRole="ModulePage" />
+        </EntityType>
+        <EntityType Name="ModulePage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModuleId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PageId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Module" Relationship="Self.FK__ModulePag__Modul__21B6055D" FromRole="ModulePage" ToRole="Module" />
+          <NavigationProperty Name="Page" Relationship="Self.FK__ModulePag__PageI__22AA2996" FromRole="ModulePage" ToRole="Page" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ESTDate" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrgState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicantTests" Relationship="Self.FK__Applicant__Organ__5165187F" FromRole="Organization" ToRole="ApplicantTest" />
+          <NavigationProperty Name="Classes" Relationship="Self.FK__Class__Organizat__7A672E12" FromRole="Organization" ToRole="Class" />
+          <NavigationProperty Name="Courses" Relationship="Self.FK__Course__Organiza__778AC167" FromRole="Organization" ToRole="Course" />
+          <NavigationProperty Name="GroupUsers" Relationship="Self.FK__GroupUser__Ogani__6FE99F9F" FromRole="Organization" ToRole="GroupUser" />
+          <NavigationProperty Name="GroupUserApplicants" Relationship="Self.FK__GroupUser__Ogani__74AE54BC" FromRole="Organization" ToRole="GroupUserApplicant" />
+          <NavigationProperty Name="OrganizationPages" Relationship="Self.FK__Organizat__Organ__6477ECF3" FromRole="Organization" ToRole="OrganizationPage" />
+          <NavigationProperty Name="Previleages" Relationship="Self.FK__Previleag__Organ__276EDEB3" FromRole="Organization" ToRole="Previleage" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Question__Organi__30F848ED" FromRole="Organization" ToRole="Question" />
+          <NavigationProperty Name="QuestionAnswars" Relationship="Self.FK__QuestionA__Organ__398D8EEE" FromRole="Organization" ToRole="QuestionAnswar" />
+          <NavigationProperty Name="QuestionOptions" Relationship="Self.FK__QuestionO__Organ__34C8D9D1" FromRole="Organization" ToRole="QuestionOption" />
+          <NavigationProperty Name="Questionsources" Relationship="Self.FK__Questions__Organ__403A8C7D" FromRole="Organization" ToRole="Questionsource" />
+          <NavigationProperty Name="QuestionsourceGroups" Relationship="Self.FK__Questions__Organ__44FF419A" FromRole="Organization" ToRole="QuestionsourceGroup" />
+          <NavigationProperty Name="QuestionTypes" Relationship="Self.FK__QuestionT__Organ__3C69FB99" FromRole="Organization" ToRole="QuestionType" />
+          <NavigationProperty Name="RoleMasters" Relationship="Self.FK__RoleMaste__Organ__182C9B23" FromRole="Organization" ToRole="RoleMaster" />
+          <NavigationProperty Name="Sections" Relationship="Self.FK__Section__Organiz__7D439ABD" FromRole="Organization" ToRole="Section" />
+          <NavigationProperty Name="Subjects" Relationship="Self.FK__Subject__Organiz__01142BA1" FromRole="Organization" ToRole="Subject" />
+          <NavigationProperty Name="SubjectDetails" Relationship="Self.FK__SubjectDe__Organ__17F790F9" FromRole="Organization" ToRole="SubjectDetails" />
+          <NavigationProperty Name="Tests" Relationship="Self.FK__Test__Organizati__2A4B4B5E" FromRole="Organization" ToRole="Test" />
+          <NavigationProperty Name="TestInstructions" Relationship="Self.FK__TestInstr__Organ__4D94879B" FromRole="Organization" ToRole="TestInstruction" />
+          <NavigationProperty Name="TestQuestions" Relationship="Self.FK__TestQuest__Organ__4AB81AF0" FromRole="Organization" ToRole="TestQuestion" />
+          <NavigationProperty Name="TestSections" Relationship="Self.FK__TestSecti__Organ__2E1BDC42" FromRole="Organization" ToRole="TestSection" />
+          <NavigationProperty Name="UserAnswers" Relationship="Self.FK__UserAnswe__Organ__5441852A" FromRole="Organization" ToRole="UserAnswer" />
+          <NavigationProperty Name="UserAnswerMarks" Relationship="Self.FK__UserAnswe__Organ__571DF1D5" FromRole="Organization" ToRole="UserAnswerMark" />
+          <NavigationProperty Name="UserFeedBacks" Relationship="Self.FK__UserFeedB__Organ__5FB337D6" FromRole="Organization" ToRole="UserFeedBack" />
+          <NavigationProperty Name="UserInfoes" Relationship="Self.FK__UserInfo__Organi__145C0A3F" FromRole="Organization" ToRole="UserInfo" />
+          <NavigationProperty Name="UserMarks" Relationship="Self.FK__UserMark__Organi__5CD6CB2B" FromRole="Organization" ToRole="UserMark" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK__UserRole__Organi__1B0907CE" FromRole="Organization" ToRole="UserRole" />
+          <NavigationProperty Name="UserTestTImes" Relationship="Self.FK__UserTestT__Organ__59FA5E80" FromRole="Organization" ToRole="UserTestTIme" />
+          <NavigationProperty Name="AcademicYears" Relationship="EPortalModel.FK__AcademicY__Organ__29221CFB" FromRole="Organization" ToRole="AcademicYear" />
+        </EntityType>
+        <EntityType Name="OrganizationPage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PageId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Organizat__Organ__6477ECF3" FromRole="OrganizationPage" ToRole="Organization" />
+          <NavigationProperty Name="Page" Relationship="Self.FK__Organizat__PageI__6383C8BA" FromRole="OrganizationPage" ToRole="Page" />
+        </EntityType>
+        <EntityType Name="OrgEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EventCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EventDate" Type="DateTime" Precision="3" />
+          <Property Name="EventType" Type="Boolean" />
+          <Property Name="EventDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="OganizationId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Periodid" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SequenceNo" Type="Int32" />
+          <Property Name="ForAdmin" Type="Boolean" />
+          <NavigationProperty Name="ModulePages" Relationship="Self.FK__ModulePag__PageI__22AA2996" FromRole="Page" ToRole="ModulePage" />
+          <NavigationProperty Name="OrganizationPages" Relationship="Self.FK__Organizat__PageI__6383C8BA" FromRole="Page" ToRole="OrganizationPage" />
+          <NavigationProperty Name="Previleages" Relationship="Self.FK__Previleag__PageI__267ABA7A" FromRole="Page" ToRole="Previleage" />
+        </EntityType>
+        <EntityType Name="Previleage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PageId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OperationId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PCreate" Type="Boolean" />
+          <Property Name="PUpdate" Type="Boolean" />
+          <Property Name="PDelete" Type="Boolean" />
+          <Property Name="PView" Type="Boolean" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Previleag__Organ__276EDEB3" FromRole="Previleage" ToRole="Organization" />
+          <NavigationProperty Name="Page" Relationship="Self.FK__Previleag__PageI__267ABA7A" FromRole="Previleage" ToRole="Page" />
+          <NavigationProperty Name="RoleMaster" Relationship="Self.FK__Previleag__RoleI__25869641" FromRole="Previleage" ToRole="RoleMaster" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Question1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="QuestionTypeId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SourceId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionMarks" Type="Int32" Nullable="false" />
+          <Property Name="HaveMultiAns" Type="Boolean" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Question__Organi__30F848ED" FromRole="Question" ToRole="Organization" />
+          <NavigationProperty Name="QuestionAnswars" Relationship="Self.FK__QuestionA__Quest__37A5467C" FromRole="Question" ToRole="QuestionAnswar" />
+          <NavigationProperty Name="QuestionOptions" Relationship="Self.FK__QuestionO__Quest__33D4B598" FromRole="Question" ToRole="QuestionOption" />
+          <NavigationProperty Name="QuestionsourceGroups" Relationship="Self.FK__Questions__Quest__4316F928" FromRole="Question" ToRole="QuestionsourceGroup" />
+          <NavigationProperty Name="TestQuestions" Relationship="Self.FK__TestQuest__Quest__49C3F6B7" FromRole="Question" ToRole="TestQuestion" />
+        </EntityType>
+        <EntityType Name="QuestionAnswar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionAnswarId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__QuestionA__Organ__398D8EEE" FromRole="QuestionAnswar" ToRole="Organization" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__QuestionA__Quest__37A5467C" FromRole="QuestionAnswar" ToRole="Question" />
+          <NavigationProperty Name="QuestionOption" Relationship="Self.FK__QuestionA__Quest__38996AB5" FromRole="QuestionAnswar" ToRole="QuestionOption" />
+        </EntityType>
+        <EntityType Name="QuestionOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionOption1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SequenceNo" Type="Int32" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__QuestionO__Organ__34C8D9D1" FromRole="QuestionOption" ToRole="Organization" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__QuestionO__Quest__33D4B598" FromRole="QuestionOption" ToRole="Question" />
+          <NavigationProperty Name="QuestionAnswars" Relationship="Self.FK__QuestionA__Quest__38996AB5" FromRole="QuestionOption" ToRole="QuestionAnswar" />
+        </EntityType>
+        <EntityType Name="Questionsource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionTypeId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SourceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ResourceText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Questions__Organ__403A8C7D" FromRole="Questionsource" ToRole="Organization" />
+          <NavigationProperty Name="QuestionType" Relationship="Self.FK__Questions__Quest__3F466844" FromRole="Questionsource" ToRole="QuestionType" />
+          <NavigationProperty Name="QuestionsourceGroups" Relationship="Self.FK__Questions__Quest__440B1D61" FromRole="Questionsource" ToRole="QuestionsourceGroup" />
+        </EntityType>
+        <EntityType Name="QuestionsourceGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionSourceId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Questions__Organ__44FF419A" FromRole="QuestionsourceGroup" ToRole="Organization" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__Questions__Quest__4316F928" FromRole="QuestionsourceGroup" ToRole="Question" />
+          <NavigationProperty Name="Questionsource" Relationship="Self.FK__Questions__Quest__440B1D61" FromRole="QuestionsourceGroup" ToRole="Questionsource" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__QuestionT__Organ__3C69FB99" FromRole="QuestionType" ToRole="Organization" />
+          <NavigationProperty Name="Questionsources" Relationship="Self.FK__Questions__Quest__3F466844" FromRole="QuestionType" ToRole="Questionsource" />
+        </EntityType>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__RoleMaste__Organ__182C9B23" FromRole="RoleMaster" ToRole="Organization" />
+          <NavigationProperty Name="Previleages" Relationship="Self.FK__Previleag__RoleI__25869641" FromRole="RoleMaster" ToRole="Previleage" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Section__Organiz__7D439ABD" FromRole="Section" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Subject__Organiz__01142BA1" FromRole="Subject" ToRole="Organization" />
+          <NavigationProperty Name="SubjectDetails" Relationship="Self.FK__SubjectDe__Subje__160F4887" FromRole="Subject" ToRole="SubjectDetails" />
+        </EntityType>
+        <EntityType Name="SubjectDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubjectId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CourseId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__SubjectDe__Cours__17036CC0" FromRole="SubjectDetails" ToRole="Course" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__SubjectDe__Organ__17F790F9" FromRole="SubjectDetails" ToRole="Organization" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__SubjectDe__Subje__160F4887" FromRole="SubjectDetails" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PeriodFrom" Type="DateTime" Precision="3" />
+          <Property Name="PeriodTo" Type="DateTime" Precision="3" />
+          <Property Name="IsPublish" Type="Boolean" Nullable="false" />
+          <Property Name="Islocked" Type="Boolean" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExamTIme" Type="Int32" />
+          <Property Name="HourTime" Type="Int32" />
+          <Property Name="MinTime" Type="Int32" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Test__Organizati__2A4B4B5E" FromRole="Test" ToRole="Organization" />
+          <NavigationProperty Name="TestInstructions" Relationship="Self.FK__TestInstr__TestI__4E88ABD4" FromRole="Test" ToRole="TestInstruction" />
+          <NavigationProperty Name="TestQuestions" Relationship="Self.FK__TestQuest__TestI__47DBAE45" FromRole="Test" ToRole="TestQuestion" />
+          <NavigationProperty Name="TestSections" Relationship="Self.FK__TestSecti__Paren__2D27B809" FromRole="Test" ToRole="TestSection" />
+        </EntityType>
+        <EntityType Name="TestInstruction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InstructionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TestId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__TestInstr__Organ__4D94879B" FromRole="TestInstruction" ToRole="Organization" />
+          <NavigationProperty Name="Test" Relationship="Self.FK__TestInstr__TestI__4E88ABD4" FromRole="TestInstruction" ToRole="Test" />
+        </EntityType>
+        <EntityType Name="TestQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestSectionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SequenceNo" Type="Int32" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__TestQuest__Organ__4AB81AF0" FromRole="TestQuestion" ToRole="Organization" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__TestQuest__Quest__49C3F6B7" FromRole="TestQuestion" ToRole="Question" />
+          <NavigationProperty Name="Test" Relationship="Self.FK__TestQuest__TestI__47DBAE45" FromRole="TestQuestion" ToRole="Test" />
+          <NavigationProperty Name="TestSection" Relationship="Self.FK__TestQuest__TestS__48CFD27E" FromRole="TestQuestion" ToRole="TestSection" />
+        </EntityType>
+        <EntityType Name="TestSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestSectionCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestSectionName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParentId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__TestSecti__Organ__2E1BDC42" FromRole="TestSection" ToRole="Organization" />
+          <NavigationProperty Name="Test" Relationship="Self.FK__TestSecti__Paren__2D27B809" FromRole="TestSection" ToRole="Test" />
+          <NavigationProperty Name="TestQuestions" Relationship="Self.FK__TestQuest__TestS__48CFD27E" FromRole="TestSection" ToRole="TestQuestion" />
+        </EntityType>
+        <EntityType Name="UserAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplicantId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="optionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__UserAnswe__Organ__5441852A" FromRole="UserAnswer" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="UserAnswerMark">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplicantId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__UserAnswe__Organ__571DF1D5" FromRole="UserAnswerMark" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="UserFeedBack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplicantId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MessageHeader" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MessageInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ApplicantTo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__UserFeedB__Organ__5FB337D6" FromRole="UserFeedBack" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LogInId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IsApplicant" Type="Boolean" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhotoPath" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="NoOfLogin" Type="Int32" />
+          <NavigationProperty Name="GroupUserApplicants" Relationship="Self.FK__GroupUser__Appli__73BA3083" FromRole="UserInfo" ToRole="GroupUserApplicant" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__UserInfo__Organi__145C0A3F" FromRole="UserInfo" ToRole="Organization" />
+          <NavigationProperty Name="UserType1" Relationship="Self.FK__UserInfo__UserTy__15502E78" FromRole="UserInfo" ToRole="UserType" />
+        </EntityType>
+        <EntityType Name="UserMark">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplicantId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TestSectionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__UserMark__Organi__5CD6CB2B" FromRole="UserMark" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__UserRole__Organi__1B0907CE" FromRole="UserRole" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="UserTestTIme">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApplicantId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionRemainTime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__UserTestT__Organ__59FA5E80" FromRole="UserTestTIme" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UserInfoes" Relationship="Self.FK__UserInfo__UserTy__15502E78" FromRole="UserType" ToRole="UserInfo" />
+        </EntityType>
+        <Association Name="FK__Applicant__Organ__5165187F">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="ApplicantTest" Type="Self.ApplicantTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicantTest">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Class__Organizat__7A672E12">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Course__Organiza__778AC167">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubjectDe__Cours__17036CC0">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="SubjectDetails" Type="Self.SubjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectDetails">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupUser__Group__72C60C4A">
+          <End Role="GroupUser" Type="Self.GroupUser" Multiplicity="1" />
+          <End Role="GroupUserApplicant" Type="Self.GroupUserApplicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupUserApplicant">
+              <PropertyRef Name="GroupUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupUser__Ogani__6FE99F9F">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="GroupUser" Type="Self.GroupUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupUser">
+              <PropertyRef Name="OganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupUser__Appli__73BA3083">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="GroupUserApplicant" Type="Self.GroupUserApplicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupUserApplicant">
+              <PropertyRef Name="ApplicantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupUser__Ogani__74AE54BC">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="GroupUserApplicant" Type="Self.GroupUserApplicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupUserApplicant">
+              <PropertyRef Name="OganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModulePag__Modul__21B6055D">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="ModulePage" Type="Self.ModulePage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ModulePage">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ModulePag__PageI__22AA2996">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="ModulePage" Type="Self.ModulePage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ModulePage">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__Organ__6477ECF3">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="OrganizationPage" Type="Self.OrganizationPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrganizationPage">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Previleag__Organ__276EDEB3">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Previleage" Type="Self.Previleage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Previleage">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__Organi__30F848ED">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionA__Organ__398D8EEE">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="QuestionAnswar" Type="Self.QuestionAnswar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionAnswar">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionO__Organ__34C8D9D1">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="QuestionOption" Type="Self.QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionOption">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__Organ__403A8C7D">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Questionsource" Type="Self.Questionsource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionsource">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__Organ__44FF419A">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="QuestionsourceGroup" Type="Self.QuestionsourceGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionsourceGroup">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionT__Organ__3C69FB99">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionType">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleMaste__Organ__182C9B23">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoleMaster">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Section__Organiz__7D439ABD">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Subject__Organiz__01142BA1">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubjectDe__Organ__17F790F9">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="SubjectDetails" Type="Self.SubjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectDetails">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Test__Organizati__2A4B4B5E">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestInstr__Organ__4D94879B">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="TestInstruction" Type="Self.TestInstruction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestInstruction">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestQuest__Organ__4AB81AF0">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="TestQuestion" Type="Self.TestQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestQuestion">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestSecti__Organ__2E1BDC42">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="TestSection" Type="Self.TestSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestSection">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserAnswe__Organ__5441852A">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserAnswer" Type="Self.UserAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserAnswer">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserAnswe__Organ__571DF1D5">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserAnswerMark" Type="Self.UserAnswerMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserAnswerMark">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserFeedB__Organ__5FB337D6">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserFeedBack" Type="Self.UserFeedBack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserFeedBack">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInfo__Organi__145C0A3F">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserMark__Organi__5CD6CB2B">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserMark" Type="Self.UserMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMark">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRole__Organi__1B0907CE">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserTestT__Organ__59FA5E80">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="UserTestTIme" Type="Self.UserTestTIme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTestTIme">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__PageI__6383C8BA">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="OrganizationPage" Type="Self.OrganizationPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrganizationPage">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Previleag__PageI__267ABA7A">
+          <End Role="Page" Type="Self.Page" Multiplicity="1" />
+          <End Role="Previleage" Type="Self.Previleage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Previleage">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Previleag__RoleI__25869641">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
+          <End Role="Previleage" Type="Self.Previleage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Previleage">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionA__Quest__37A5467C">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionAnswar" Type="Self.QuestionAnswar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionAnswar">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionO__Quest__33D4B598">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionOption" Type="Self.QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionOption">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__Quest__4316F928">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionsourceGroup" Type="Self.QuestionsourceGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionsourceGroup">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestQuest__Quest__49C3F6B7">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="TestQuestion" Type="Self.TestQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestQuestion">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionA__Quest__38996AB5">
+          <End Role="QuestionOption" Type="Self.QuestionOption" Multiplicity="1" />
+          <End Role="QuestionAnswar" Type="Self.QuestionAnswar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionOption">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionAnswar">
+              <PropertyRef Name="QuestionAnswarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__Quest__3F466844">
+          <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="1" />
+          <End Role="Questionsource" Type="Self.Questionsource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questionsource">
+              <PropertyRef Name="QuestionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__Quest__440B1D61">
+          <End Role="Questionsource" Type="Self.Questionsource" Multiplicity="1" />
+          <End Role="QuestionsourceGroup" Type="Self.QuestionsourceGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questionsource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionsourceGroup">
+              <PropertyRef Name="QuestionSourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubjectDe__Subje__160F4887">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="SubjectDetails" Type="Self.SubjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectDetails">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestInstr__TestI__4E88ABD4">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestInstruction" Type="Self.TestInstruction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestInstruction">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestQuest__TestI__47DBAE45">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestQuestion" Type="Self.TestQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestQuestion">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestSecti__Paren__2D27B809">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestSection" Type="Self.TestSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestSection">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestQuest__TestS__48CFD27E">
+          <End Role="TestSection" Type="Self.TestSection" Multiplicity="1" />
+          <End Role="TestQuestion" Type="Self.TestQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestSection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestQuestion">
+              <PropertyRef Name="TestSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInfo__UserTy__15502E78">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EPortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicantTests" EntityType="Self.ApplicantTest" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Courses" EntityType="Self.Course" />
+          <EntitySet Name="EMailConfigurations" EntityType="Self.EMailConfiguration" />
+          <EntitySet Name="GroupUsers" EntityType="Self.GroupUser" />
+          <EntitySet Name="GroupUserApplicants" EntityType="Self.GroupUserApplicant" />
+          <EntitySet Name="Modules" EntityType="Self.Module" />
+          <EntitySet Name="ModulePages" EntityType="Self.ModulePage" />
+          <EntitySet Name="Organizations" EntityType="Self.Organization" />
+          <EntitySet Name="OrganizationPages" EntityType="Self.OrganizationPage" />
+          <EntitySet Name="OrgEvents" EntityType="Self.OrgEvent" />
+          <EntitySet Name="Pages" EntityType="Self.Page" />
+          <EntitySet Name="Previleages" EntityType="Self.Previleage" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="QuestionAnswars" EntityType="Self.QuestionAnswar" />
+          <EntitySet Name="QuestionOptions" EntityType="Self.QuestionOption" />
+          <EntitySet Name="Questionsources" EntityType="Self.Questionsource" />
+          <EntitySet Name="QuestionsourceGroups" EntityType="Self.QuestionsourceGroup" />
+          <EntitySet Name="QuestionTypes" EntityType="Self.QuestionType" />
+          <EntitySet Name="RoleMasters" EntityType="Self.RoleMaster" />
+          <EntitySet Name="Sections" EntityType="Self.Section" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetail" />
+          <EntitySet Name="Tests" EntityType="Self.Test" />
+          <EntitySet Name="TestInstructions" EntityType="Self.TestInstruction" />
+          <EntitySet Name="TestQuestions" EntityType="Self.TestQuestion" />
+          <EntitySet Name="TestSections" EntityType="Self.TestSection" />
+          <EntitySet Name="UserAnswers" EntityType="Self.UserAnswer" />
+          <EntitySet Name="UserAnswerMarks" EntityType="Self.UserAnswerMark" />
+          <EntitySet Name="UserFeedBacks" EntityType="Self.UserFeedBack" />
+          <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
+          <EntitySet Name="UserMarks" EntityType="Self.UserMark" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <EntitySet Name="UserTestTImes" EntityType="Self.UserTestTIme" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <AssociationSet Name="FK__Applicant__Organ__5165187F" Association="Self.FK__Applicant__Organ__5165187F">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="ApplicantTest" EntitySet="ApplicantTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Class__Organizat__7A672E12" Association="Self.FK__Class__Organizat__7A672E12">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Course__Organiza__778AC167" Association="Self.FK__Course__Organiza__778AC167">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubjectDe__Cours__17036CC0" Association="Self.FK__SubjectDe__Cours__17036CC0">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupUser__Group__72C60C4A" Association="Self.FK__GroupUser__Group__72C60C4A">
+            <End Role="GroupUser" EntitySet="GroupUsers" />
+            <End Role="GroupUserApplicant" EntitySet="GroupUserApplicants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupUser__Ogani__6FE99F9F" Association="Self.FK__GroupUser__Ogani__6FE99F9F">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="GroupUser" EntitySet="GroupUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupUser__Appli__73BA3083" Association="Self.FK__GroupUser__Appli__73BA3083">
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+            <End Role="GroupUserApplicant" EntitySet="GroupUserApplicants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupUser__Ogani__74AE54BC" Association="Self.FK__GroupUser__Ogani__74AE54BC">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="GroupUserApplicant" EntitySet="GroupUserApplicants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModulePag__Modul__21B6055D" Association="Self.FK__ModulePag__Modul__21B6055D">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="ModulePage" EntitySet="ModulePages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ModulePag__PageI__22AA2996" Association="Self.FK__ModulePag__PageI__22AA2996">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="ModulePage" EntitySet="ModulePages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__Organ__6477ECF3" Association="Self.FK__Organizat__Organ__6477ECF3">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="OrganizationPage" EntitySet="OrganizationPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Previleag__Organ__276EDEB3" Association="Self.FK__Previleag__Organ__276EDEB3">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Previleage" EntitySet="Previleages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__Organi__30F848ED" Association="Self.FK__Question__Organi__30F848ED">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionA__Organ__398D8EEE" Association="Self.FK__QuestionA__Organ__398D8EEE">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="QuestionAnswar" EntitySet="QuestionAnswars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionO__Organ__34C8D9D1" Association="Self.FK__QuestionO__Organ__34C8D9D1">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="QuestionOption" EntitySet="QuestionOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__Organ__403A8C7D" Association="Self.FK__Questions__Organ__403A8C7D">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Questionsource" EntitySet="Questionsources" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__Organ__44FF419A" Association="Self.FK__Questions__Organ__44FF419A">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="QuestionsourceGroup" EntitySet="QuestionsourceGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionT__Organ__3C69FB99" Association="Self.FK__QuestionT__Organ__3C69FB99">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="QuestionType" EntitySet="QuestionTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleMaste__Organ__182C9B23" Association="Self.FK__RoleMaste__Organ__182C9B23">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="RoleMaster" EntitySet="RoleMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Section__Organiz__7D439ABD" Association="Self.FK__Section__Organiz__7D439ABD">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Subject__Organiz__01142BA1" Association="Self.FK__Subject__Organiz__01142BA1">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubjectDe__Organ__17F790F9" Association="Self.FK__SubjectDe__Organ__17F790F9">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Test__Organizati__2A4B4B5E" Association="Self.FK__Test__Organizati__2A4B4B5E">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Test" EntitySet="Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestInstr__Organ__4D94879B" Association="Self.FK__TestInstr__Organ__4D94879B">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="TestInstruction" EntitySet="TestInstructions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestQuest__Organ__4AB81AF0" Association="Self.FK__TestQuest__Organ__4AB81AF0">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="TestQuestion" EntitySet="TestQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestSecti__Organ__2E1BDC42" Association="Self.FK__TestSecti__Organ__2E1BDC42">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="TestSection" EntitySet="TestSections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAnswe__Organ__5441852A" Association="Self.FK__UserAnswe__Organ__5441852A">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="UserAnswer" EntitySet="UserAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAnswe__Organ__571DF1D5" Association="Self.FK__UserAnswe__Organ__571DF1D5">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="UserAnswerMark" EntitySet="UserAnswerMarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserFeedB__Organ__5FB337D6" Association="Self.FK__UserFeedB__Organ__5FB337D6">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="UserFeedBack" EntitySet="UserFeedBacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInfo__Organi__145C0A3F" Association="Self.FK__UserInfo__Organi__145C0A3F">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserMark__Organi__5CD6CB2B" Association="Self.FK__UserMark__Organi__5CD6CB2B">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="UserMark" EntitySet="UserMarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRole__Organi__1B0907CE" Association="Self.FK__UserRole__Organi__1B0907CE">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserTestT__Organ__59FA5E80" Association="Self.FK__UserTestT__Organ__59FA5E80">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="UserTestTIme" EntitySet="UserTestTImes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__PageI__6383C8BA" Association="Self.FK__Organizat__PageI__6383C8BA">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="OrganizationPage" EntitySet="OrganizationPages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Previleag__PageI__267ABA7A" Association="Self.FK__Previleag__PageI__267ABA7A">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="Previleage" EntitySet="Previleages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Previleag__RoleI__25869641" Association="Self.FK__Previleag__RoleI__25869641">
+            <End Role="RoleMaster" EntitySet="RoleMasters" />
+            <End Role="Previleage" EntitySet="Previleages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionA__Quest__37A5467C" Association="Self.FK__QuestionA__Quest__37A5467C">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionAnswar" EntitySet="QuestionAnswars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionO__Quest__33D4B598" Association="Self.FK__QuestionO__Quest__33D4B598">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionOption" EntitySet="QuestionOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__Quest__4316F928" Association="Self.FK__Questions__Quest__4316F928">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionsourceGroup" EntitySet="QuestionsourceGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestQuest__Quest__49C3F6B7" Association="Self.FK__TestQuest__Quest__49C3F6B7">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="TestQuestion" EntitySet="TestQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionA__Quest__38996AB5" Association="Self.FK__QuestionA__Quest__38996AB5">
+            <End Role="QuestionOption" EntitySet="QuestionOptions" />
+            <End Role="QuestionAnswar" EntitySet="QuestionAnswars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__Quest__3F466844" Association="Self.FK__Questions__Quest__3F466844">
+            <End Role="QuestionType" EntitySet="QuestionTypes" />
+            <End Role="Questionsource" EntitySet="Questionsources" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__Quest__440B1D61" Association="Self.FK__Questions__Quest__440B1D61">
+            <End Role="Questionsource" EntitySet="Questionsources" />
+            <End Role="QuestionsourceGroup" EntitySet="QuestionsourceGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubjectDe__Subje__160F4887" Association="Self.FK__SubjectDe__Subje__160F4887">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestInstr__TestI__4E88ABD4" Association="Self.FK__TestInstr__TestI__4E88ABD4">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestInstruction" EntitySet="TestInstructions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestQuest__TestI__47DBAE45" Association="Self.FK__TestQuest__TestI__47DBAE45">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestQuestion" EntitySet="TestQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestSecti__Paren__2D27B809" Association="Self.FK__TestSecti__Paren__2D27B809">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestSection" EntitySet="TestSections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestQuest__TestS__48CFD27E" Association="Self.FK__TestQuest__TestS__48CFD27E">
+            <End Role="TestSection" EntitySet="TestSections" />
+            <End Role="TestQuestion" EntitySet="TestQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInfo__UserTy__15502E78" Association="Self.FK__UserInfo__UserTy__15502E78">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+          </AssociationSet>
+          <EntitySet Name="AcademicYears" EntityType="EPortalModel.AcademicYear" />
+          <AssociationSet Name="FK__AcademicY__Organ__29221CFB" Association="EPortalModel.FK__AcademicY__Organ__29221CFB">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="AcademicYear" EntitySet="AcademicYears" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AcademicYear">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PeriodFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PeriodTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrganizationID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Organization" Relationship="EPortalModel.FK__AcademicY__Organ__29221CFB" FromRole="AcademicYear" ToRole="Organization" />
+        </EntityType>
+        <Association Name="FK__AcademicY__Organ__29221CFB">
+          <End Type="EPortalModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="EPortalModel.AcademicYear" Role="AcademicYear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYear">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EPortalModelStoreContainer" CdmEntityContainer="EPortalEntities">
+          <EntitySetMapping Name="ApplicantTests">
+            <EntityTypeMapping TypeName="EPortalModel.ApplicantTest">
+              <MappingFragment StoreEntitySet="ApplicantTest">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="EPortalModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="EPortalModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMailConfigurations">
+            <EntityTypeMapping TypeName="EPortalModel.EMailConfiguration">
+              <MappingFragment StoreEntitySet="EMailConfiguration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserCreationMail" ColumnName="UserCreationMail" />
+                <ScalarProperty Name="TestAssignMail" ColumnName="TestAssignMail" />
+                <ScalarProperty Name="SendResultAfterTestMail" ColumnName="SendResultAfterTestMail" />
+                <ScalarProperty Name="AfterLoginMail" ColumnName="AfterLoginMail" />
+                <ScalarProperty Name="AfterChangePasswordMail" ColumnName="AfterChangePasswordMail" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupUsers">
+            <EntityTypeMapping TypeName="EPortalModel.GroupUser">
+              <MappingFragment StoreEntitySet="GroupUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupUserCode" ColumnName="GroupUserCode" />
+                <ScalarProperty Name="GroupUserName" ColumnName="GroupUserName" />
+                <ScalarProperty Name="OganizationId" ColumnName="OganizationId" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupUserApplicants">
+            <EntityTypeMapping TypeName="EPortalModel.GroupUserApplicant">
+              <MappingFragment StoreEntitySet="GroupUserApplicant">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupUserId" ColumnName="GroupUserId" />
+                <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
+                <ScalarProperty Name="OganizationId" ColumnName="OganizationId" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="EPortalModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SequenceNo" ColumnName="SequenceNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModulePages">
+            <EntityTypeMapping TypeName="EPortalModel.ModulePage">
+              <MappingFragment StoreEntitySet="ModulePage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="EPortalModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="ESTDate" ColumnName="ESTDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="OrgState" ColumnName="OrgState" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganizationPages">
+            <EntityTypeMapping TypeName="EPortalModel.OrganizationPage">
+              <MappingFragment StoreEntitySet="OrganizationPage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgEvents">
+            <EntityTypeMapping TypeName="EPortalModel.OrgEvent">
+              <MappingFragment StoreEntitySet="OrgEvent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventCode" ColumnName="EventCode" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+                <ScalarProperty Name="OganizationId" ColumnName="OganizationId" />
+                <ScalarProperty Name="Periodid" ColumnName="Periodid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="EPortalModel.Page">
+              <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SequenceNo" ColumnName="SequenceNo" />
+                <ScalarProperty Name="ForAdmin" ColumnName="ForAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Previleages">
+            <EntityTypeMapping TypeName="EPortalModel.Previleage">
+              <MappingFragment StoreEntitySet="Previleage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="PCreate" ColumnName="PCreate" />
+                <ScalarProperty Name="PUpdate" ColumnName="PUpdate" />
+                <ScalarProperty Name="PDelete" ColumnName="PDelete" />
+                <ScalarProperty Name="PView" ColumnName="PView" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="EPortalModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Question1" ColumnName="Question" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="QuestionTypeId" ColumnName="QuestionTypeId" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="QuestionMarks" ColumnName="QuestionMarks" />
+                <ScalarProperty Name="HaveMultiAns" ColumnName="HaveMultiAns" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionAnswars">
+            <EntityTypeMapping TypeName="EPortalModel.QuestionAnswar">
+              <MappingFragment StoreEntitySet="QuestionAnswar">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="QuestionAnswarId" ColumnName="QuestionAnswarId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionOptions">
+            <EntityTypeMapping TypeName="EPortalModel.QuestionOption">
+              <MappingFragment StoreEntitySet="QuestionOption">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="QuestionOption1" ColumnName="QuestionOption" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="SequenceNo" ColumnName="SequenceNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questionsources">
+            <EntityTypeMapping TypeName="EPortalModel.Questionsource">
+              <MappingFragment StoreEntitySet="Questionsource">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionTypeId" ColumnName="QuestionTypeId" />
+                <ScalarProperty Name="SourceCode" ColumnName="SourceCode" />
+                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
+                <ScalarProperty Name="ResourceText" ColumnName="ResourceText" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionsourceGroups">
+            <EntityTypeMapping TypeName="EPortalModel.QuestionsourceGroup">
+              <MappingFragment StoreEntitySet="QuestionsourceGroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="QuestionSourceId" ColumnName="QuestionSourceId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionTypes">
+            <EntityTypeMapping TypeName="EPortalModel.QuestionType">
+              <MappingFragment StoreEntitySet="QuestionType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMasters">
+            <EntityTypeMapping TypeName="EPortalModel.RoleMaster">
+              <MappingFragment StoreEntitySet="RoleMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="EPortalModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="EPortalModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectDetails">
+            <EntityTypeMapping TypeName="EPortalModel.SubjectDetail">
+              <MappingFragment StoreEntitySet="SubjectDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="EPortalModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TestCode" ColumnName="TestCode" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="PeriodFrom" ColumnName="PeriodFrom" />
+                <ScalarProperty Name="PeriodTo" ColumnName="PeriodTo" />
+                <ScalarProperty Name="IsPublish" ColumnName="IsPublish" />
+                <ScalarProperty Name="Islocked" ColumnName="Islocked" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="ExamTIme" ColumnName="ExamTIme" />
+                <ScalarProperty Name="HourTime" ColumnName="HourTime" />
+                <ScalarProperty Name="MinTime" ColumnName="MinTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestInstructions">
+            <EntityTypeMapping TypeName="EPortalModel.TestInstruction">
+              <MappingFragment StoreEntitySet="TestInstruction">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InstructionText" ColumnName="InstructionText" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestQuestions">
+            <EntityTypeMapping TypeName="EPortalModel.TestQuestion">
+              <MappingFragment StoreEntitySet="TestQuestion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="TestSectionId" ColumnName="TestSectionId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="SequenceNo" ColumnName="SequenceNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestSections">
+            <EntityTypeMapping TypeName="EPortalModel.TestSection">
+              <MappingFragment StoreEntitySet="TestSection">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TestSectionCode" ColumnName="TestSectionCode" />
+                <ScalarProperty Name="TestSectionName" ColumnName="TestSectionName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAnswers">
+            <EntityTypeMapping TypeName="EPortalModel.UserAnswer">
+              <MappingFragment StoreEntitySet="UserAnswer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="optionId" ColumnName="optionId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAnswerMarks">
+            <EntityTypeMapping TypeName="EPortalModel.UserAnswerMark">
+              <MappingFragment StoreEntitySet="UserAnswerMark">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserFeedBacks">
+            <EntityTypeMapping TypeName="EPortalModel.UserFeedBack">
+              <MappingFragment StoreEntitySet="UserFeedBack">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
+                <ScalarProperty Name="MessageHeader" ColumnName="MessageHeader" />
+                <ScalarProperty Name="MessageInfo" ColumnName="MessageInfo" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="ApplicantTo" ColumnName="ApplicantTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfoes">
+            <EntityTypeMapping TypeName="EPortalModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LogInId" ColumnName="LogInId" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsApplicant" ColumnName="IsApplicant" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="NoOfLogin" ColumnName="NoOfLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMarks">
+            <EntityTypeMapping TypeName="EPortalModel.UserMark">
+              <MappingFragment StoreEntitySet="UserMark">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="TestSectionId" ColumnName="TestSectionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="EPortalModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTestTImes">
+            <EntityTypeMapping TypeName="EPortalModel.UserTestTIme">
+              <MappingFragment StoreEntitySet="UserTestTIme">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="QuestionRemainTime" ColumnName="QuestionRemainTime" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="EPortalModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademicYears">
+            <EntityTypeMapping TypeName="EPortalModel.AcademicYear">
+              <MappingFragment StoreEntitySet="AcademicYear">
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="PeriodTo" ColumnName="PeriodTo" />
+                <ScalarProperty Name="PeriodFrom" ColumnName="PeriodFrom" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

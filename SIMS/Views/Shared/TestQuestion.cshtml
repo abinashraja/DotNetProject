@@ -1,0 +1,230 @@
+﻿
+@{
+    ViewBag.Title = "TestQuestion";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+<script src="~/Scripts/PageJS/TestQuestion.js"></script>
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test Question Setup</title>
+    <style type="text/css">
+        html, body {
+            overflow: visible;
+        }
+
+        .downmargin {
+            margin-bottom: 2%;
+        }
+
+        .tabelwidth {
+            width: 20%;
+        }
+
+        .selectedcol {
+            background-color: #FF9800 !important;
+        }
+
+        .questionlistcol {
+            background-color: #03A9F4;
+        }
+    </style>
+</head>
+
+<div>
+    <div class="row showing" style="margin-top: 8%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+        <div class="col-md-6">
+            <h2><i class="fa fa-hand-o-right"></i> Test Question</h2>
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        </div>
+        <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+        </div>
+    </div>
+    <div class="grid-width-100 downmargin">
+        <div class="grid-container" style="width: 90%;margin-left: 5%;">
+            <div class="row bottom" style="margin-top: 8%;">
+                <div class=" col-md-12 col-lg-12 ">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9 downmargin">
+                            <span style="color:red;">* marked are mendatory fileld.</span>
+                        </div>
+                    </div>
+                    <div class="row downmargin">
+                        <div class="col-md-2">Test<span style="color:red;">*</span></div>
+                        <div class="col-md-4">
+                            <select class="form-control" ng-model="NewTestQuestion.TestId" ng-change="GetTestSection()" ng-disabled="disabledthisone" ng-options="c.Id as c.TestName for c in NewTestQuestion.TestList" class="dropdownstyle"></select>
+                        </div>
+                        <div class="col-md-2">Test Section<span style="color:red;">*</span></div>
+                        <div class="col-md-4">
+                            <select class="form-control" ng-model="NewTestQuestion.TestSectionId" ng-options="ts.Id as ts.TestSectionName for ts in NewTestQuestion.TestSectionList" ng-disabled="disabledthisone" class="dropdownstyle"></select>
+                        </div>
+
+                    </div>
+                    <div class="row downmargin">
+                        <div class="col-md-2">Question Type<span style="color:red;">*</span></div>
+                        <div class="col-md-4">
+                            <select class="form-control" ng-model="NewTestQuestion.QuestionTypeId" ng-disabled="disabledthisone" ng-options="c.Id as c.TypeName for c in NewTestQuestion.QuestionTypeList" class="dropdownstyle"></select>
+                        </div>
+                        <div class="col-md-2">No. Of Question<span style="color:red;">*</span></div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" ng-model="NewTestQuestion.NoOFQuestion" />
+                        </div>
+
+                    </div>
+                    <div class="row downmargin">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+                            <input type="button" value="Define" class="btn btn-info Shading " ng-click="CallDefineFunction()" />
+                            @*<md-button class="md-raised" ng-click="CallDefineFunction()">Define</md-button>*@
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            @*<div class="row editorheader">
+                    <div class="col-md-6">
+                        <span style="margin-left: 1%;"> Please Enter Question here</span>
+                    </div>
+                    <div class="col-md-6">
+                        <button ng-click="addEditor()">New Editor</button>
+                    </div>
+
+                </div>*@
+
+        </div>
+        <div class="row" style="margin-top: 2%;">
+            <div class="col-md-3 downmargin" style="margin-left: 5%;">
+                <div class="list-group">
+                    <div class="list-group-item questionlistcol" id="unique" ng-click="ShowUniqueBar()">Question <span style="color: white;">({{NoOFUniquesQuestion}})</span></div>
+                    <div class="list-group-item questionlistcol" id="groupques" ng-click="ShowGorupBar()"> Group Question <span style="color: white;">({{NoOFGroupQuestion}})</span></div>
+                </div>
+            </div>
+            <div class="col-md-8" id="UniqueQuestion" ng-show="ShowUnique">
+                <div class="row" style="margin-bottom:2%;">
+                    <table class="table table-bordered">
+
+                        <thead>
+                            <tr class="tableheader">
+                                <th style="text-align: center;" class="tabelwidth">Question</th>
+                                <th style="text-align:center;width: 1%;">Select</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="uques in NewTestQuestion.UniqueQuestionList">
+                                <td>{{uques.QuestionText}}</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-unchecked green" ng-hide="uques.Selected" ng-click="SelectUniqueQuestion(uques,0)"></span>
+                                    <span class="glyphicon glyphicon-ok green" ng-show="uques.Selected"  ng-click="SelectUniqueQuestion(uques,1)"></span>
+
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row" style="margin-bottom:2%;">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-5">
+                        <ul class="pager">
+
+                            @*<md-button class="md-raised" ng-click="GetNewRecord(-1)" ng-hide="{{disabledPrevious}}">Previous</md-button>
+                            <md-button class="md-raised" ng-click="GetNewRecord(1)" ng-hide="{{disabledNext}}">Next</md-button>*@
+
+                            <li ng-click="GetNewRecord(-1)" ng-hide="{{disabledPrevious}}"><a href="">Previous</a></li>
+                            <li ng-click="GetNewRecord(1)" ng-hide="{{disabledNext}}"><a href="">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-8" id="GroupQuestion" ng-hide="ShowUnique">
+                <div class="row" style="margin-bottom:2%;">
+                    <table class="table table-bordered">
+
+                        <thead>
+                            <tr class="tableheader">
+                                <th style="text-align: center;" class="tabelwidth">Question</th>
+                                <th style="text-align: center;" class="tabelwidth">No. Of Question In Gorup</th>
+                                <th style="text-align:center;width: 1%;">Operation</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="grp in NewTestQuestion.GroupQuestionList">
+                                <td>{{grp.QuestionText}}</td>
+                                <td>{{grp.NoOfQuestion}}</td>
+                                <td>
+                                    @*<span class="glyphicon glyphicon-unchecked green" ng-hide="grp.Selected" ng-click="SelectGroupQuestion(grp,0)"></span>
+                                    <span class="glyphicon glyphicon-ok green" ng-show="grp.Selected" ng-click="SelectGroupQuestion(grp,1)"></span>*@
+
+                                    <img src="~/Content/Images/CheckBox.png" style="width:24px;height:24px;" ng-hide="grp.Selected" ng-click="SelectGroupQuestion(grp,0)" />
+                                    <img src="~/Content/Images/CheckChecked.png" style="width:24px;height:24px;" ng-show="grp.Selected" ng-click="SelectGroupQuestion(grp,1)"/>
+
+
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row" style="margin-bottom:2%;">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-5">
+                        <ul class="pager">
+
+                            @*<md-button class="md-raised" ng-click="GetNewRecordGroup(-1)">Previous</md-button>
+                            <md-button class="md-raised" ng-click="GetNewRecordGroup(1)">Next</md-button>*@
+
+                            <li ng-click="GetNewRecordGroup(-1)" ng-hide="{{disabledPrevious}}"><a href="">Previous</a></li>
+                            <li ng-click="GetNewRecordGroup(1)" ng-hide="{{disabledNext}}"><a href="">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-5">
+                <input type="button" class="btn btn-info Shading" value="Save" ng-click="saveTestQuestion()" />
+                @*<md-button class="md-raised" ng-click="saveTestQuestion()">Save</md-button>*@
+            </div>
+           
+            
+
+        </div>
+    </div>
+
+
+
+</div>
+
+<script>
+    $(document).ready(function () {
+
+    });
+</script>
+

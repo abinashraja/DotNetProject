@@ -1,0 +1,597 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-School - Preparing For Tomorrow</title>
+    <!-- Bootstrap -->
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>*@
+
+    @*<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    @*<link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">*@
+    @*<link href="~/Content/font-awesome.min.css" rel="stylesheet" />*@
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    @*<link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">*@
+    <link href="~/Content/green.css" rel="stylesheet" />
+
+
+    <!-- Custom Theme Style -->
+    @*<link href="build/css/custom.min.css" rel="stylesheet">*@
+    <link href="~/Content/custom.min.css" rel="stylesheet" />
+
+   
+
+    @* Notify Js and css *@
+    <script src="~/Scripts/An-Notify/ng-notify.js"></script>
+    <link href="~/Content/NG-Notify/ng-notify.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js"></script>
+
+
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/PageJS/EAssessment.js"></script>
+
+
+
+    <style>
+        /*for tooltip*/
+        [data-tip] {
+            position: relative;
+        }
+
+            [data-tip]:before {
+                content: '';
+                /* hides the tooltip when not hovered */
+                display: none;
+                content: '';
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-bottom: 5px solid #1a1a1a;
+                position: absolute;
+                top: 30px;
+                left: 35px;
+                z-index: 8;
+                font-size: 0;
+                line-height: 0;
+                width: 0;
+                height: 0;
+            }
+
+            [data-tip]:after {
+                display: none;
+                content: attr(data-tip);
+                position: absolute;
+                top: 35px;
+                left: 0px;
+                padding: 5px 8px;
+                background: #1a1a1a;
+                color: #fff;
+                z-index: 9;
+                font-size: 0.75em;
+                height: 30px;
+                line-height: 30px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                white-space: nowrap;
+                word-wrap: normal;
+            }
+
+            [data-tip]:hover:before,
+            [data-tip]:hover:after {
+                display: block;
+            }
+        /*end tootltip*/
+
+
+
+
+        /*For grid Search */
+
+        #search {
+            float: right;
+            margin-top: 9px;
+            width: 250px;
+        }
+
+        .search {
+            padding: 5px 0;
+            width: 230px;
+            height: 30px;
+            position: relative;
+            left: 10px;
+            float: left;
+            line-height: 22px;
+        }
+
+        #searchbtn {
+            height: 30px;
+            position: absolute;
+            right: 0;
+            top: 5px;
+            border-radius: 1px;
+        }
+
+        .search input {
+            position: absolute;
+            width: 0px;
+            float: Left;
+            margin-left: 210px;
+            -webkit-transition: all 0.7s ease-in-out;
+            -moz-transition: all 0.7s ease-in-out;
+            -o-transition: all 0.7s ease-in-out;
+            transition: all 0.7s ease-in-out;
+            height: 30px;
+            line-height: 18px;
+            padding: 0 2px 0 2px;
+            border-radius: 1px;
+        }
+
+            .search:hover input, .search input:focus {
+                width: 200px;
+                margin-left: 0px;
+            }
+
+        /*For Grid Search*/
+
+
+
+        .content {
+            display: none;
+        }
+
+        .topmarginmap {
+            margin-top: 1%;
+        }
+
+        .preload {
+            width: 100px;
+            height: 100px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+        }
+
+
+
+        .watermark {
+            position: absolute;
+            top: 80px;
+            opacity: 0.25;
+            font-size: 3em;
+            width: 70%;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .parentDisable {
+            /*position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+            z-index: 2000;
+            height: 100%;
+            width: 100%;*/
+            z-index: 2000 !important;
+        }
+
+        .parentDisableope {
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+            z-index: 2000;
+            height: 100%;
+            width: 100%;
+            /*z-index: 2000 !important;*/
+        }
+
+        .ngGridStyle {
+            width: 100%;
+            height: 500px;
+        }
+
+        .ngGrid {
+            background-color: #fdfdfd;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        .ngHeaderContainer {
+            background-color: #fff !important;
+            color: #000 !important;
+            text-align: center !important;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        .ngFooterPanel {
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        .btnclass {
+            text-align: center !important;
+        }
+
+        .ngRow:hover {
+            background-color: #98f6f3 !important;
+        }
+
+        .ngRow.odd:hover {
+            background-color: #ddd !important;
+        }
+
+        .ngRow.even:hover {
+            background-color: #ddd !important;
+        }
+
+
+        .ngRow.odd {
+            background-color: #f7f7f7 !important /*rgba(0, 55, 212, 0.43)*/;
+            color: #333;
+        }
+
+        .ngRow.even {
+            background-color: #fff !important;
+            color: #333;
+            min-height: 30px !important;
+        }
+
+        .downmargin {
+            margin-bottom: 1%;
+        }
+
+        .topmargin {
+            margin-top: 2%;
+        }
+        /*Table over color*/
+
+        .table tr:nth-child(odd):hover {
+            background-color: #ddd !important;
+        }
+
+        .table tr:nth-child(even):hover {
+            background-color: #ddd !important;
+        }
+
+
+        .table tr:nth-child(odd) {
+            background-color: #f7f7f7 !important /*rgba(0, 55, 212, 0.43)*/;
+            color: #333;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #fff !important;
+            color: #333;
+            min-height: 30px !important;
+        }
+
+
+        /*End*/
+
+
+
+        /*.label-default {
+            background-color: #d9534f;
+        }*/
+        .ui-jqgrid tr.jqgrow td {
+            height: 50px;
+        }
+
+        /*Later */
+        .btn {
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+            background-color: #009688;
+            color: white;
+        }
+
+        .showing, list-group, list-group-item {
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        .Shading {
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        .row {
+            margin-left: 0px !important;
+            margin-right: 0px !important;
+        }
+
+        .label-danger {
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+    </style>
+
+</head>
+<body class="nav-md" id="Bodyid" ng-app="EPortal" ng-cloak ng-controller="EPortalCont">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col" style="z-index:0;">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;text-align:center;">
+                        <a href="/Home/UserHome" class="site_title">
+                        @*<img src="~/Content/Images/Logo.png" style="width: 20%;" />*@ 
+                        <span>E-School</span></a>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                   
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            
+                            <ul class="nav side-menu">
+
+                                @Html.Raw(@ViewBag.nevigationBar)
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu" style="height:45px;">
+                    <nav>
+                        @*<div class="nav toggle">
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                            </div>*@
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a href="/Home/UserHome">
+                                    <span style="font-size: 20px;">@User.OrgName</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="/Home/GetUserImage" alt="">@HttpContext.Current.User.Identity.Name
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-sm-1"> Change Password</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-sm-1">Change academic year</a></li>
+                                    @*<li>
+                                            <a href="/Profile/Index">
+                                                <span class="badge bg-red pull-right"></span>
+                                                <span>Profile</span>
+                                            </a>
+                                        </li>*@
+                                    @*<li><a href="javascript:;">Help</a></li>*@
+                                    <li><a href="/Home/Signout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                </ul>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">{{MegCount}}</span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    <li ng-repeat="m in GetMessageList">
+                                        <a>
+                                            <span class="image"><img src={{m.PhotoPath}} alt="Profile Image" /></span>
+                                            <span>
+                                                <span>{{m.ApplicantName}}</span>
+                                                <span class="time">{{m.MessageDatestr}} days ago</span>
+                                            </span>
+                                            <span class="message">
+                                                {{m.Message}}
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="text-center">
+                                            <a href="/Home/AllMessage">
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div id='ajax_loader' style="position: fixed; display: none;margin-top: -22%;margin-left: 0%;" class="parentDisableope">
+                    <img src="~/Content/gears.gif" id="ajax_loaderimg" style="margin-top:40%;margin-left:40%;align-items:center" />
+
+                </div>
+                @RenderBody()
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    E-School - Preparing For Tomorrow
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-sm-1 fade" id="passwordmodel" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Change Password</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9 downmargin">
+                                <span style="color:red;">* marked are mendatory fileld.</span>
+                            </div>
+                        </div>
+                        <div class="row bottom">
+                            <div class="col-md-3 col-sm-3 " align="center"></div>
+
+                            <div class=" col-md-9 col-sm-9 ">
+
+                                <div class="row downmargin">
+                                    <div class="col-md-12">
+                                        <input class="form-control input-md" type="text" ng-model="ChangePassword.oldpassword" placeholder="Old Password *">
+                                        @*<md-input-container style="width:100%;">
+                                                <label>Current Password<span style="color:red;">*</span></label><input ng-model="ChangePassword.oldpassword">
+                                            </md-input-container>*@
+                                    </div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-12">
+                                        <input class="form-control input-md" type="password" ng-model="ChangePassword.newpassword" placeholder="New Password *">
+                                        @*<md-input-container style="width:100%;">
+                                                <label>New Password<span style="color:red;">*</span></label><input ng-model="ChangePassword.newpassword">
+                                            </md-input-container>*@
+                                    </div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-12">
+                                        <input class="form-control input-md" type="password" ng-model="ChangePassword.renewpassword" placeholder="Confirm New Password *">
+                                        @*<md-input-container style="width:100%;">
+                                                <label>Confirm New Password<span style="color:red;">*</span></label><input ng-model="ChangePassword.renewpassword">
+                                            </md-input-container>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="row pull-right" style="margin-top:1%;">
+                                <button type="submit" class="btn btn-success btn-md Shading" ng-click="Changepassword()">
+                                    Save
+                                </button>
+                                @*<md-button class="md-raised" ng-click="Changepassword()">Change</md-button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="preload parentDisable">
+        <img src="~/Content/gears.gif">
+    </div>
+
+    <!-- jQuery -->
+    @*<script src="vendors/jquery/dist/jquery.min.js"></script>*@
+
+
+
+    <!-- Bootstrap -->
+    @*<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>*@<!-- Flot -->
+    <!-- Custom Theme Scripts -->
+    @*<script src="build/js/custom.min.js"></script>*@
+    <script src="~/Scripts/custom.min.js"></script>
+    <script src="~/Scripts/skycons.js"></script>
+    <script src="~/Scripts/icheck.min.js"></script>
+
+    @* Angular js *@
+
+    @* CK Editor Js *@
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <script src="//cdn.ckeditor.com/4.5.6/full-all/ckeditor.js"></script>
+
+
+
+    @* Upload css *@
+    <link href="~/Content/Upload css/Uploadcss.css" rel="stylesheet" />
+
+    @* Grid JS Start *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.css">
+
+    @* Grid Js  End  start *@
+
+
+    <!-- /jVectorMap -->
+    <!-- Skycons -->
+    <script>
+        $(document).ready(function () {
+            var icons = new Skycons({
+                "color": "#73879C"
+            }),
+              list = [
+                "clear-day", "clear-night", "partly-cloudy-day",
+                "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+                "fog"
+              ],
+              i;
+
+            for (i = list.length; i--;)
+                icons.set(list[i], list[i]);
+
+            icons.play();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var scope = angular.element($("#Bodyid")).scope();
+            scope.callmethod();
+            $('#searchtextbox').focus();
+            $('#searchtextbox').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    scope.callmethod();
+                }
+            });
+
+            $(document).ajaxStop(function () {
+                $("#ajax_loader").hide();
+
+            });
+            $(document).ajaxStart(function () {
+                $("#ajax_loader").show();
+            });
+
+            $(function () {
+                $(".preload").fadeOut(2000, function () {
+                    $(".content").fadeIn(1000);
+                });
+            });
+        });
+
+
+    </script>
+
+
+    <!-- /gauge.js -->
+</body>
+</html>

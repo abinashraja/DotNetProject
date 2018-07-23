@@ -1,0 +1,230 @@
+﻿
+@{
+    ViewBag.Title = "Organization";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+<script src="~/Scripts/PageJS/Organization.js"></script>
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Organization Setup</title>
+    <style type="text/css">
+        html, body {
+            overflow: visible;
+        }
+
+        .downmargin {
+            margin-bottom: 2%;
+        }
+
+        .tabelwidth {
+            width: 20%;
+        }
+    </style>
+</head>
+
+
+<div class="row showing" style="margin-top: 8%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+    <div class="col-md-6">
+        <h2><i class="fa fa-hand-o-right"></i>Organization</h2>
+    </div>
+    <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+        <input type="button" value="Previlage" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm-Page" ng-disabled="checkdisabled()" ng-click="Assignprivilege()" />
+    </div>
+    <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+    </div>
+    <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+        <input type="button" value="Create Organization" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="MakeObjectEMpty()" />
+
+    </div>
+    <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+    </div>
+    <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+    </div>
+</div>
+<div class="row topmarginmap">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+        <input type="text" class="pull-right form-control" ng-model="searchText" placeholder="Search" id="searchtextbox" />
+    </div>
+
+</div>
+<div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 1%;">
+
+    <div class="watermark" ng-show="!myData.length">
+        <i class="fa fa-thumbs-o-down"></i>No data available
+    </div>
+
+</div>
+
+<div>
+
+    <div class="modal fade bs-example-modal-sm" id="OrganizationModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class=" modal-lg" style="width: 90%;margin-left: 5%;margin-top: 2%;">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>{{NewOrganization.Operation}} Organization</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row bottom">
+                            <div class="col-md-3 col-lg-3 " align="center">
+                                <img alt="User Pic" ng-src={{NewOrganization.ImageUrl}} class="img-circle img-responsive" width="70%">
+
+                                <div class="inputBtnSection">
+                                    <input id="uploadFile" class="disableInputField" placeholder="Choose File" disabled="disabled" />
+
+
+                                    <label class="fileUpload" style="margin-top: 10%;">
+                                        <input id="uploadBtn" type="file" class="upload" file-model="myFile" ng-model="file" />
+                                        <span class="uploadBtn">Browse File ..</span>
+                                    </label>
+
+
+                                </div>
+
+                            </div>
+
+                            <div class=" col-md-9 col-lg-9 ">
+                                <div class="row downmargin">
+                                    <div class="col-md-2">Code</div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Code"></div>
+                                    <div class="col-md-2">Name</div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Name"></div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-2">Contact No.</div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.ContactNo"></div>
+                                    <div class="col-md-2">EST. Date</div>
+                                    <div class="col-md-4">
+                                        <input class="form-control input-md" id="ESTDate" datepicker type="text" ng-model="NewOrganization.ESTDate">
+                                    </div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-2">Email</div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Email"></div>
+                                    <div class="col-md-2">Mobile No.</div>
+                                    <div class="col-md-4"><input class="form-control input-md" type="text" ng-model="NewOrganization.PhoneNo"></div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-2">Address</div>
+                                    <div class="col-md-10"><textarea class="form-control" rows="5" id="comment" ng-model="NewOrganization.Address"></textarea></div>
+
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-2">Location</div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Location"></div>
+                                    <div class="col-md-2">State</div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.State"></div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-2">Country</div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Country"></div>
+                                    <div class="col-md-2">Pin</div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Pin"></div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-10 col-sm-2">
+                                <button type="submit" class="btn btn-success btn-lg Shading" ng-click="SaveOrganization()">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-sm-Page" id="PrevileageModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="text-align: center;">
+        <div class="modal-lg">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Privilege for : {{SelectedRowOrg.Name}}</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row bottom">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                @*<h3>Provide Privilege for selected Roll </h3>*@
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                @*<h3>Selected Role:{{SelectedRowOrg.Name}}</h3>*@
+                                            </div>
+
+                                        </div>
+
+                                        <ul class="nav nav-pills">
+                                            <li ng-repeat="m in ModuleList" ng-class="{active:$index==0}" ng-click="GetModulePage(m)" id="{{m.Id}}"><a data-toggle="pill" href="#{{m.Code}}">{{m.Name}}</a></li>
+                                        </ul>
+
+                                        <div class="tab-content" style="margin-top: 2%;">
+                                            <div id="{{p.Code}}" class="tab-pane fade in" ng-repeat="p in ModuleList" ng-class="GetCLassName(p)">
+                                                <table class="table table-bordered  text-center">
+                                                    <thead>
+                                                        <tr class="tableheader">
+                                                            <th class="text-center">Pages</th>
+                                                            <th class="text-center">Operation</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="pa in p.modulepagelist">
+                                                            <td>{{pa.Name}}</td>
+                                                            <td>           
+                                                                <img src="~/Content/Images/CheckBox.png" style="width:24px;height:24px;" class="pull-right" ng-hide="pa.Create" ng-click="SelectUserOnlyoneRole(pa,0)" />
+                                                                <img src="~/Content/Images/CheckChecked.png" style="width:24px;height:24px;" class="pull-right" ng-show="pa.Create" ng-click="SelectUserOnlyoneRole(pa,1)" />                                                     
+                                                                @*<input type="checkbox" ng-model=pa.Create />Select Page*@
+                                                            </td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-10 col-sm-2">
+                                <button type="submit" class="UpdateButton btn btn-success btn-lg Shading" ng-click="Saveprivilege()">
+                                    Save
+                                </button>
+                                @*<md-button class="md-raised" ng-click="Saveprivilege()">Save</md-button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        document.getElementById("uploadBtn").onchange = function () {
+            document.getElementById("uploadFile").value = this.value;
+        };
+        var scope = angular.element($("#Bodyid")).scope();
+        scope.callmethod();
+
+    });
+</script>

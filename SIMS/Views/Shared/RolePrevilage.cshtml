@@ -1,0 +1,212 @@
+﻿
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+<script src="~/Scripts/PageJS/RolePrevilage.js"></script>
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Role Previlage Setup</title>
+    <style type="text/css">
+        html, body {
+            overflow: visible;
+        }
+
+        .downmargin {
+            margin-bottom: 1%;
+        }
+
+        .tabelwidth {
+            width: 20%;
+        }
+
+        .list-group > li:nth-child(odd) {
+            background-color: rgba(0, 55, 212, 0.43);
+            color: white;
+        }
+
+        .list-group > li:nth-child(even) {
+            background-color: #4072B4;
+            color: white;
+        }
+    </style>
+</head>
+
+
+<div>   
+    <div class="row showing" style="margin-top: 5%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+        <div class="col-md-4 col-sm-4">
+            <h3><i class="fa fa-hand-o-right"></i> Role Previlage</h3>
+        </div>
+        <div class="col-md-1 col-sm-1">
+            @*<input type="button" value="Mail Test Q&A" class="btn" ng-disabled="EnableDisabledMaprole()"  ng-click="SandTestQA()" />*@
+
+        </div>
+        <div class="col-md-1 col-sm-1">
+        </div>
+        <div class="col-md-1 col-sm-1">
+            @*<input type="button" value="Assign Test" class="btn" ng-disabled="EnableDisabledMaprole()" data-toggle="modal" data-target=".bs-example-modal-sm-Test" ng-click="AssignTest()"/>*@
+            
+        </div>
+        <div class="col-md-1 col-sm-1">
+        </div>
+        <div class="col-md-1 col-sm-1">
+            <input type="button" value="Activate User" class="btn" ng-disabled="EnableDisabledMaprole()" ng-click="ActivateUser()" />
+
+        </div>
+        <div class="col-md-1 col-sm-1">
+        </div>
+        <div class="col-md-1 col-sm-1">
+            <input type="button" value="Map Role" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm" ng-disabled="EnableDisabledMaprole()" ng-click="GetRoleList()"/>
+        </div>
+    </div>
+    <div class="row topmarginmap">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <input type="text" class="pull-right form-control" ng-model="searchText" placeholder="Search" id="searchtextbox" />
+        </div>
+    </div>
+    <div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 1%;" ng-show="myData.length"></div>
+    <div class="watermark" ng-show="!myData.length" style="margin-top: 5%;">
+        <i class="fa fa-thumbs-o-down"></i>No data available
+    </div>
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="rolemodel" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm">
+
+            <div class="row">
+                <div class="col-md-12 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>Map Roll</strong>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin-bottom:2%;">                                
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control pull-right" placeholder="Search" name="q" ng-model="searchtextRole">
+                                    @*<md-input-container style="width:100%;">
+                                        <label>Search</label><input ng-model="searchtextRole">
+                                    </md-input-container>*@
+
+                                </div>
+                            </div>
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr class="tableheader">
+                                        <th class="text-center">Code</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Select</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="r in RoleList|filter:searchtextRole">
+                                        <td>{{r.Code}}</td>
+                                        <td>{{r.Name}}</td>
+                                        <td>
+                                            @*<span class="glyphicon glyphicon-unchecked green" ng-hide="r.Selected" ng-click="SelectUserOnlyoneRole(r,0)"></span>*@
+                                            <img src="~/Content/Images/CheckBox.png" style="width:24px;height:24px;" class="pull-right" ng-hide="r.Selected" ng-click="SelectUserOnlyoneRole(r,0)" />
+                                            @*<span class="glyphicon glyphicon-ok green" ng-show="r.Selected" ng-click="SelectUserOnlyoneRole(r,1)"></span>*@
+                                            <img src="~/Content/Images/CheckChecked.png" style="width:24px;height:24px;" class="pull-right" ng-show="r.Selected" ng-click="SelectUserOnlyoneRole(r,1)" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group last pull-right">
+                                @*<md-button class="md-raised" ng-click="SaveRolemap()">Save</md-button>*@
+                                <button type="submit" class="btn btn-success btn-md Shading" ng-click="SaveRolemap()">
+                                    Save
+                                </button>
+                                <div class="col-sm-offset-10 col-sm-2" style="margin-right:2%;">
+                                   
+                                   
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade bs-example-modal-sm-Test" tabindex="-1" role="dialog" id="roletestmodel" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-md">
+
+            <div class="row">
+                <div class="col-md-12 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>Select Test</strong>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin-bottom:2%;">
+                                @*<div class="col-md-5"></div>
+                                <div class="col-md-3"></div>*@
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control pull-right" placeholder="Search" name="q" ng-model="searchtextRole">
+                                    @*<md-input-container style="width:100%;">
+                                        <label>Search</label><input ng-model="TestSearch">
+                                    </md-input-container>*@
+                                </div>
+                            </div>
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr class="tableheader">
+                                        <th class="text-center">Code</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Select</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="r in TestList|filter:searchtextRole">
+                                        <td>{{r.TestCode}}</td>
+                                        <td>{{r.TestName}}</td>
+                                        <td>
+                                            @*<span class="glyphicon glyphicon-unchecked green" ng-if="!r.AlreadyApplied" ng-hide="r.Selected" ng-click="SelectUserOnlyoneTest(r,0)"></span>*@
+                                            <img src="~/Content/Images/CheckBox.png" class="pull-right" style="width:24px;height:24px;" ng-if="!r.AlreadyApplied" ng-hide="r.Selected" ng-click="SelectUserOnlyoneTest(r,0)" />
+                                            @*<span class="glyphicon glyphicon-ok green" ng-show="r.Selected" ng-click="SelectUserOnlyoneTest(r,1)"></span>*@
+                                            <img src="~/Content/Images/CheckChecked.png" class="pull-right" style="width:24px;height:24px;" class="pull-right" ng-show="r.Selected" ng-click="SelectUserOnlyoneTest(r,1)" />
+                                            <span ng-show="r.AlreadyApplied">Already applied</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            @*<div class="form-group last">
+                                <div class="col-sm-offset-10 col-sm-2">
+                                    <button type="submit" class="btn btn-success btn-lg" ng-click="SaveTest()">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>*@
+                            <div class="form-group last pull-right">
+                                @*<md-button class="md-raised"  ng-click="SaveTest()">Save</md-button>*@
+                                <button type="submit" class="btn btn-success btn-md Shading" ng-click="SaveTest()">
+                                    Save
+                                </button>
+                                <div class="col-sm-offset-10 col-sm-2" style="margin-right:2%;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+

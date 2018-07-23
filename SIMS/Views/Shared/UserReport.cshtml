@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+<script src="~/Scripts/PageJS/UserReport.js"></script>
+<head>
+    <style>
+
+        @@media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #section-to-print, #section-to-print * {
+                visibility: visible;
+            }
+
+            #section-to-print {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>User Operation</title>
+</head>
+
+<div class="row showing" style="margin-top: 8%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+    <div class="col-md-6">
+        <h2><i class="fa fa-hand-o-right"></i> Applicant Test Report</h2>
+    </div>
+    <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+
+    </div>
+    <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+    </div>
+    <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+
+    </div>
+    <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+    </div>
+    <div class="col-md-1 col-sm-1" style="margin-top: 1%;">
+
+    </div>
+</div>
+<div id="showreport">
+
+    <div class="row showing" id="section-to-print" style="margin-top: 1%;border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+        <div class="row ">
+
+            <table class="table">
+                <tr>
+                    <td style="width: 30%;">
+                        <img src="{{Orgdata.OrgLogo}}" style="width:80%" />
+                    </td>
+                    <td>
+                        <h3>{{Orgdata.OrgaName}}</h3>
+                        <h4>{{Orgdata.OrgaAddress}}</h4>
+                        <h5>Est:{{Orgdata.OrgaEststr}}</h5>
+                        <h5>State:{{Orgdata.OrgaState}}</h5>
+                        <h5>Country:{{Orgdata.OrgaCountry}}</h5>
+                        <h5>Pin:{{Orgdata.OrgaPin}}</h5>
+                    </td>
+                    <td>
+                        <h5> Issue Date:25-3-2016</h5>
+
+                    </td>
+
+
+                </tr>
+
+
+            </table>
+        </div>
+        <div class="row">
+            <h3 style="margin-left: 2%;">Candidate Details:</h3>
+        </div>
+        <div class="row">
+            <table class="table">
+                <tr style="border: none;">
+                    <td style="border: none;"><h4>Name:</h4></td>
+                    <td style="border: none;"><h4>{{StudentReportData[0].ApplicantName}}</h4></td>
+
+                </tr>
+                <tr>
+                    <td style="border: none;"><h4>Test:</h4></td>
+                    <td style="border: none;"><h4>{{StudentReportData[0].TestName}}</h4></td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div class="row">
+            <h3 style="margin-left: 2%;">Candidate Test Details:</h3>
+        </div>
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <td ng-repeat="s in StudentReportData">{{s.TestSectionName}}</td>
+              
+                </tr>
+                <tr>
+                    <td ng-repeat="s in StudentReportData">{{s.TestSectionMarkStr}}</td>
+                    
+                </tr>
+
+            </table>
+        </div>
+
+    </div>
+    <div style="margin-top:1%;">
+        <input type="button" value="Print" class="btn btn-success" ng-click="PrintReport()" style="float:right;margin-left:2%;" />
+        <input  type="button" value="Close" class="btn btn-success" ng-click="HideshowReport(1)" style="float:right"/>
+
+    </div>
+</div>
+<div class="row">
+    <div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 5%;" ng-show="myData.length"></div>
+    <div class="watermark" ng-show="!myData.length" style="margin-top: 5%;">
+        <i class="fa fa-thumbs-o-down"></i>No report available
+    </div>
+</div>
+
+
+
+
+
+

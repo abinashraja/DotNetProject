@@ -1,0 +1,217 @@
+﻿
+@{
+    ViewBag.Title = "TestSection";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+<script src="~/Scripts/PageJS/UserGroup.js"></script>
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Organization Setup</title>
+    <style>
+        .sample {
+            margin: 0 auto;
+            border: 1px solid #aaa;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<div>
+
+    <div class="row showing" style="margin-top: 5%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+        <div class="col-md-6">
+            <h2><i class="fa fa-hand-o-right"></i> User Group</h2>
+        </div>
+        <div class="col-md-1 col-sm-1">
+            @*<input type="button" value="Assign Test" class="btn" ng-disabled="EnableDisabledMaprole()" data-toggle="modal" data-target=".bs-example-modal-sm-Test" ng-click="AssignTest()" />*@
+
+        </div>
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-1 col-sm-1">
+
+            <input type="button" value="Create User Group" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="MakeObjectEMpty()" />
+        </div>
+        <div class="col-md-1 col-sm-1">
+        </div>
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+    </div>
+    <div class="row topmarginmap">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <input type="text" class="pull-right form-control" ng-model="searchText" placeholder="Search" id="searchtextbox" />
+        </div>       
+
+    </div>
+    <div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 1%;" ng-show="myData.length"></div>
+    <div class="watermark" ng-show="!myData.length" style="margin-top: 5%;">
+        <i class="fa fa-thumbs-o-down"></i>No data available
+    </div>
+
+
+    <div class="modal fade bs-example-modal-sm" id="UsergroupModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class=" modal-lg" style="width: 67%;margin-left: 18%;margin-top: 2%;">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>{{NewUserGroup.Operation}} User Group</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9 downmargin">
+                                <span style="color:red;">* marked are mendatory fileld.</span>
+                            </div>
+                        </div>
+                        <div class="row bottom">
+                            <div class="col-md-1 col-lg-1 ">
+                            </div>
+                            <div class="col-md-10 col-lg-10">
+                                <div class="row downmargin">
+                                    <div class="col-md-2">
+
+                                        <spna>Code *</spna>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control input-md" type="text" ng-model="NewUserGroup.UserGroupCode">
+
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <spna>Name *</spna>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control input-md" type="text" ng-model="NewUserGroup.UserGroupName">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row" style="margin-left:0%;font-size: large;color: black;">
+
+                                        <span style="float: left;"> Select Users <span style="color:red;">*</span></span>
+                                    </div>
+                                    <div class="downmargin" style="border: 0;border-top: 1px solid #FF5722;"></div>
+                                    <div class="row downmargin">
+                                        <div class="col-md-5" align="center">
+                                            <input type="text" placeholder="Search User" class="form-control downmargin" ng-model="SourceSearch" />
+                                            <select style="width: 100%;min-height: 300px;" size="7" ng-model="sourceselectedItems" multiple
+                                                    ng-multiple="true"
+                                                    ng-options="opt as opt.ApplicantName for opt in SourceApplicantDataList |filter:SourceSearch"></select>
+
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div style="min-height:100px;"></div>
+                                            <button type="submit" class="btn btn-default btn-sm Shading downmargin" ng-disabled="enableright" ng-click="MoveRight()">
+                                                <span class="glyphicon">&#xe080;</span>
+                                            </button>
+                                            <div style="min-height:30px;"></div>
+                                            <button type="submit" class="btn btn-default btn-sm Shading downmargin" ng-click="MoveLeft()">
+                                                <span class="glyphicon">&#xe079;</span>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-5" align="center">
+                                            <input type="text" placeholder="Search User" class="form-control downmargin" ng-model="DestSearch" />
+                                            <select style="width: 100%; min-height: 300px;" size="7" ng-model="DestSelectedItems" multiple
+                                                    ng-multiple="true"
+                                                    ng-options="opt as opt.ApplicantName for opt in DestApplicantdataList | filter:DestSearch"></select>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div style="min-height:100px;"></div>
+                                            <div style="min-height:20px;"></div>
+                                            <div style="min-height:20px;"></div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-md-1 col-lg-1 ">
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-10 col-sm-2">
+                                <button type="submit" class="btn btn-success btn-md Shading" ng-click="SaveUserGroup()">
+                                    Save
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-sm-Test" tabindex="-1" role="dialog" id="roletestmodel" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-md">
+
+            <div class="row">
+                <div class="col-md-12 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>Select Test</strong>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin-bottom:2%;">
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control pull-right" placeholder="Search" name="q" ng-model="searchtextRole">
+
+                                </div>
+                            </div>
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr class="tableheader">
+                                        <th class="text-center">Code</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Select</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="r in TestList|filter:searchtextRole">
+                                        <td>{{r.TestCode}}</td>
+                                        <td>{{r.TestName}}</td>
+                                        <td>
+                                            <img src="~/Content/Images/CheckBox.png" class="pull-right" style="width:24px;height:24px;" ng-if="!r.AlreadyApplied" ng-hide="r.Selected" ng-click="SelectUserOnlyoneTest(r,0)" />
+                                            <img src="~/Content/Images/CheckChecked.png" class="pull-right" style="width:24px;height:24px;" ng-show="r.Selected" ng-click="SelectUserOnlyoneTest(r,1)" />
+                                            <span ng-show="r.AlreadyApplied">Already applied</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group last pull-right">
+                                <button type="submit" class="btn btn-success btn-lg Shading" ng-click="SaveTest()">
+                                    Save
+                                </button>
+                                <div class="col-sm-offset-10 col-sm-2" style="margin-right:2%;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#PreSide").hide();
+        $("#ShowPre").click(function () {
+            $("#PreSide").show();
+        });
+    });
+</script>

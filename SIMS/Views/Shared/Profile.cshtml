@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+<link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+
+<script src="~/Scripts/PageJS/Profile.js"></script>
+<div class="row role="main">
+    <div class="row">       
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Profile<small>Activity report</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <!-- Current avatar -->
+                                    <img class="img-responsive avatar-view" src="/Home/GetUserImage" alt="Avatar" title="Change the avatar">
+                                </div>
+                            </div>
+                            <h3>@HttpContext.Current.User.Identity.Name</h3>
+                            @*<ul class="list-unstyled user_data">
+                                <li>
+                                    <i class="fa fa-map-marker user-profile-icon"></i>
+                                </li>
+                                <li>
+                                    <i class="fa fa-briefcase user-profile-icon"></i>
+                                </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-external-link user-profile-icon"></i>
+                                    <a href="http://www.kimlabs.com/profile/" target="_blank"></a>
+                                </li>
+                            </ul>*@
+                            
+                            <br />
+                            <!-- start skills -->
+                            @*<h4>Tests</h4>
+                            <ul class="list-unstyled user_data">
+                                <li>
+                                    <p>Web Applications</p>
+                                    <div class="progress progress_sm">
+                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>Website Design</p>
+                                    <div class="progress progress_sm">
+                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>Automation & Testing</p>
+                                    <div class="progress progress_sm">
+                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>UI / UX</p>
+                                    <div class="progress progress_sm">
+                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                                    </div>
+                                </li>
+                            </ul>*@
+                            <a class="btn btn-success" href="/UserPerformance/Index"><i class="fa fa-edit m-right-xs"></i>Test analysis</a>
+                            <!-- end of skills -->
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <div class="profile_title">
+                                <div class="col-md-6">
+                                    <h2>User Activity Report</h2>
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                </div>
+                            </div>
+                            <!-- start of user-activity-graph -->
+                            @*<div id="graph_bar" style="width:100%; height:280px;"></div>*@
+
+                            <canvas id="canvas" style="width:100%; height:280px;"></canvas>
+                            <!-- end of user-activity-graph -->
+                            @*<div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
+                                    </li>
+                                    <li role="presentation" class="">
+                                        <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Projects Worked on</a>
+                                    </li>
+                                    <li role="presentation" class="">
+                                        <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
+                                    </li>
+                                </ul>
+                                
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

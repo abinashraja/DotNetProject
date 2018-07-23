@@ -1,0 +1,245 @@
+﻿
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
+}
+<script src="~/Scripts/PageJS/User.js"></script>
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Organization Setup</title>
+    <style>
+    </style>
+</head>
+
+<div>
+
+    <div class="row showing" style="margin-top: 5%; border: 1px solid #CCC; min-height: 10%; margin-right: 4%;">
+        <div class="col-md-6">
+            <h2><i class="fa fa-hand-o-right"></i> User</h2>
+        </div>
+        <div class="col-md-1 col-sm-1">
+
+
+        </div>
+        <div class="col-md-1 col-sm-1">
+        </div>
+        <div class="col-md-1 col-sm-1">
+            <input type="button" value="Import User" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm-Import" />
+
+        </div>
+        <div class="col-md-1 col-sm-1">
+        </div>
+        <div class="col-md-1 col-sm-1">
+            <input type="button" value="Create User" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="MakeObjectEMpty()" />
+        </div>
+    </div>
+    <div class="row topmarginmap">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <input type="text" class="pull-right form-control" ng-model="searchText" placeholder="Search" id="searchtextbox" />
+        </div>
+    </div>
+    <div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 1%;" ng-show="myData.length"></div>
+    <div class="watermark" ng-show="!myData.length" style="margin-top: 5%;">
+        <i class="fa fa-thumbs-o-down"></i>No data available
+    </div>
+
+    <div class="modal fade bs-example-modal-sm" id="UserModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-lg" style="width: 70%;margin-left: 17%;margin-top: 2%;">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>{{NewUser.Operation}} User</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9 downmargin">
+                                <span style="color:red;">* marked are mendatory fileld.</span>
+                            </div>
+                        </div>
+                        <div class="row bottom">
+                            <div class="col-md-3 col-lg-3 " align="center">
+                                <img alt="User Pic" src={{NewUser.ImageUrl}} class="img-rounded img-responsive" width="70%">
+
+                                <div class="inputBtnSection topmarginmap">
+                                    <input id="uploadFile" class="disableInputField" placeholder="Choose File" disabled="disabled" />
+
+
+                                    <label class="fileUpload" style="margin-top: 10%;">
+                                        <input id="uploadBtn" type="file" class="upload" file-model="myFile" ng-model="file" />
+                                        <span class="uploadBtn">Browse File ..</span>
+                                    </label>
+
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-9 col-lg-9">
+                                <div class="row downmargin">
+                                    <div class="col-md-2">
+
+                                        <spna>Code *</spna>
+
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <input class="form-control input-md" type="text" ng-model="NewUser.Code" maxlength="20">
+
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <spna>Name *</spna>
+
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <input class="form-control input-md" type="text" ng-model="NewUser.Name" maxlength="100">
+
+                                    </div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-2">
+
+                                        <spna>Login Id *</spna>
+
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <input class="form-control input-md" type="text" ng-model="NewUser.LogInId" maxlength="10">
+
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <spna>Email *</spna>
+
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <input class="form-control input-md" type="text" ng-model="NewUser.Email">
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+
+                                    <spna>Date Of Birth *</spna>
+
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-4">
+
+                                        <input class="form-control input-md" type="text" id="DateOfBirth" datepicker ng-model="NewUser.DateOfBirth" ng-disabled="NewUser.Operation=='Edit'">
+
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <spna>Is Applicant</spna>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="checkbox" ng-model="NewUser.IsApplicant" ng-disabled="NewUser.Operation=='Edit'" />
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-10 col-sm-2">
+                                <button type="submit" class="btn btn-success btn-md Shading" ng-click="SaveUser()">
+                                    Save
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-sm-Import" id="importModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-sm" style="width: 61%;margin-left: 18%;margin-top: 2%;">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Import User</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row bottom">
+                            <div class="col-md-3 col-lg-3 " align="center"></div>
+
+                            <div class=" col-md-9 col-lg-9 ">
+                                Download Template:<a href="~/TemplateFolder/User-Template.xlsx">Download</a>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row bottom">
+                            <div class="col-md-3 col-lg-3 " align="center"></div>
+
+                            <div class=" col-md-9 col-lg-9 ">
+
+
+                                <div class="inputBtnSection">
+
+                                    <input id="uploadFile" class="disableInputField" placeholder="Choose File" disabled="disabled" />
+
+
+                                    <label class="fileUpload">
+                                        <input id="uploadBtn" type="file" class="upload" file-model="myFile" ng-model="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                                        <span class="uploadBtn">Upload / Browse File ..</span>
+                                    </label>
+
+
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-10 col-sm-2">
+                                <button type="submit" class="btn btn-success btn-md Shading" ng-click="uploadFile()">
+                                    Upload
+                                </button>
+                                @*<md-button class="md-raised" ng-click="uploadFile()">Upload</md-button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        document.getElementById("uploadBtn").onchange = function () {
+            document.getElementById("uploadFile").value = this.value;
+        };
+        $("#DateOfBirth").keypress(function () {
+            return false;
+        });
+        document.getElementById("uploadBtn").onchange = function () {
+            document.getElementById("uploadFile").value = this.value;
+        };
+
+
+
+    });
+</script>
+

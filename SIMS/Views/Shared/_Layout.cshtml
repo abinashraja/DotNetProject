@@ -1,0 +1,424 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Assesment Portal</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />    
+    <script src="~/Scripts/NavigationJs/verticalnav.js"></script>
+    <link href="~/Content/Navigationcss/style.css" rel="stylesheet" />
+
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/An-Notify/ng-notify.js"></script>
+    <link href="~/Content/NG-Notify/ng-notify.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js"></script>
+    
+
+
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.js"></script>    
+    <script src="//cdn.ckeditor.com/4.5.6/full-all/ckeditor.js"></script>
+    @*<script src="~/Scripts/EditorJs/ckeditor.js"></script>*@    
+
+    @* material design  *@
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+    
+
+    @* Grid JS Start *@   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.css">
+
+    @* Grid Js  End *@
+
+
+    <style type="text/css">
+        .bs-example {
+            margin: 2px;
+        }
+        .panel {
+            /*background-image: linear-gradient(to bottom,#03A9F4 0,#f8f8f8 100%) !important;*/
+        }
+        .navbar-default {
+            /*background-image: linear-gradient(to bottom,#03A9F4 0,#f8f8f8 100%) !important;*/
+        }
+        .model {
+        
+           /*background-image: linear-gradient(to bottom,#03A9F4 0,#f8f8f8 100%);*/
+        }
+        html, body {
+            overflow: visible;
+            /*background-color:#00BCD4;*/
+            /*background-image: linear-gradient(to bottom,#03A9F4 0,#f8f8f8 100%);*/
+            background-image: url('../../Content/Images/Footerbg11.gif');
+        }
+
+        .bottom {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: white;
+        }
+
+        .navtop {
+            margin-top: 0px !important;
+        }
+
+        .parentDisable {
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+            z-index: 2000;
+            height: 100%;
+            width: 100%;
+        }
+        
+
+        .table tr:nth-child(odd) {
+            background-color:lightseagreen  /*rgba(0, 55, 212, 0.43)*/;
+            color: white;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #607D8B;
+            color: white;
+        }
+
+        .tableheader {
+            background-color: #3AB2D6 !important;
+        }
+
+        .pagecolor {
+            background-color: floralwhite;
+            height: 20px;
+           font-size: 12px;
+           font-style: oblique;
+        }
+            .pagecolor:hover {
+                 background-color: #ccc;
+                 color:white;
+            }
+        .margindownpage {
+            margin-bottom:2%;
+        }
+
+
+/*Grid css start*/
+
+ .ngViewport {
+            min-height:400px;
+             overflow:hidden !important;
+        }
+
+
+        .ngHeaderContainer {
+            background-color: #3AB2D6 !important;
+            color: white !important;
+            text-align: center !important;
+        }
+
+        .btnclass {
+            text-align: center !important;
+        }
+
+        /*.ngRow:hover {
+            background-color: #98f6f3 !important;
+        }*/
+       
+
+        .ngRow.odd {
+            background-color: rgb(192, 192, 192) !important ;
+            color: black;
+            
+            border:solid 1px rgb(192, 192, 192);
+        }
+        
+
+        .ngRow.even {
+            background-color: rgba(221, 231, 234, 0.61) !important;
+            color: black;
+            
+            border:solid 1px rgba(221, 231, 234, 0.61);
+            
+        }
+   
+
+       .ui-jqgrid tr.jqgrow td {
+    height: auto;
+}
+
+/*Grid css end*/
+
+
+
+
+        @@media only screen 
+  and (max-width: 300px) { 
+  .mobile {
+    display:block;
+  }
+  .desktop {
+    display:none;
+  }
+  .tablet {
+    display:none;
+  }
+}
+
+@@media only screen 
+  and (min-width: 736px) 
+  and (max-width: 1200px){ 
+  .tablet {
+    display:block;
+  }
+  .desktop {
+    display:none;
+  }
+  .mobile {
+    display:none;
+  }
+}
+
+@@media only screen 
+  and (min-width: 1200px) {
+  .desktop {
+    display:block;
+  }
+  .tablet {
+    display:none;
+  }
+  .mobile {
+    display:none;
+  }
+}
+*{
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+
+.inputBtnSection{
+    display:inline-block;
+    vertical-align:top;
+    font-size:0;
+    font-family:verdana;
+}
+.disableInputField{
+    display:inline-block;
+    vertical-align:top;
+    height: 27px;
+    margin: 0;
+    font-size:14px;
+    padding:0 3px;
+}
+
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+    border:solid 1px gray;
+    display:inline-block;
+    vertical-align:top;
+}
+.uploadBtn{
+    display:inline-block;
+    vertical-align:top;
+    background:rgba(0,0,0,0.5);
+    font-size:14px;
+    padding:0 10px;
+    height:25px;
+    line-height:22px;
+    color:#fff;
+}
+
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+     
+      
+    </style>
+</head>
+<body id="Bodyid" ng-app="EPortal" ng-cloak ng-controller="EPortalCont" >
+
+    <md-toolbar style="background-color:brown;">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+                <md-tooltip>Side Panel</md-tooltip>
+                <img src="~/Content/Images/NavIcon.png" style="width:24px;height:24px;" />
+            </md-button>          
+            <h2>
+                <span>Online Assessment System</span>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="User">
+                <md-tooltip>@HttpContext.Current.User.Identity.Name</md-tooltip>
+                <img src="~/Content/Images/user.png" style="width:24px;height:24px;" />
+            </md-button>
+            <span>Welcome @HttpContext.Current.User.Identity.Name</span>
+            <md-button class="md-icon-button" aria-label="User" ng-href="/Home/UserHome">
+                <md-tooltip>Home</md-tooltip>
+                <img src="~/Content/Images/Home.png" style="width:24px;height:24px;" />
+            </md-button>
+            <md-button class="md-icon-button" aria-label="User"  data-toggle="modal" data-target=".bs-example-modal-sm-1">                
+                <md-tooltip>Change Password</md-tooltip>
+                <img src="~/Content/Images/Setting.png" style="width:24px;height:24px;" />
+            </md-button>
+            <md-button class="md-icon-button" aria-label="User" ng-href="/Home/Signout">
+                <md-tooltip>Logout</md-tooltip>
+
+                <img src="~/Content/Images/Logout.png" style="width:24px;height:24px;" />
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+                md-component-id="left" style="max-width: 20%;">
+        <md-toolbar layout="row" style="background-color: brown;">
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>Side Panel</span>
+                </h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="Close Side Panel" ng-click="closeSideNavPanel()">
+                    <md-tooltip>Close Side Panel</md-tooltip>
+                    <md-icon class="md-default-theme" class="material-icons">&#xE5CD;</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding="" style="background-color: brown;">
+           @Html.Raw(@ViewBag.nevigationBar)
+        </md-content>
+    </md-sidenav>
+    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:2%;">
+        <div id='ajax_loader' style="position: fixed; display: none;z-index: 2000;margin-top: -16%;background-color: grey;" class="parentDisable">
+            <img src="~/Content/gears.gif" id="ajax_loader" style="margin-top:40%;margin-left:40%;align-items:center" />
+            <h2 style="text-align:center;">Loading...</h2>
+        </div>
+        @RenderBody()
+    </div>
+
+
+  
+
+
+    <div class="modal fade bs-example-modal-sm-1 fade" id="passwordmodel" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Change Password</strong>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9 downmargin">
+                                <span style="color:red;">* marked are mendatory fileld.</span>
+                            </div>
+                        </div>
+                        <div class="row bottom">
+                            <div class="col-md-3 col-sm-3 " align="center"></div>
+
+                            <div class=" col-md-9 col-sm-9 ">
+
+                                <div class="row downmargin">
+                                    <div class="col-md-12">
+                                        @*<input class="form-control input-md"  type="text" ng-model="NewUser.Code">*@
+                                        <md-input-container style="width:100%;">
+                                            <label>Current Password<span style="color:red;">*</span></label><input ng-model="ChangePassword.oldpassword">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-12">
+                                        @*<input class="form-control input-md"  type="text" ng-model="NewUser.Name">*@
+                                        <md-input-container style="width:100%;">
+                                            <label>New Password<span style="color:red;">*</span></label><input ng-model="ChangePassword.newpassword">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                                <div class="row downmargin">
+                                    <div class="col-md-12">
+                                        @*<input class="form-control input-md"  type="text" ng-model="NewUser.Name">*@
+                                        <md-input-container style="width:100%;">
+                                            <label>Confirm New Password<span style="color:red;">*</span></label><input ng-model="ChangePassword.renewpassword">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group last">
+                            <div class="row">
+                                @*<button type="submit" class="btn btn-success btn-lg " ng-click="SaveUser()">
+                            Save
+                        </button>*@
+                                <md-button class="md-raised" ng-click="Changepassword()">Change</md-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+<script>
+  
+    $(document).ready(function () {
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("active");
+            
+
+        });
+        var scope = angular.element($("#Bodyid")).scope();
+        scope.callmethod();
+       
+        $(document).ajaxStop(function () {
+            $("#ajax_loader").hide();
+
+        });
+        $(document).ajaxStart(function () {
+            $("#ajax_loader").show();
+        });
+        
+        $(function () {
+            //$(this).bind("contextmenu", function (e) {
+            //    e.preventDefault();
+            //});
+        });
+
+
+    });
+
+</script>
