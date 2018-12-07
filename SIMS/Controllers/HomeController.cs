@@ -223,7 +223,7 @@ namespace EPortal.Controllers
             //Session["nevigationBar"] = null;
             //Session["refressornot"] = null;
             //Session["OrgId"] = null;
-            //Session["OrgName"] = null;
+            //Session["OrgName"]
             //Session["UserId"] = null;
             //Session["UserName"] = null;
             //Session["RoleId"] = null;

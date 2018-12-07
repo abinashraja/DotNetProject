@@ -53,14 +53,10 @@
     </div>
 
 </div>
-<div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 1%;">
-
-    <div class="watermark" ng-show="!myData.length">
+<div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 1%;" ng-show="myData.length"></div>
+    <div class="watermark" ng-show="!myData.length" style="margin-top: 5%;">
         <i class="fa fa-thumbs-o-down"></i>No data available
     </div>
-
-</div>
-
 <div>
 
     <div class="modal fade bs-example-modal-sm" id="OrganizationModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -93,13 +89,13 @@
                             <div class=" col-md-9 col-lg-9 ">
                                 <div class="row downmargin">
                                     <div class="col-md-2">Code</div>
-                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Code"></div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="code" type="text" ng-model="NewOrganization.Code"></div>
                                     <div class="col-md-2">Name</div>
-                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Name"></div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="name" type="text" ng-model="NewOrganization.Name"></div>
                                 </div>
                                 <div class="row downmargin">
                                     <div class="col-md-2">Contact No.</div>
-                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.ContactNo"></div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="ContactNo" type="text" ng-model="NewOrganization.ContactNo"></div>
                                     <div class="col-md-2">EST. Date</div>
                                     <div class="col-md-4">
                                         <input class="form-control input-md" id="ESTDate" datepicker type="text" ng-model="NewOrganization.ESTDate">
@@ -107,7 +103,7 @@
                                 </div>
                                 <div class="row downmargin">
                                     <div class="col-md-2">Email</div>
-                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Email"></div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="Email" type="text" ng-model="NewOrganization.Email"></div>
                                     <div class="col-md-2">Mobile No.</div>
                                     <div class="col-md-4"><input class="form-control input-md" type="text" ng-model="NewOrganization.PhoneNo"></div>
                                 </div>
@@ -118,15 +114,15 @@
                                 </div>
                                 <div class="row downmargin">
                                     <div class="col-md-2">Location</div>
-                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Location"></div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="Location" type="text" ng-model="NewOrganization.Location"></div>
                                     <div class="col-md-2">State</div>
-                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.State"></div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="State" type="text" ng-model="NewOrganization.State"></div>
                                 </div>
                                 <div class="row downmargin">
                                     <div class="col-md-2">Country</div>
-                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Country"></div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="Country" type="text" ng-model="NewOrganization.Country"></div>
                                     <div class="col-md-2">Pin</div>
-                                    <div class="col-md-4"><input class="form-control input-md" id="inputsm" type="text" ng-model="NewOrganization.Pin"></div>
+                                    <div class="col-md-4"><input class="form-control input-md" id="Pin" type="text" ng-model="NewOrganization.Pin"></div>
 
                                 </div>
                             </div>

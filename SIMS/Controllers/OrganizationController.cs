@@ -380,7 +380,7 @@ namespace EPortal.Controllers
                                                && op.PageId == modulepage.Id
                                                select op).FirstOrDefault();
                         string code = string.Empty;
-                        if (module.Code == "OrganizationSetup" || module.Code == "UserManagement")
+                        if (module.Code == "OrganizationSetup" || module.Code == "UserManagement" || module.Code== "SchoolSetup" || module.Code== "Fee")
                         {
                             code = "Admin";
                         }

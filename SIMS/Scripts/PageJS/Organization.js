@@ -165,7 +165,7 @@ app.controller('EPortalCont', function ($scope, $http, ngNotify, fileUpload) {
                 method: "POST",
                 data: $scope.NewOrganization
             })
-            .success(function (data) {
+                .success(function (data) {
                 if (data.result == true) {
                     $scope.uploadFile();
                     $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.searchText);
@@ -299,7 +299,8 @@ app.controller('EPortalCont', function ($scope, $http, ngNotify, fileUpload) {
             method: "POST",
             data: { moduleprevlist: $scope.ModuleList, orgid: $scope.SelectedRowOrg.Id }
         })
-        .success(function (data) {
+            .success(function (data) {
+                
             if (data == true) {
                 $('#PrevileageModel').modal('hide');
                 ngNotify.set('Privileges added successfully,Will effect in next login. ', 'success');
