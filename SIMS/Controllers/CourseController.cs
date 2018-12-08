@@ -149,20 +149,11 @@ namespace EPortal.Controllers
 
             using (EPortalEntities entity = new EPortalEntities())
             {
-                var checkref = (from r in entity.SubjectDetails
-                                where r.OrganizationID == orgid
-                                && r.CourseId == course.Id
-                                select r).FirstOrDefault();
-                if (checkref != null)
-                {
-                    errormsg = "Operation conflict:Operation cannot be performed.Record already in Used.";
-                }
-                else
-                {
+               
 
                     entity.Entry(course).State = System.Data.Entity.EntityState.Deleted;
                     result = entity.SaveChanges();
-                }
+                
             }
 
             return Json(new { result = result > 0 ? true : false, errormsg = errormsg }, JsonRequestBehavior.AllowGet);

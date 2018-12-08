@@ -4,23 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AcademicYear">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="PeriodFrom" Type="datetime" Nullable="false" />
-          <Property Name="PeriodTo" Type="datetime" Nullable="false" />
-          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="RowState" Type="bit" Nullable="false" />
-          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
-          <Property Name="Creator" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="UpdatedDateTime" Type="datetime" />
-          <Property Name="Modifier" Type="varchar" MaxLength="255" />
-        </EntityType>
+      <Schema Namespace="EPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ApplicantTest">
           <Key>
             <PropertyRef Name="Id" />
@@ -274,17 +258,6 @@
           <Property Name="RowState" Type="bit" Nullable="false" />
           <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="SubjectDetails">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="SubjectId" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="CourseId" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="RowState" Type="bit" Nullable="false" />
-          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="Test">
           <Key>
             <PropertyRef Name="Id" />
@@ -443,18 +416,6 @@
           <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__AcademicY__Organ__29221CFB">
-          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
-          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicYear">
-              <PropertyRef Name="OrganizationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Applicant__Organ__5165187F">
           <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
           <End Role="ApplicantTest" Type="Self.ApplicantTest" Multiplicity="*" />
@@ -791,7 +752,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Subject__Organiz__01142BA1">
+        <Association Name="FK__Subject__Organiz__160F4887">
           <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
           <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -800,42 +761,6 @@
             </Principal>
             <Dependent Role="Subject">
               <PropertyRef Name="OrganizationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SubjectDe__Cours__17036CC0">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="SubjectDetails" Type="Self.SubjectDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Course">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SubjectDetails">
-              <PropertyRef Name="CourseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SubjectDe__Organ__17F790F9">
-          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
-          <End Role="SubjectDetails" Type="Self.SubjectDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SubjectDetails">
-              <PropertyRef Name="OrganizationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SubjectDe__Subje__160F4887">
-          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
-          <End Role="SubjectDetails" Type="Self.SubjectDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Subject">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SubjectDetails">
-              <PropertyRef Name="SubjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1044,7 +969,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EPortalModelStoreContainer">
-          <EntitySet Name="AcademicYear" EntityType="Self.AcademicYear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApplicantTest" EntityType="Self.ApplicantTest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
@@ -1067,7 +991,6 @@
           <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestInstruction" EntityType="Self.TestInstruction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestQuestion" EntityType="Self.TestQuestion" Schema="dbo" store:Type="Tables" />
@@ -1080,10 +1003,6 @@
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTestTIme" EntityType="Self.UserTestTIme" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__AcademicY__Organ__29221CFB" Association="Self.FK__AcademicY__Organ__29221CFB">
-            <End Role="Organization" EntitySet="Organization" />
-            <End Role="AcademicYear" EntitySet="AcademicYear" />
-          </AssociationSet>
           <AssociationSet Name="FK__Applicant__Organ__5165187F" Association="Self.FK__Applicant__Organ__5165187F">
             <End Role="Organization" EntitySet="Organization" />
             <End Role="ApplicantTest" EntitySet="ApplicantTest" />
@@ -1196,21 +1115,9 @@
             <End Role="Organization" EntitySet="Organization" />
             <End Role="Section" EntitySet="Section" />
           </AssociationSet>
-          <AssociationSet Name="FK__Subject__Organiz__01142BA1" Association="Self.FK__Subject__Organiz__01142BA1">
+          <AssociationSet Name="FK__Subject__Organiz__160F4887" Association="Self.FK__Subject__Organiz__160F4887">
             <End Role="Organization" EntitySet="Organization" />
             <End Role="Subject" EntitySet="Subject" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SubjectDe__Cours__17036CC0" Association="Self.FK__SubjectDe__Cours__17036CC0">
-            <End Role="Course" EntitySet="Course" />
-            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SubjectDe__Organ__17F790F9" Association="Self.FK__SubjectDe__Organ__17F790F9">
-            <End Role="Organization" EntitySet="Organization" />
-            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SubjectDe__Subje__160F4887" Association="Self.FK__SubjectDe__Subje__160F4887">
-            <End Role="Subject" EntitySet="Subject" />
-            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__Test__Organizati__2A4B4B5E" Association="Self.FK__Test__Organizati__2A4B4B5E">
             <End Role="Organization" EntitySet="Organization" />
@@ -1281,7 +1188,8 @@
             <End Role="UserTestTIme" EntitySet="UserTestTIme" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1320,7 +1228,6 @@
           <Property Name="RowState" Type="Boolean" Nullable="false" />
           <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Organization" Relationship="Self.FK__Course__Organiza__778AC167" FromRole="Course" ToRole="Organization" />
-          <NavigationProperty Name="SubjectDetails" Relationship="Self.FK__SubjectDe__Cours__17036CC0" FromRole="Course" ToRole="SubjectDetails" />
         </EntityType>
         <EntityType Name="EMailConfiguration">
           <Key>
@@ -1410,8 +1317,7 @@
           <NavigationProperty Name="QuestionTypes" Relationship="Self.FK__QuestionT__Organ__3C69FB99" FromRole="Organization" ToRole="QuestionType" />
           <NavigationProperty Name="RoleMasters" Relationship="Self.FK__RoleMaste__Organ__182C9B23" FromRole="Organization" ToRole="RoleMaster" />
           <NavigationProperty Name="Sections" Relationship="Self.FK__Section__Organiz__7D439ABD" FromRole="Organization" ToRole="Section" />
-          <NavigationProperty Name="Subjects" Relationship="Self.FK__Subject__Organiz__01142BA1" FromRole="Organization" ToRole="Subject" />
-          <NavigationProperty Name="SubjectDetails" Relationship="Self.FK__SubjectDe__Organ__17F790F9" FromRole="Organization" ToRole="SubjectDetails" />
+          <NavigationProperty Name="Subjects" Relationship="Self.FK__Subject__Organiz__160F4887" FromRole="Organization" ToRole="Subject" />
           <NavigationProperty Name="Tests" Relationship="Self.FK__Test__Organizati__2A4B4B5E" FromRole="Organization" ToRole="Test" />
           <NavigationProperty Name="TestInstructions" Relationship="Self.FK__TestInstr__Organ__4D94879B" FromRole="Organization" ToRole="TestInstruction" />
           <NavigationProperty Name="TestQuestions" Relationship="Self.FK__TestQuest__Organ__4AB81AF0" FromRole="Organization" ToRole="TestQuestion" />
@@ -1423,7 +1329,6 @@
           <NavigationProperty Name="UserMarks" Relationship="Self.FK__UserMark__Organi__5CD6CB2B" FromRole="Organization" ToRole="UserMark" />
           <NavigationProperty Name="UserRoles" Relationship="Self.FK__UserRole__Organi__1B0907CE" FromRole="Organization" ToRole="UserRole" />
           <NavigationProperty Name="UserTestTImes" Relationship="Self.FK__UserTestT__Organ__59FA5E80" FromRole="Organization" ToRole="UserTestTIme" />
-          <NavigationProperty Name="AcademicYears" Relationship="EPortalModel.FK__AcademicY__Organ__29221CFB" FromRole="Organization" ToRole="AcademicYear" />
         </EntityType>
         <EntityType Name="OrganizationPage">
           <Key>
@@ -1608,22 +1513,7 @@
           <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RowState" Type="Boolean" Nullable="false" />
           <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Organization" Relationship="Self.FK__Subject__Organiz__01142BA1" FromRole="Subject" ToRole="Organization" />
-          <NavigationProperty Name="SubjectDetails" Relationship="Self.FK__SubjectDe__Subje__160F4887" FromRole="Subject" ToRole="SubjectDetails" />
-        </EntityType>
-        <EntityType Name="SubjectDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SubjectId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CourseId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RowState" Type="Boolean" Nullable="false" />
-          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Course" Relationship="Self.FK__SubjectDe__Cours__17036CC0" FromRole="SubjectDetails" ToRole="Course" />
-          <NavigationProperty Name="Organization" Relationship="Self.FK__SubjectDe__Organ__17F790F9" FromRole="SubjectDetails" ToRole="Organization" />
-          <NavigationProperty Name="Subject" Relationship="Self.FK__SubjectDe__Subje__160F4887" FromRole="SubjectDetails" ToRole="Subject" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Subject__Organiz__160F4887" FromRole="Subject" ToRole="Organization" />
         </EntityType>
         <EntityType Name="Test">
           <Key>
@@ -1842,18 +1732,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SubjectDe__Cours__17036CC0">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="SubjectDetails" Type="Self.SubjectDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Course">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SubjectDetails">
-              <PropertyRef Name="CourseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__GroupUser__Group__72C60C4A">
           <End Role="GroupUser" Type="Self.GroupUser" Multiplicity="1" />
           <End Role="GroupUserApplicant" Type="Self.GroupUserApplicant" Multiplicity="*" />
@@ -2046,7 +1924,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Subject__Organiz__01142BA1">
+        <Association Name="FK__Subject__Organiz__160F4887">
           <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
           <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2054,18 +1932,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Subject">
-              <PropertyRef Name="OrganizationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SubjectDe__Organ__17F790F9">
-          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
-          <End Role="SubjectDetails" Type="Self.SubjectDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SubjectDetails">
               <PropertyRef Name="OrganizationID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2322,18 +2188,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SubjectDe__Subje__160F4887">
-          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
-          <End Role="SubjectDetails" Type="Self.SubjectDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Subject">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SubjectDetails">
-              <PropertyRef Name="SubjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TestInstr__TestI__4E88ABD4">
           <End Role="Test" Type="Self.Test" Multiplicity="1" />
           <End Role="TestInstruction" Type="Self.TestInstruction" Multiplicity="*" />
@@ -2417,7 +2271,6 @@
           <EntitySet Name="RoleMasters" EntityType="Self.RoleMaster" />
           <EntitySet Name="Sections" EntityType="Self.Section" />
           <EntitySet Name="Subjects" EntityType="Self.Subject" />
-          <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetail" />
           <EntitySet Name="Tests" EntityType="Self.Test" />
           <EntitySet Name="TestInstructions" EntityType="Self.TestInstruction" />
           <EntitySet Name="TestQuestions" EntityType="Self.TestQuestion" />
@@ -2441,10 +2294,6 @@
           <AssociationSet Name="FK__Course__Organiza__778AC167" Association="Self.FK__Course__Organiza__778AC167">
             <End Role="Organization" EntitySet="Organizations" />
             <End Role="Course" EntitySet="Courses" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SubjectDe__Cours__17036CC0" Association="Self.FK__SubjectDe__Cours__17036CC0">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__GroupUser__Group__72C60C4A" Association="Self.FK__GroupUser__Group__72C60C4A">
             <End Role="GroupUser" EntitySet="GroupUsers" />
@@ -2510,13 +2359,9 @@
             <End Role="Organization" EntitySet="Organizations" />
             <End Role="Section" EntitySet="Sections" />
           </AssociationSet>
-          <AssociationSet Name="FK__Subject__Organiz__01142BA1" Association="Self.FK__Subject__Organiz__01142BA1">
+          <AssociationSet Name="FK__Subject__Organiz__160F4887" Association="Self.FK__Subject__Organiz__160F4887">
             <End Role="Organization" EntitySet="Organizations" />
             <End Role="Subject" EntitySet="Subjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SubjectDe__Organ__17F790F9" Association="Self.FK__SubjectDe__Organ__17F790F9">
-            <End Role="Organization" EntitySet="Organizations" />
-            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__Test__Organizati__2A4B4B5E" Association="Self.FK__Test__Organizati__2A4B4B5E">
             <End Role="Organization" EntitySet="Organizations" />
@@ -2602,10 +2447,6 @@
             <End Role="Questionsource" EntitySet="Questionsources" />
             <End Role="QuestionsourceGroup" EntitySet="QuestionsourceGroups" />
           </AssociationSet>
-          <AssociationSet Name="FK__SubjectDe__Subje__160F4887" Association="Self.FK__SubjectDe__Subje__160F4887">
-            <End Role="Subject" EntitySet="Subjects" />
-            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK__TestInstr__TestI__4E88ABD4" Association="Self.FK__TestInstr__TestI__4E88ABD4">
             <End Role="Test" EntitySet="Tests" />
             <End Role="TestInstruction" EntitySet="TestInstructions" />
@@ -2626,41 +2467,7 @@
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="UserInfo" EntitySet="UserInfoes" />
           </AssociationSet>
-          <EntitySet Name="AcademicYears" EntityType="EPortalModel.AcademicYear" />
-          <AssociationSet Name="FK__AcademicY__Organ__29221CFB" Association="EPortalModel.FK__AcademicY__Organ__29221CFB">
-            <End Role="Organization" EntitySet="Organizations" />
-            <End Role="AcademicYear" EntitySet="AcademicYears" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="AcademicYear">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="PeriodFrom" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PeriodTo" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="OrganizationID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="RowState" Type="Boolean" Nullable="false" />
-          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Creator" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-          <Property Name="Modifier" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Organization" Relationship="EPortalModel.FK__AcademicY__Organ__29221CFB" FromRole="AcademicYear" ToRole="Organization" />
-        </EntityType>
-        <Association Name="FK__AcademicY__Organ__29221CFB">
-          <End Type="EPortalModel.Organization" Role="Organization" Multiplicity="1" />
-          <End Type="EPortalModel.AcademicYear" Role="AcademicYear" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicYear">
-              <PropertyRef Name="OrganizationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2942,18 +2749,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SubjectDetails">
-            <EntityTypeMapping TypeName="EPortalModel.SubjectDetail">
-              <MappingFragment StoreEntitySet="SubjectDetails">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
-                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
-                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
-                <ScalarProperty Name="RowState" ColumnName="RowState" />
-                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tests">
             <EntityTypeMapping TypeName="EPortalModel.Test">
               <MappingFragment StoreEntitySet="Test">
@@ -3121,23 +2916,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AcademicYears">
-            <EntityTypeMapping TypeName="EPortalModel.AcademicYear">
-              <MappingFragment StoreEntitySet="AcademicYear">
-                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
-                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
-                <ScalarProperty Name="Creator" ColumnName="Creator" />
-                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
-                <ScalarProperty Name="RowState" ColumnName="RowState" />
-                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
-                <ScalarProperty Name="PeriodTo" ColumnName="PeriodTo" />
-                <ScalarProperty Name="PeriodFrom" ColumnName="PeriodFrom" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

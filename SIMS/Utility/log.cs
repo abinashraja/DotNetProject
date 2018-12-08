@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Web.Hosting;
 using System.Web;
-namespace SIMS.Utility
+namespace EPortal.Utility
 {
     public class logWriter
     {

@@ -14,12 +14,6 @@ namespace EPortal.Models
     
     public partial class Subject
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Subject()
-        {
-            this.SubjectDetails = new HashSet<SubjectDetail>();
-        }
-    
         public string Id { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
@@ -28,7 +22,5 @@ namespace EPortal.Models
         public System.DateTime CreateDateTime { get; set; }
     
         public virtual Organization Organization { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubjectDetail> SubjectDetails { get; set; }
     }
 }

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using EPortal.App_Start;
 using EPortal.Models;
-using EPortal.Utility;
-using EPortal.App_Start;
-using System.Text.RegularExpressions;
-using System.IO;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
-using Newtonsoft.Json;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace EPortal.Controllers
 {
@@ -63,8 +58,6 @@ namespace EPortal.Controllers
         [CustomFilter(PageName = "Subject")]
         public JsonResult SaveSubject(EPortal.Models.Subject Subjectinfo, List<Courselist> Courseinfo)
         {
-            SubjectDetail sibjectdetailinfo = null;
-
             string errormsg = "";
             int result = 0;
 
@@ -86,47 +79,55 @@ namespace EPortal.Controllers
                                              select r).FirstOrDefault();
                         if (checkrolecode == null)
                         {
-                            List<Courselist> seelctedcourse = Courseinfo.Where(x => x.Selected == true).ToList();
+                            #region For Course but comented
+                            //List<Courselist> seelctedcourse = Courseinfo.Where(x => x.Selected == true).ToList();
 
-                            if (seelctedcourse.Count() > 0)
+                            //if (seelctedcourse.Count() > 0)
+                            //{
+
+
+                            //    Subjectinfo.Id = Guid.NewGuid().ToString();
+                            //    Subjectinfo.OrganizationID = orgid;
+                            //    Subjectinfo.RowState = true;
+                            //    Subjectinfo.CreateDateTime = System.DateTime.Now;
+                            //    entity.Entry(Subjectinfo).State = System.Data.Entity.EntityState.Added;
+                            //    entity.Subjects.Add(Subjectinfo);
+
+
+                            //    foreach (Courselist item in seelctedcourse)
+                            //    {
+                            //        sibjectdetailinfo = new SubjectDetail();
+                            //        sibjectdetailinfo.Id = Guid.NewGuid().ToString();
+                            //        sibjectdetailinfo.SubjectId = Subjectinfo.Id;
+                            //        sibjectdetailinfo.CourseId = item.Id;
+                            //        sibjectdetailinfo.OrganizationID = orgid;
+                            //        sibjectdetailinfo.RowState = true;
+                            //        sibjectdetailinfo.CreateDateTime = System.DateTime.Now;
+                            //        entity.Entry(sibjectdetailinfo).State = System.Data.Entity.EntityState.Added;
+                            //        entity.SubjectDetails.Add(sibjectdetailinfo);
+                            //    }
+
+                            //}
+                            #endregion
+
+
+                            try
                             {
-
-
                                 Subjectinfo.Id = Guid.NewGuid().ToString();
-                                Subjectinfo.OrganizationID = orgid;
+                                Subjectinfo.OrganizationID = User.OrgId;
+                                Subjectinfo.CreateDateTime = DateTime.Now;
                                 Subjectinfo.RowState = true;
-                                Subjectinfo.CreateDateTime = System.DateTime.Now;
+                                
+
                                 entity.Entry(Subjectinfo).State = System.Data.Entity.EntityState.Added;
-                                entity.Subjects.Add(Subjectinfo);
-
-
-                                foreach (Courselist item in seelctedcourse)
-                                {
-                                    sibjectdetailinfo = new SubjectDetail();
-                                    sibjectdetailinfo.Id = Guid.NewGuid().ToString();
-                                    sibjectdetailinfo.SubjectId = Subjectinfo.Id;
-                                    sibjectdetailinfo.CourseId = item.Id;
-                                    sibjectdetailinfo.OrganizationID = orgid;
-                                    sibjectdetailinfo.RowState = true;
-                                    sibjectdetailinfo.CreateDateTime = System.DateTime.Now;
-                                    entity.Entry(sibjectdetailinfo).State = System.Data.Entity.EntityState.Added;
-                                    entity.SubjectDetails.Add(sibjectdetailinfo);
-                                }
-
-
-
-                                try
-                                {
-                                    result = entity.SaveChanges();
-                                }
-                                catch (Exception ex)
-                                {
-
-                                }
-
+                                result = entity.SaveChanges();
+                            }
+                            catch (Exception )
+                            {
 
                             }
                         }
+
                         else
                         {
                             errormsg = "Subject already exist with same Code.";
@@ -146,46 +147,46 @@ namespace EPortal.Controllers
                         entity.Entry(roledata).State = System.Data.Entity.EntityState.Modified;
 
 
+                        #region Couse BUt Comented
+                        //foreach (Courselist item in Courseinfo)
+                        //{
+                        //    SubjectDetail subjectdetails = (from subjd in entity.SubjectDetails
+                        //                                    where subjd.OrganizationID == orgid
+                        //                                    && subjd.SubjectId == roledata.Id
+                        //                                    && subjd.CourseId == item.Id
+                        //                                    select subjd).FirstOrDefault();
+                        //    if (subjectdetails != null)
+                        //    {
+                        //        if (item.Selected == false)
+                        //        {
+                        //            entity.Entry(subjectdetails).State = System.Data.Entity.EntityState.Deleted;
 
+                        //        }
+                        //        else
+                        //        {
+                        //            entity.Entry(subjectdetails).State = System.Data.Entity.EntityState.Modified;
 
-                        foreach (Courselist item in Courseinfo)
-                        {
-                            SubjectDetail subjectdetails = (from subjd in entity.SubjectDetails
-                                                            where subjd.OrganizationID == orgid
-                                                            && subjd.SubjectId == roledata.Id
-                                                            && subjd.CourseId == item.Id
-                                                            select subjd).FirstOrDefault();
-                            if (subjectdetails != null)
-                            {
-                                if (item.Selected == false)
-                                {
-                                    entity.Entry(subjectdetails).State = System.Data.Entity.EntityState.Deleted;
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        if (item.Selected == true)
+                        //        {
+                        //            sibjectdetailinfo = new SubjectDetail();
+                        //            sibjectdetailinfo.Id = Guid.NewGuid().ToString();
+                        //            sibjectdetailinfo.SubjectId = roledata.Id;
+                        //            sibjectdetailinfo.CourseId = item.Id;
+                        //            sibjectdetailinfo.OrganizationID = orgid;
+                        //            sibjectdetailinfo.RowState = true;
+                        //            sibjectdetailinfo.CreateDateTime = DateTime.Now;
+                        //            entity.Entry(sibjectdetailinfo).State = System.Data.Entity.EntityState.Added;
 
-                                }
-                                else
-                                {
-                                    entity.Entry(subjectdetails).State = System.Data.Entity.EntityState.Modified;
+                        //        }
 
-                                }
-                            }
-                            else
-                            {
-                                if (item.Selected == true)
-                                {
-                                    sibjectdetailinfo = new SubjectDetail();
-                                    sibjectdetailinfo.Id = Guid.NewGuid().ToString();
-                                    sibjectdetailinfo.SubjectId = roledata.Id;
-                                    sibjectdetailinfo.CourseId = item.Id;
-                                    sibjectdetailinfo.OrganizationID = orgid;
-                                    sibjectdetailinfo.RowState = true;
-                                    sibjectdetailinfo.CreateDateTime = DateTime.Now;
-                                    entity.Entry(sibjectdetailinfo).State = System.Data.Entity.EntityState.Added;
+                        //    }
 
-                                }
-
-                            }
-
-                        }
+                        //}
+                        #endregion
 
 
 
@@ -235,23 +236,23 @@ namespace EPortal.Controllers
                 //                       where sub.Id == Subject.Id
                 //                       && sub.OrganizationID == orgid
                 //                       select sub).FirstOrDefault();
-                    entity.Entry(Subject).State = System.Data.Entity.EntityState.Deleted;
+                entity.Entry(Subject).State = System.Data.Entity.EntityState.Deleted;
 
 
-                List<SubjectDetail> subjectdetails = (from detsub in entity.SubjectDetails
-                                                where detsub.SubjectId == Subject.Id
-                                                && detsub.OrganizationID == orgid
-                                                select detsub).ToList();
-                if(subjectdetails.Count()>0)
-                {
-                    foreach (SubjectDetail item in subjectdetails)
-                    {
-                        entity.Entry(item).State = System.Data.Entity.EntityState.Deleted;
-                    }
+                //List<SubjectDetail> subjectdetails = (from detsub in entity.SubjectDetails
+                //                                      where detsub.SubjectId == Subject.Id
+                //                                      && detsub.OrganizationID == orgid
+                //                                      select detsub).ToList();
+                //if (subjectdetails.Count() > 0)
+                //{
+                //    foreach (SubjectDetail item in subjectdetails)
+                //    {
+                //        entity.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                //    }
 
-                }
+                //}
 
-                    result = entity.SaveChanges();
+                result = entity.SaveChanges();
                 //}
             }
 
@@ -269,7 +270,7 @@ namespace EPortal.Controllers
             string orgid = User.OrgId;
 
             SubjectList roleinforole = new SubjectList();
-            List<SubjectDetail> subjectdetails = new List<SubjectDetail>();
+            //List<SubjectDetail> subjectdetails = new List<SubjectDetail>();
             List<Courselist> courselist = new List<Courselist>();
             using (EPortalEntities entity = new EPortalEntities())
             {
@@ -287,21 +288,21 @@ namespace EPortal.Controllers
 
 
                 courselist = GetCourseListinfo();
-                var subjectlist = (from subjd in entity.SubjectDetails
-                                   where subjd.OrganizationID == orgid
-                                   && subjd.SubjectId == roleinforole.Id
-                                   select subjd).ToList();
-                foreach (Courselist item in courselist)
-                {
-                    var checkselectedornot = subjectlist.Where(x => x.CourseId.Contains(item.Id)).FirstOrDefault();
-                    if (checkselectedornot != null)
-                    {
+                //var subjectlist = (from subjd in entity.SubjectDetails
+                //                   where subjd.OrganizationID == orgid
+                //                   && subjd.SubjectId == roleinforole.Id
+                //                   select subjd).ToList();
+                //foreach (Courselist item in courselist)
+                //{
+                //    var checkselectedornot = subjectlist.Where(x => x.CourseId.Contains(item.Id)).FirstOrDefault();
+                //    if (checkselectedornot != null)
+                //    {
 
-                        item.Selected = true;
-                    }
+                //        item.Selected = true;
+                //    }
 
 
-                }
+                //}
 
 
 

@@ -48,26 +48,26 @@ app.directive('datepicker', function () {
                 method: "POST",
                 data: $scope.ChangePassword
             })
-           .success(function (data) {
-               if (data.result == true) {
-                   $('#passwordmodel').modal('hide');
-                   $scope.ChangePassword = [];
-                   ngNotify.set("Password change successfully.", 'success');
+                .success(function (data) {
+                    if (data.result == true) {
+                        $('#passwordmodel').modal('hide');
+                        $scope.ChangePassword = [];
+                        ngNotify.set("Password change successfully.", 'success');
 
-               }
-               else {
-                   if (data.msg == "") {
-                       ngNotify.set('Error ocured!please try again.', 'error');
-                   }
-                   else {
-                       ngNotify.set(data.msg, 'error');
-                   }
-               }
-           },
-           function (response) { // optional
-               // failed
+                    }
+                    else {
+                        if (data.msg == "") {
+                            ngNotify.set('Error ocured!please try again.', 'error');
+                        }
+                        else {
+                            ngNotify.set(data.msg, 'error');
+                        }
+                    }
+                },
+                    function (response) { // optional
+                        // failed
 
-           });
+                    });
         }
         else {
             ngNotify.set('Confirm New Password do not match with New Password. ', 'error');
@@ -93,32 +93,32 @@ app.directive('datepicker', function () {
             $http({
                 url: '/Subject/SaveSubject',
                 method: "POST",
-                data: { Subjectinfo: $scope.NewSubject, Courseinfo: $scope.GetCourseList }
+                data: { Subjectinfo: $scope.NewSubject }
             })
-            .success(function (data) {
-                if (data.result == true) {
-                    $scope.callmethod();
-                    $scope.NewSubject = new Object();
-                    $('#SubjectModel').modal('hide');
-                    ngNotify.set('Subject ' + $scope.Operation + ' successfully.', 'success');
-                }
-                else {
-                    if (data.errormsg != "") {
-                        ngNotify.set(data.errormsg, 'error');
+                .success(function (data) {
+                    if (data.result == true) {
+                        $scope.callmethod();
+                        $scope.NewSubject = new Object();
+                        $('#SubjectModel').modal('hide');
+                        ngNotify.set('Subject ' + $scope.Operation + ' successfully.', 'success');
                     }
                     else {
+                        if (data.errormsg != "") {
+                            ngNotify.set(data.errormsg, 'error');
+                        }
+                        else {
 
-                        ngNotify.set('Error ocured!please try again.', 'error');
+                            ngNotify.set('Error ocured!please try again.', 'error');
+                        }
+
                     }
+                    jQuery.event.trigger("ajaxStop");
 
-                }
-                jQuery.event.trigger("ajaxStop");
+                },
+                    function (response) { // optional
+                        // failed
 
-            },
-            function (response) { // optional
-                // failed
-
-            });
+                    });
         }
         else {
 
@@ -136,16 +136,15 @@ app.directive('datepicker', function () {
             method: "POST",
             data: org
         })
-        .success(function (data) {
-            $scope.NewSubject = data.subjectdata;
-            $scope.GetCourseList = data.coursedata;
-            $('#SubjectModel').modal('show');
-            jQuery.event.trigger("ajaxStop");
-        },
-        function (response) { // optional
-            // failed
+            .success(function (data) {
+                $scope.NewSubject = data.subjectdata;              
+                $('#SubjectModel').modal('show');
+                jQuery.event.trigger("ajaxStop");
+            },
+                function (response) { // optional
+                    // failed
 
-        });
+                });
     }
     $scope.DeleteSubject = function (org) {
         jQuery.event.trigger("ajaxStart");
@@ -154,53 +153,53 @@ app.directive('datepicker', function () {
             method: "POST",
             data: org
         })
-        .success(function (data) {
-            if (data.result == true) {
-                $scope.callmethod();
-                $scope.NewSubject = new Object();
-                ngNotify.set('Subject deleted successfully.', 'success');
-            }
-            else {
-                if (data.errormsg == "") {
-                    ngNotify.set('Error ocured!please try again.', 'error');
+            .success(function (data) {
+                if (data.result == true) {
+                    $scope.callmethod();
+                    $scope.NewSubject = new Object();
+                    ngNotify.set('Subject deleted successfully.', 'success');
                 }
                 else {
-                    ngNotify.set(data.errormsg, 'error');
+                    if (data.errormsg == "") {
+                        ngNotify.set('Error ocured!please try again.', 'error');
+                    }
+                    else {
+                        ngNotify.set(data.errormsg, 'error');
+                    }
                 }
-            }
-            jQuery.event.trigger("ajaxStop");
-        },
-        function (response) { // optional
-            // failed
+                jQuery.event.trigger("ajaxStop");
+            },
+                function (response) { // optional
+                    // failed
 
-        });
+                });
     }
     $scope.CourseList = [];
     $scope.MakeObjectEMpty = function () {
         $scope.NewSubject = new Object();
         $scope.NewSubject.IsApplicant = false;
         $scope.NewSubject.Operation = "Create";
-        $scope.GetCourseList = [];
-        $scope.GetCourseListMethod();
-        
+        //$scope.GetCourseList = [];
+        //$scope.GetCourseListMethod();
+
 
     }
-    $scope.GetCourseListMethod = function () {
-        //jQuery.event.trigger("ajaxStart");
-        $http({
-            url: '/Subject/GetCourseList',
-            method: "POST"
-        })
-.success(function (data) {
-    $scope.GetCourseList = data;
-    //jQuery.event.trigger("ajaxStop");
-},
-function (response) { // optional
-    // failed
+    //$scope.GetCourseListMethod = function () {
+    //    //jQuery.event.trigger("ajaxStart");
+    //    $http({
+    //        url: '/Subject/GetCourseList',
+    //        method: "POST"
+    //    })
+    //        .success(function (data) {
+    //            $scope.GetCourseList = data;
+    //            //jQuery.event.trigger("ajaxStop");
+    //        },
+    //            function (response) { // optional
+    //                // failed
 
-});
+    //            });
 
-    }
+    //}
 
 
 
@@ -285,9 +284,9 @@ function (response) { // optional
                     url: '/Subject/GetSubjectList',
                     data: { searchtext: ft }
                 })
-             .success(function (largeLoad) {
-                 $scope.setPagingData(largeLoad, page, pageSize);
-             });
+                    .success(function (largeLoad) {
+                        $scope.setPagingData(largeLoad, page, pageSize);
+                    });
             } else {
                 $http.get("/Subject/GetSubjectList").success(function (largeLoad) {
                     $scope.setPagingData(largeLoad, page, pageSize);
@@ -327,10 +326,10 @@ function (response) { // optional
         showFilter: true,
         showSelectionCheckbox: true,
         columnDefs: [{ field: 'Id', displayName: 'Id', visible: false },
-                                    { field: 'Code', displayName: 'Code', cellClass: 'CodeClass' },
-                                    { field: 'Name', displayName: 'Name', cellClass: 'NameClass', headerCellClass: 'ageHeader' },
-                                    //{ field: 'CourseName', displayName: 'Course Name', cellClass: 'NameClass', headerCellClass: 'ageHeader' },
-                                    { field: 'Operation', width: 100, cellClass: 'OperationSubject', sortable: false, headerCellClass: 'ageHeader', cellTemplate: "<div class='btnclass'><span style='margin-right: 3%;' ng-click='DeleteSubject(row.entity)' class='label label-danger'>Delete</span></div>" }
+        { field: 'Code', displayName: 'Code', cellClass: 'CodeClass' },
+        { field: 'Name', displayName: 'Name', cellClass: 'NameClass', headerCellClass: 'ageHeader' },
+        //{ field: 'CourseName', displayName: 'Course Name', cellClass: 'NameClass', headerCellClass: 'ageHeader' },
+        { field: 'Operation', width: 100, cellClass: 'OperationSubject', sortable: false, headerCellClass: 'ageHeader', cellTemplate: "<div class='btnclass'><span style='margin-right: 3%;' ng-click='DeleteSubject(row.entity)' class='label label-danger'>Delete</span></div>" }
         ],
         //showSelectionCheckbox: true,
         //selectWithCheckboxOnly:true,

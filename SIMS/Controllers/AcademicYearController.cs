@@ -36,22 +36,22 @@ namespace EPortal.Controllers
             List<AcademicYearList> org = new List<AcademicYearList>();
             using (EPortalEntities entity = new EPortalEntities())
             {
-                org = (from o in entity.AcademicYears
-                       where o.OrganizationID == orgid
-                       && ((searchtext == null || searchtext == "") ? true : (o.Code.ToLower().Contains(searchtext.ToLower())
-                       || o.Name.ToLower().Contains(searchtext.ToLower())
-                       ))
-                       select new AcademicYearList
-                       {
-                           Id = o.Id,
-                           Code = o.Code,
-                           Name = o.Name,
-                           PeriodFrom=o.PeriodFrom,
-                           PeriodTo=o.PeriodTo,
-                           Operation = "Create",
-                           DeleteConformation = false,
-                           CreateDateTime = o.CreateDateTime
-                       }).OrderByDescending(x => x.CreateDateTime).ToList();
+                //org = (from o in entity.AcademicYears
+                //       where o.OrganizationID == orgid
+                //       && ((searchtext == null || searchtext == "") ? true : (o.Code.ToLower().Contains(searchtext.ToLower())
+                //       || o.Name.ToLower().Contains(searchtext.ToLower())
+                //       ))
+                //       select new AcademicYearList
+                //       {
+                //           Id = o.Id,
+                //           Code = o.Code,
+                //           Name = o.Name,
+                //           PeriodFrom=o.PeriodFrom,
+                //           PeriodTo=o.PeriodTo,
+                //           Operation = "Create",
+                //           DeleteConformation = false,
+                //           CreateDateTime = o.CreateDateTime
+                //       }).OrderByDescending(x => x.CreateDateTime).ToList();
             }
             string dateformat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
             return Json(org, JsonRequestBehavior.AllowGet);
@@ -80,24 +80,24 @@ namespace EPortal.Controllers
                     if (academicyear.Operation == "Create")
                     {
 
-                        var checkrolecode = (from r in entity.AcademicYears
-                                             where r.OrganizationID == orgid
-                                             && r.Code == academicyear.Code
-                                             select r).FirstOrDefault();
-                        if (checkrolecode == null)
-                        {
-                            academicyear.Id = Guid.NewGuid().ToString();
-                            academicyear.RowState = true;
-                            academicyear.Creator = User.UserId;
-                            academicyear.CreateDateTime = DateTime.Now;
-                            academicyear.OrganizationID = orgid;
-                            entity.Entry(academicyear).State = System.Data.Entity.EntityState.Added;
+                        //var checkrolecode = (from r in entity.AcademicYears
+                        //                     where r.OrganizationID == orgid
+                        //                     && r.Code == academicyear.Code
+                        //                     select r).FirstOrDefault();
+                        //if (checkrolecode == null)
+                        //{
+                        //    //academicyear.Id = Guid.NewGuid().ToString();
+                        //    //academicyear.RowState = true;
+                        //    //academicyear.Creator = User.UserId;
+                        //    //academicyear.CreateDateTime = DateTime.Now;
+                        //    //academicyear.OrganizationID = orgid;
+                        //    //entity.Entry(academicyear).State = System.Data.Entity.EntityState.Added;
 
-                        }
-                        else
-                        {
-                            errormsg = "Subject already exist with same Code.";
-                        }
+                        //}
+                        //else
+                        //{
+                        //    errormsg = "Subject already exist with same Code.";
+                        //}
                         try
                         {
 
@@ -111,19 +111,19 @@ namespace EPortal.Controllers
                     }
                     else
                     {
-                        EPortal.Models.AcademicYear roledata = (from o in entity.AcademicYears
-                                                           where o.OrganizationID == orgid
-                                                           && o.Id == academicyear.Id
-                                                           select o
-                               ).FirstOrDefault();
+                        //EPortal.Models.AcademicYear roledata = (from o in entity.AcademicYears
+                        //                                   where o.OrganizationID == orgid
+                        //                                   && o.Id == academicyear.Id
+                        //                                   select o
+                        //       ).FirstOrDefault();
 
-                        roledata.Code = academicyear.Code;
-                        roledata.Name = academicyear.Name;
-                        roledata.PeriodFrom = academicyear.PeriodFrom;
-                        roledata.PeriodTo = academicyear.PeriodTo;
-                        roledata.Modifier = User.UserId;
-                        roledata.UpdatedDateTime = DateTime.Now;
-                        entity.Entry(roledata).State = System.Data.Entity.EntityState.Modified;
+                        //roledata.Code = academicyear.Code;
+                        //roledata.Name = academicyear.Name;
+                        //roledata.PeriodFrom = academicyear.PeriodFrom;
+                        //roledata.PeriodTo = academicyear.PeriodTo;
+                        //roledata.Modifier = User.UserId;
+                        //roledata.UpdatedDateTime = DateTime.Now;
+                        //entity.Entry(roledata).State = System.Data.Entity.EntityState.Modified;
                         try
                         {
 
@@ -173,18 +173,18 @@ namespace EPortal.Controllers
                 entity.Entry(Subject).State = System.Data.Entity.EntityState.Deleted;
 
 
-                List<SubjectDetail> subjectdetails = (from detsub in entity.SubjectDetails
-                                                      where detsub.SubjectId == Subject.Id
-                                                      && detsub.OrganizationID == orgid
-                                                      select detsub).ToList();
-                if (subjectdetails.Count() > 0)
-                {
-                    foreach (SubjectDetail item in subjectdetails)
-                    {
-                        entity.Entry(item).State = System.Data.Entity.EntityState.Deleted;
-                    }
+                //List<SubjectDetail> subjectdetails = (from detsub in entity.SubjectDetails
+                //                                      where detsub.SubjectId == Subject.Id
+                //                                      && detsub.OrganizationID == orgid
+                //                                      select detsub).ToList();
+                //if (subjectdetails.Count() > 0)
+                //{
+                //    foreach (SubjectDetail item in subjectdetails)
+                //    {
+                //        entity.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                //    }
 
-                }
+                //}
 
                 result = entity.SaveChanges();
                 //}
@@ -206,18 +206,18 @@ namespace EPortal.Controllers
             AcademicYearList roleinforole = new AcademicYearList();
             using (EPortalEntities entity = new EPortalEntities())
             {
-                roleinforole = (from o in entity.AcademicYears
-                                where o.Id == academicyear.Id
-                                && o.OrganizationID == orgid
-                                select new AcademicYearList
-                                {
-                                    Id = o.Id,
-                                    Code = o.Code,
-                                    Name = o.Name,
-                                    PeriodFrom=o.PeriodFrom,
-                                    PeriodTo=o.PeriodTo,
-                                    Operation = "Edit",
-                                }).FirstOrDefault();
+                //roleinforole = (from o in entity.AcademicYears
+                //                where o.Id == academicyear.Id
+                //                && o.OrganizationID == orgid
+                //                select new AcademicYearList
+                //                {
+                //                    Id = o.Id,
+                //                    Code = o.Code,
+                //                    Name = o.Name,
+                //                    PeriodFrom=o.PeriodFrom,
+                //                    PeriodTo=o.PeriodTo,
+                //                    Operation = "Edit",
+                //                }).FirstOrDefault();
             }
             return Json(roleinforole, JsonRequestBehavior.AllowGet);
         }

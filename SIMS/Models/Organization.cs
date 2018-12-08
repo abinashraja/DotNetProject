@@ -33,7 +33,6 @@ namespace EPortal.Models
             this.RoleMasters = new HashSet<RoleMaster>();
             this.Sections = new HashSet<Section>();
             this.Subjects = new HashSet<Subject>();
-            this.SubjectDetails = new HashSet<SubjectDetail>();
             this.Tests = new HashSet<Test>();
             this.TestInstructions = new HashSet<TestInstruction>();
             this.TestQuestions = new HashSet<TestQuestion>();
@@ -45,7 +44,6 @@ namespace EPortal.Models
             this.UserMarks = new HashSet<UserMark>();
             this.UserRoles = new HashSet<UserRole>();
             this.UserTestTImes = new HashSet<UserTestTIme>();
-            this.AcademicYears = new HashSet<AcademicYear>();
         }
     
         public string Id { get; set; }
@@ -94,8 +92,6 @@ namespace EPortal.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subject> Subjects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubjectDetail> SubjectDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Test> Tests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TestInstruction> TestInstructions { get; set; }
@@ -117,7 +113,5 @@ namespace EPortal.Models
         public virtual ICollection<UserRole> UserRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserTestTIme> UserTestTImes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AcademicYear> AcademicYears { get; set; }
     }
 }

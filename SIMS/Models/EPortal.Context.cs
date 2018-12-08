@@ -47,7 +47,6 @@ namespace EPortal.Models
         public virtual DbSet<RoleMaster> RoleMasters { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
-        public virtual DbSet<SubjectDetail> SubjectDetails { get; set; }
         public virtual DbSet<Test> Tests { get; set; }
         public virtual DbSet<TestInstruction> TestInstructions { get; set; }
         public virtual DbSet<TestQuestion> TestQuestions { get; set; }
@@ -60,6 +59,5 @@ namespace EPortal.Models
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<UserTestTIme> UserTestTImes { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
-        public virtual DbSet<AcademicYear> AcademicYears { get; set; }
     }
 }

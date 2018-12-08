@@ -4,46 +4,44 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9140a6624a824a8487fff9454198c4a0" Name="Diagram1">
-        <EntityTypeShape EntityType="EPortalModel.ApplicantTest" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Class" Width="1.5" PointX="3" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Course" Width="1.5" PointX="3" PointY="26.125" IsExpanded="true" />
+      <Diagram DiagramId="1401d43f523a42aeb09aeb9b79c73731" Name="Diagram1">
+        <EntityTypeShape EntityType="EPortalModel.ApplicantTest" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Class" Width="1.5" PointX="3" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Course" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
         <EntityTypeShape EntityType="EPortalModel.EMailConfiguration" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.GroupUser" Width="1.5" PointX="3" PointY="29.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.GroupUserApplicant" Width="1.5" PointX="5.25" PointY="38.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Module" Width="1.5" PointX="0.75" PointY="35.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.ModulePage" Width="1.5" PointX="3" PointY="37.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Organization" Width="1.5" PointX="0.75" PointY="42.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.OrganizationPage" Width="1.5" PointX="3" PointY="45" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.GroupUser" Width="1.5" PointX="3" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.GroupUserApplicant" Width="1.5" PointX="5.25" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Module" Width="1.5" PointX="0.75" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.ModulePage" Width="1.5" PointX="3" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Organization" Width="1.5" PointX="0.75" PointY="42.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.OrganizationPage" Width="1.5" PointX="3" PointY="44.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EPortalModel.OrgEvent" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Page" Width="1.5" PointX="0.75" PointY="39" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Previleage" Width="1.5" PointX="5.25" PointY="46.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Question" Width="1.5" PointX="3" PointY="40.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.QuestionAnswar" Width="1.5" PointX="8.25" PointY="43.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.QuestionOption" Width="1.5" PointX="8.25" PointY="47.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Questionsource" Width="1.5" PointX="8.25" PointY="51.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.QuestionsourceGroup" Width="1.5" PointX="8.25" PointY="39.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.QuestionType" Width="1.5" PointX="3" PointY="48.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.RoleMaster" Width="1.5" PointX="3" PointY="51.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Section" Width="1.5" PointX="3" PointY="55.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Subject" Width="1.5" PointX="3" PointY="58.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.SubjectDetail" Width="1.5" PointX="5.25" PointY="42.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.Test" Width="1.5" PointX="3" PointY="61.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.TestInstruction" Width="1.5" PointX="5.25" PointY="55.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.TestQuestion" Width="1.5" PointX="5.25" PointY="51.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.TestSection" Width="1.5" PointX="8.25" PointY="55.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.UserAnswer" Width="1.5" PointX="3" PointY="66.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.UserAnswerMark" Width="1.5" PointX="3" PointY="70" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.UserFeedBack" Width="1.5" PointX="3" PointY="73.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.UserInfo" Width="1.5" PointX="11" PointY="45" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.UserMark" Width="1.5" PointX="3" PointY="82.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.UserRole" Width="1.5" PointX="3" PointY="85.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.UserTestTIme" Width="1.5" PointX="3" PointY="88.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EPortalModel.UserType" Width="1.5" PointX="8.75" PointY="36.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Page" Width="1.5" PointX="0.75" PointY="38.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Previleage" Width="1.5" PointX="5.25" PointY="46.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Question" Width="1.5" PointX="3" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.QuestionAnswar" Width="1.5" PointX="8.25" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.QuestionOption" Width="1.5" PointX="8.25" PointY="47" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Questionsource" Width="1.5" PointX="5.25" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.QuestionsourceGroup" Width="1.5" PointX="8.25" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.QuestionType" Width="1.5" PointX="3" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.RoleMaster" Width="1.5" PointX="3" PointY="51.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Section" Width="1.5" PointX="3" PointY="54.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Subject" Width="1.5" PointX="3" PointY="57.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.Test" Width="1.5" PointX="3" PointY="61" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.TestInstruction" Width="1.5" PointX="8.25" PointY="52.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.TestQuestion" Width="1.5" PointX="5.25" PointY="51.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.TestSection" Width="1.5" PointX="5.25" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.UserAnswer" Width="1.5" PointX="3" PointY="66" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.UserAnswerMark" Width="1.5" PointX="3" PointY="69.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.UserFeedBack" Width="1.5" PointX="3" PointY="72.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.UserInfo" Width="1.5" PointX="11" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.UserMark" Width="1.5" PointX="3" PointY="81.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.UserRole" Width="1.5" PointX="3" PointY="85.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.UserTestTIme" Width="1.5" PointX="3" PointY="88.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPortalModel.UserType" Width="1.5" PointX="8.75" PointY="36" IsExpanded="true" />
         <AssociationConnector Association="EPortalModel.FK__Applicant__Organ__5165187F" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__Class__Organizat__7A672E12" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__Course__Organiza__778AC167" ManuallyRouted="false" />
-        <AssociationConnector Association="EPortalModel.FK__SubjectDe__Cours__17036CC0" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__GroupUser__Group__72C60C4A" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__GroupUser__Ogani__6FE99F9F" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__GroupUser__Appli__73BA3083" ManuallyRouted="false" />
@@ -60,8 +58,7 @@
         <AssociationConnector Association="EPortalModel.FK__QuestionT__Organ__3C69FB99" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__RoleMaste__Organ__182C9B23" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__Section__Organiz__7D439ABD" ManuallyRouted="false" />
-        <AssociationConnector Association="EPortalModel.FK__Subject__Organiz__01142BA1" ManuallyRouted="false" />
-        <AssociationConnector Association="EPortalModel.FK__SubjectDe__Organ__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="EPortalModel.FK__Subject__Organiz__160F4887" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__Test__Organizati__2A4B4B5E" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__TestInstr__Organ__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__TestQuest__Organ__4AB81AF0" ManuallyRouted="false" />
@@ -83,14 +80,11 @@
         <AssociationConnector Association="EPortalModel.FK__QuestionA__Quest__38996AB5" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__Questions__Quest__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__Questions__Quest__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="EPortalModel.FK__SubjectDe__Subje__160F4887" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__TestInstr__TestI__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__TestQuest__TestI__47DBAE45" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__TestSecti__Paren__2D27B809" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__TestQuest__TestS__48CFD27E" ManuallyRouted="false" />
         <AssociationConnector Association="EPortalModel.FK__UserInfo__UserTy__15502E78" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="EPortalModel.AcademicYear" Width="1.5" PointX="3" PointY="32.625" />
-        <AssociationConnector Association="EPortalModel.FK__AcademicY__Organ__29221CFB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

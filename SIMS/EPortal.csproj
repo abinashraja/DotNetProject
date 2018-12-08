@@ -225,9 +225,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Models\AcademicYear.cs">
-      <DependentUpon>EPortal.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ApplicantTest.cs">
       <DependentUpon>EPortal.tt</DependentUpon>
     </Compile>
@@ -308,9 +305,6 @@
       <DependentUpon>EPortal.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Subject.cs">
-      <DependentUpon>EPortal.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SubjectDetail.cs">
       <DependentUpon>EPortal.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Test.cs">
@@ -436,6 +430,7 @@
     <Content Include="Models\EPortal.edmx.diagram">
       <DependentUpon>EPortal.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\E-Assessment.pubxml" />
     <None Include="Properties\PublishProfiles\SIMS.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
