@@ -1,0 +1,277 @@
+﻿/*for tooltip*/
+[data-tip] {
+    position: relative;
+}
+
+    [data-tip]:before {
+        content: '';
+        /* hides the tooltip when not hovered */
+        display: none;
+        content: '';
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #1a1a1a;
+        position: absolute;
+        top: 30px;
+        left: 35px;
+        z-index: 8;
+        font-size: 0;
+        line-height: 0;
+        width: 0;
+        height: 0;
+    }
+
+    [data-tip]:after {
+        display: none;
+        content: attr(data-tip);
+        position: absolute;
+        top: 35px;
+        left: 0px;
+        padding: 5px 8px;
+        background: #1a1a1a;
+        color: #fff;
+        z-index: 9;
+        font-size: 0.75em;
+        height: 30px;
+        line-height: 30px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        white-space: nowrap;
+        word-wrap: normal;
+    }
+
+    [data-tip]:hover:before,
+    [data-tip]:hover:after {
+        display: block;
+    }
+/*end tootltip*/
+
+
+
+
+/*For grid Search */
+
+#search {
+    float: right;
+    margin-top: 9px;
+    width: 250px;
+}
+
+.search {
+    padding: 5px 0;
+    width: 230px;
+    height: 30px;
+    position: relative;
+    left: 10px;
+    float: left;
+    line-height: 22px;
+}
+
+#searchbtn {
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    border-radius: 1px;
+}
+
+.search input {
+    position: absolute;
+    width: 0px;
+    float: Left;
+    margin-left: 210px;
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+    height: 30px;
+    line-height: 18px;
+    padding: 0 2px 0 2px;
+    border-radius: 1px;
+}
+
+    .search:hover input, .search input:focus {
+        width: 200px;
+        margin-left: 0px;
+    }
+
+/*For Grid Search*/
+
+
+
+.content {
+    display: none;
+}
+
+.topmarginmap {
+    margin-top: 1%;
+}
+
+.preload {
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+
+
+.watermark {
+    position: absolute;
+    top: 80px;
+    opacity: 0.25;
+    font-size: 3em;
+    width: 70%;
+    text-align: center;
+    z-index: 1000;
+}
+
+.parentDisable {
+    /*position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+            z-index: 2000;
+            height: 100%;
+            width: 100%;*/
+    z-index: 2000 !important;
+}
+
+.parentDisableope {
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+    z-index: 2000;
+    height: 100%;
+    width: 100%;
+    /*z-index: 2000 !important;*/
+}
+
+.ngGridStyle {
+    width: 100%;
+    height: 500px;
+}
+
+.ngGrid {
+    background-color: #fdfdfd;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.ngHeaderContainer {
+    background-color: #fff !important;
+    color: #000 !important;
+    text-align: center !important;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.ngFooterPanel {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.btnclass {
+    text-align: center !important;
+}
+
+.ngRow:hover {
+    background-color: #98f6f3 !important;
+}
+
+.ngRow.odd:hover {
+    background-color: #ddd !important;
+}
+
+.ngRow.even:hover {
+    background-color: #ddd !important;
+}
+
+
+.ngRow.odd {
+    background-color: #f7f7f7 !important /*rgba(0, 55, 212, 0.43)*/;
+    color: #333;
+}
+
+.ngRow.even {
+    background-color: #fff !important;
+    color: #333;
+    min-height: 30px !important;
+}
+
+.downmargin {
+    margin-bottom: 1%;
+}
+
+.topmargin {
+    margin-top: 2%;
+}
+/*Table over color*/
+
+.table tr:nth-child(odd):hover {
+    background-color: #ddd !important;
+}
+
+.table tr:nth-child(even):hover {
+    background-color: #ddd !important;
+}
+
+
+.table tr:nth-child(odd) {
+    background-color: #f7f7f7 !important /*rgba(0, 55, 212, 0.43)*/;
+    color: #333;
+}
+
+.table tr:nth-child(even) {
+    background-color: #fff !important;
+    color: #333;
+    min-height: 30px !important;
+}
+
+
+/*End*/
+
+
+
+/*.label-default {
+            background-color: #d9534f;
+        }*/
+.ui-jqgrid tr.jqgrow td {
+    height: 50px;
+}
+
+/*Later */
+.btn {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+    background-color: #009688;
+    color: white;
+}
+
+.showing, list-group, list-group-item {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.Shading {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.label-danger {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}

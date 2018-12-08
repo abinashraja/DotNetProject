@@ -1,17 +1,16 @@
-﻿using System;
+﻿using EPortal.App_Start;
+using EPortal.Models;
+using SIMS.Utility;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using EPortal.Models;
-using System.Web.Security;
-using EPortal.App_Start;
-using System.IO;
-using System.Net.Mail;
-using System.Security.Principal;
 using System.Web.Script.Serialization;
-using System.Security.Cryptography;
-using System.Text;
+using System.Web.Security;
 
 namespace EPortal.Controllers
 {
@@ -86,7 +85,11 @@ namespace EPortal.Controllers
         [HttpPost]
         public ActionResult Login(EPortal.Models.UserInfo Userinfo)
         {
-            CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
+            if (Userinfo == null)
+            {
+                throw new ArgumentNullException(nameof(Userinfo));
+            }
+
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             EPortal.Models.Organization org = null;
             EPortal.Models.UserInfo Userdata = null;
@@ -100,7 +103,7 @@ namespace EPortal.Controllers
                            where o.Code == Userinfo.OrganizationName
                            select o).FirstOrDefault();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -134,6 +137,8 @@ namespace EPortal.Controllers
             }
             if (Userdata != null && Userrole != null)
             {
+
+                CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
                 //FormsAuthentication.SetAuthCookie(Userdata.LogInId, true);
 
                 serializeModel.OrgId = org.Id;
@@ -166,10 +171,10 @@ namespace EPortal.Controllers
                      false,
                      userData.ToString(),
                      FormsAuthentication.FormsCookiePath);
-                string encTicket = FormsAuthentication.Encrypt(authTicket);
-                HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
-                Response.Cookies.Add(faCookie);
-                int cookieSize = System.Text.UTF8Encoding.UTF8.GetByteCount(faCookie.Values.ToString());
+                string encTicket = FormsAuthentication.Encrypt(GetAuthTicket(GetAuthTicket1(authTicket: authTicket)));
+                HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, GetEncTicket(encTicket));
+                Response.Cookies.Add(cookie: faCookie);
+                int cookieSize = Encoding.UTF8.GetByteCount(faCookie.Values.ToString());
                 if (sendmailper == true)
                 {
                     //getting client ip address
@@ -179,11 +184,10 @@ namespace EPortal.Controllers
                     string browserName = Request.Browser.Browser.ToString();
 
                     //getting client browser version
-                    string browserVersion = Request.Browser.Version.ToString();
 
 
 
-                    string body = "Hi,Just now someone login to youe acocunt with IP:" + ipAddress + ",Browser:" + browserName + browserVersion + ",If not you please contact us.";
+                    string body = "Hi,Just now someone login to youe acocunt with IP:" + ipAddress + ",Browser:" + browserName + Request.Browser.Version.ToString() + ",If not you please contact us.";
                     string heading = "User login Details:";
                     if (Userdata.Email != null || Userdata.Email != "")
                     {
@@ -191,17 +195,34 @@ namespace EPortal.Controllers
                     }
                 }
 
-
+                //var log = new logWriter("Login Successful for user:" + Userinfo.LogInId);
                 return RedirectToAction("UserHome");
             }
             else
             {
+
                 Session["InvalidUser"] = true;
                 return Redirect("/Home/Index");
             }
 
 
         }
+
+        private static string GetEncTicket(string encTicket)
+        {
+            return encTicket;
+        }
+
+        private static FormsAuthenticationTicket GetAuthTicket1(FormsAuthenticationTicket authTicket)
+        {
+            return authTicket;
+        }
+
+        private static FormsAuthenticationTicket GetAuthTicket(FormsAuthenticationTicket authTicket)
+        {
+            return authTicket;
+        }
+
         [Authorize]
         [CustomFilter(PageName = "UserHome")]
 
@@ -592,7 +613,7 @@ namespace EPortal.Controllers
 
                 mailServer.Send(mailmsg);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return false;
             }

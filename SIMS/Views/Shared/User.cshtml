@@ -35,19 +35,17 @@
         <div class="col-md-1 col-sm-1">
         </div>
         <div class="col-md-1 col-sm-1">
-            <input type="button" value="Import User" ng-if="ShowGird" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm-Import" />
-            <input type="button" value="Save" ng-if="!ShowGird" class="btn" ng-click="MakeObjectEMpty()" />
+            <input type="button" value="Import User" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm-Import" />
         </div>
         <div class="col-md-1 col-sm-1">
         </div>
         <div class="col-md-1 col-sm-1">
-            <input type="button" value="Create User" ng-if="ShowGird" class="btn" ng-click="MakeObjectEMpty()" />
-            <a href="/User/Index"><input type="button" value="Cancel" ng-if="!ShowGird" class="btn" ng-click="MakeObjectEMpty()" /></a>
+            <input type="button" value="Create User" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="MakeObjectEMpty()" />
         </div>
     </div>
 
-    @* Grid Part *@
-    <div ng-if="ShowGird">
+
+
 
         <div class="row topmarginmap">
             <div class="col-md-8"></div>
@@ -72,7 +70,7 @@
                             <div class="row">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-9 downmargin">
-                                    <span style="color:red;">* marked are mendatory fileld.</span>
+                                    <span style="color:red;">* Marked are mendatory fileld.</span>
                                 </div>
                             </div>
                             <div class="row bottom">
@@ -236,25 +234,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 
-    <div ng-if="!ShowGird">
-
-        <table class="table" style="margin-top: 3%">
-
-            <tbody>
-                <tr>
-                    <th scope="row">User Code</th>
-                    <td><input type="text" class="form-control" /></td>
-                    <th scope="row">User Name</th>
-                    <td><input type="text" class="form-control" /></td>
-                </tr>
-              
-            </tbody>
-        </table>
-
-
-    </div>
+   
 
 
 
