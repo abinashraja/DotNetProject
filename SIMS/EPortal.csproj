@@ -29,6 +29,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -368,7 +369,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Calander\fullcalendar.min.css" />
     <Content Include="Content\Calander\fullcalendar.print.css" />
+    <Content Include="Content\CssfIle\main.css" />
     <Content Include="Content\CssfIle\Studentcss.css" />
+    <Content Include="Content\CssfIle\util.css" />
     <Content Include="Content\custom.min.css" />
     <Content Include="Content\Editor Css\samples.css" />
     <Content Include="Content\example_graph_1.png" />
@@ -378,6 +381,7 @@
     <Content Include="Content\green.css" />
     <Content Include="Content\Images\backhome.jpg" />
     <Content Include="Content\Images\backhomenew.jpg" />
+    <Content Include="Content\Images\bg-01.jpg" />
     <Content Include="Content\Images\CheckBox.png" />
     <Content Include="Content\Images\checkboxchecked.png" />
     <Content Include="Content\Images\CheckChecked.png" />
@@ -486,7 +490,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Upload\DefaultOrg.jpg" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\Index.cshtml" />
+    <Content Include="Views\Shared\Index1.cshtml" />
     <Content Include="Views\Shared\Organization.cshtml" />
     <Content Include="Views\Shared\Role.cshtml" />
     <Content Include="Views\Shared\RolePrevilage.cshtml" />
@@ -528,6 +532,7 @@
     <Content Include="Views\Shared\Section.cshtml" />
     <Content Include="Views\Shared\Subject.cshtml" />
     <Content Include="Views\Shared\AcademicYear.cshtml" />
+    <Content Include="Views\Shared\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

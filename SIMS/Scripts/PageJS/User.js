@@ -342,10 +342,12 @@ app.directive('datepicker', function () {
 
          });
      }
+     $scope.ShowGird = true;    
      $scope.MakeObjectEMpty = function () {
          $scope.NewUser = new Object();
          $scope.NewUser.IsApplicant = false;
          $scope.NewUser.Operation = "Create";
+         $scope.ShowGird = false;
      }
 
 

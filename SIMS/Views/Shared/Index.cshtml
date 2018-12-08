@@ -3,88 +3,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Login to Access</title>
-    <link href="~/Content/Login Css/style.css" rel="stylesheet" />
-    @*<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>*@
+    <title>Login V15</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/Content/custom.min.css" rel="stylesheet" />
-
-
-
-     @*virtual keyboard*@
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
-
-    <style>
-        input[type=submit] {
-
-                border-radius: 0px;
-        }
-        /*body {
-            background-image: url('../../Content/blackboard.jpg');
-        }*/
-
-    </style>
+    <link href="~/Content/CssfIle/util.css" rel="stylesheet" />
+    <link href="~/Content/CssfIle/main.css" rel="stylesheet" />
 
 </head>
 <body>
-    <section class="container">
 
-        <div style="text-align:center;color:red;font-size:21px;">            
-            @Html.Label("StudentName",Model.ErrorMsg)
-
-        </div>
-        <div class="login">
-            <h1>Welcome to E-School</h1>
-            @using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl },
-                     FormMethod.Post, new { @class = "form-horizontal"}))
-            {
-                <p>@Html.TextBoxFor(m => m.LogInId, new { @placeholder = "Username" })</p>
-                <p>@Html.PasswordFor(m => m.UserPassword, new { @placeholder = "Password" })</p>
-                <p>@Html.TextBoxFor(m => m.OrganizationName, new { @placeholder = "Organization" })</p>
-                <div>
-                    <a class="reset_pass" href="/Home/UserLostPassword">Lost your password?</a>
-                    <div  style="float:right;">
-                        <input type="submit" name="commit" value="Log in" id="submitbtn" class="btn btn-default submit">
-                    </div>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title">
+                    <span class="login100-form-title-1">
+                        Sign In
+                    </span>
                 </div>
-            }
-        </div>
-        <div class="login-help">
-            <div class="clearfix"></div>            
-                <div class="clearfix"></div>
-                
-                @*<div>
-                    <h1>E-School</h1>
-                    <p>©2017 All Rights Reserved.E-School - Preparing For Tomorrow</p>
-                </div>*@
-            
-        </div>
-    </section>
+                @Html.Label("StudentName", Model.ErrorMsg)                
 
-    @Html.Hidden("errormsg",Model.ErrorMsg);
+                @using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl },
+                    FormMethod.Post, new { @class = "login100-form" }))
+                {
+
+
+
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                        <span class="label-input100">Username</span>
+                        @Html.TextBoxFor(m => m.LogInId, new { @placeholder = "Username",@class="input100" })
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span class="label-input100">Password</span>
+                        @Html.PasswordFor(m => m.UserPassword, new { @placeholder = "Password" , @class = "input100" })
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span class="label-input100">Organization</span>
+                        @Html.TextBoxFor(m => m.OrganizationName, new { @placeholder = "Organization", @class = "input100" })
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="flex-sb-m w-full p-b-30">
+                        <div class="contact100">
+                           
+                            <label class="label" for="ckb1">
+                               
+                            </label>
+                        </div>
+
+                        <div>
+                            <a href="/Home/UserLostPassword" class="txt1">
+                                Forgot Password?
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <input type="submit" name="commit" value="Log in" id="submitbtn" class="btn btn-success submit">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 </body>
 </html>
-
-<script>
-
-    //$(function () {
-    //    $('#LogInId').keyboard();
-    //    $('#UserPassword').keyboard();
-    //    $('#OrganizationName').keyboard();
-        //$(this).bind("contextmenu", function (e) {
-        //    e.preventDefault();
-        //});
-        //if ($("#errormsg").val() != "")
-        //{
-        //    alert($("#errormsg").val());
-        //}
-    //});
-   
-  
-
-</script>
