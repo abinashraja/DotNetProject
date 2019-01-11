@@ -14,6 +14,15 @@ namespace EPortal.Models
     
     public partial class Course
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Course()
+        {
+            this.AcademicYearCourses = new HashSet<AcademicYearCourse>();
+            this.AcademicYearCourseClasses = new HashSet<AcademicYearCourseClass>();
+            this.AcademicYearCourseClassSections = new HashSet<AcademicYearCourseClassSection>();
+            this.AcademicYearCourseClassSectionSubjects = new HashSet<AcademicYearCourseClassSectionSubject>();
+        }
+    
         public string Id { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
@@ -21,6 +30,14 @@ namespace EPortal.Models
         public bool RowState { get; set; }
         public System.DateTime CreateDateTime { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYearCourse> AcademicYearCourses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYearCourseClass> AcademicYearCourseClasses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYearCourseClassSection> AcademicYearCourseClassSections { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYearCourseClassSectionSubject> AcademicYearCourseClassSectionSubjects { get; set; }
         public virtual Organization Organization { get; set; }
     }
 }

@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_LayoutEPortal.cshtml";
 }
 <script src="~/Scripts/PageJS/AcademicYear.js"></script>
+<script src="~/Scripts/Tree/tree.min.js"></script>
 <!DOCTYPE html>
 
 <head>
@@ -22,26 +23,36 @@
 
         </div>
         <div class="col-md-1 col-sm-1">
+            <input type="button" value="Publish" class="btn" ng-disabled="EnableDisable()" ng-click="MakeObjectEMpty()" ng-if="!ShowTree" />
         </div>
         <div class="col-md-1 col-sm-1">
-
+            <input type="button" value="Configure" class="btn" ng-click="ConfigureAcYear()" ng-disabled="EnableDisable()" ng-if="!ShowTree" />
         </div>
         <div class="col-md-1 col-sm-1">
+            <input type="button" value="Lock" class="btn" ng-if="!ShowTree" ng-disabled="EnableDisable()" />
+            <input type="button" value="Save" class="btn" ng-click="GetSelectedNode()" ng-if="ShowTree" />
         </div>
         <div class="col-md-1 col-sm-1">
-            <input type="button" value="Create Academic Year" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm" ng-click="MakeObjectEMpty()" />
+            <input type="button" value="Create Academic Year" class="btn"  ng-click="MakeObjectEMpty()" ng-if="!ShowTree" />
+            <input type="button" value="Cancel" class="btn" ng-if="ShowTree"  ng-click="CancelSaveAcConfig()"/>
         </div>
     </div>
-    <div class="row topmarginmap">
+    <div class="row topmarginmap" ng-if="!ShowTree">
         <div class="col-md-8"></div>
         <div class="col-md-4">
             <input type="text" class="pull-right form-control" ng-model="searchText" placeholder="Search" id="searchtextbox" />
         </div>
     </div>
-    <div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 1%;" ng-show="myData.length"></div>
-    <div class="watermark" ng-show="!myData.length" style="margin-top: 5%;">
+    <div class="ngGridStyle" ng-grid="myGrid" style="margin-top: 1%;" ng-show="myData.length" ng-if="!ShowTree"></div>
+    <div class="watermark" ng-show="!myData.length" style="margin-top: 5%;" ng-if="!ShowTree">
         <i class="fa fa-thumbs-o-down"></i>No data available
     </div>
+    <div style="margin-top: 5%;" ng-if="ShowTree">
+        <div id="Tree">
+
+        </div>
+    </div>
+
 
 
     <div class="modal fade bs-example-modal-sm" id="AcademicYearModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -56,11 +67,11 @@
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-9 downmargin">
-                                <span style="color:red;">* marked are mendatory field.</span>
+                                <span style="color:red;">* Marked are mendatory field.</span>
                             </div>
                         </div>
                         <div class="row bottom">
-                            
+
 
                             <div class="col-md-12 col-lg-12 ">
                                 <div class="row downmargin">
@@ -90,7 +101,7 @@
 
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" type="text" datepicker ng-model="NewAcademicYear.PeriodFrom| date:'yyyy-MM-dd'">
+                                        <input class="form-control" type="text" id="AcademicYearFrom" datepicker ng-model="NewAcademicYear.AcademicYearFrom">
                                     </div>
                                     <div class="col-md-2">
 
@@ -98,11 +109,11 @@
 
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" type="text" datepicker ng-model="NewAcademicYear.PeriodTo| date:'MM-dd-yyyy'">
+                                        <input class="form-control" type="text" id="AcademicYearTo" datepicker ng-model="NewAcademicYear.AcademicYearTo">
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                         <div class="form-group last">
                             <div class="col-sm-offset-10 col-sm-2">

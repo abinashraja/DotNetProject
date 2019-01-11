@@ -225,6 +225,21 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\AcademicYear.cs">
+      <DependentUpon>EPortal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AcademicYearCourse.cs">
+      <DependentUpon>EPortal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AcademicYearCourseClass.cs">
+      <DependentUpon>EPortal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AcademicYearCourseClassSection.cs">
+      <DependentUpon>EPortal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AcademicYearCourseClassSectionSubject.cs">
+      <DependentUpon>EPortal.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ApplicantTest.cs">
       <DependentUpon>EPortal.tt</DependentUpon>
     </Compile>
@@ -483,6 +498,7 @@
     <Content Include="Scripts\PageJS\Organization.js" />
     <Content Include="Scripts\PageJS\UserReport.js" />
     <Content Include="Scripts\skycons.js" />
+    <Content Include="Scripts\Tree\tree.min.js" />
     <Content Include="Scripts\Virtual KeyBoard\jquery.keyboard.js" />
     <Content Include="Scripts\Virtual KeyBoard\jquery.mousewheel.js" />
     <Content Include="Scripts\_references.js" />

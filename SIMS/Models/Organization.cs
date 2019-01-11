@@ -17,6 +17,11 @@ namespace EPortal.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Organization()
         {
+            this.AcademicYears = new HashSet<AcademicYear>();
+            this.AcademicYearCourses = new HashSet<AcademicYearCourse>();
+            this.AcademicYearCourseClasses = new HashSet<AcademicYearCourseClass>();
+            this.AcademicYearCourseClassSections = new HashSet<AcademicYearCourseClassSection>();
+            this.AcademicYearCourseClassSectionSubjects = new HashSet<AcademicYearCourseClassSectionSubject>();
             this.ApplicantTests = new HashSet<ApplicantTest>();
             this.Classes = new HashSet<Class>();
             this.Courses = new HashSet<Course>();
@@ -59,6 +64,16 @@ namespace EPortal.Models
         public string Country { get; set; }
         public string Pin { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYear> AcademicYears { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYearCourse> AcademicYearCourses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYearCourseClass> AcademicYearCourseClasses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYearCourseClassSection> AcademicYearCourseClassSections { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYearCourseClassSectionSubject> AcademicYearCourseClassSectionSubjects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ApplicantTest> ApplicantTests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

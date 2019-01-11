@@ -5,6 +5,80 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="EPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicYear">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsPublish" Type="bit" Nullable="false" />
+          <Property Name="ISlock" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="AcademicYearFrom" Type="datetime" />
+          <Property Name="AcademicYearTo" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AcademicYearCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AcademicYearId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CourseId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AcademicYearCourseClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AcademicYearId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CourseId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ClassID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AcademicYearCourseClassSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AcademicYearId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CourseId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ClassID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SectionId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AcademicYearCourseClassSectionSubject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AcademicYearId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CourseId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ClassID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SectionId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SubjectId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RowState" Type="bit" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="ApplicantTest">
           <Key>
             <PropertyRef Name="Id" />
@@ -416,6 +490,234 @@
           <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK__AcademicY__Acade__2FCF1A8A">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="1" />
+          <End Role="AcademicYearCourse" Type="Self.AcademicYearCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourse">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Acade__3493CFA7">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="1" />
+          <End Role="AcademicYearCourseClass" Type="Self.AcademicYearCourseClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClass">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Acade__3A4CA8FD">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSection" Type="Self.AcademicYearCourseClassSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSection">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Acade__40F9A68C">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Class__367C1819">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="AcademicYearCourseClass" Type="Self.AcademicYearCourseClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClass">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Class__3C34F16F">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSection" Type="Self.AcademicYearCourseClassSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSection">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Class__42E1EEFE">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Cours__30C33EC3">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="AcademicYearCourse" Type="Self.AcademicYearCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourse">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Cours__3587F3E0">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="AcademicYearCourseClass" Type="Self.AcademicYearCourseClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClass">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Cours__3B40CD36">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSection" Type="Self.AcademicYearCourseClassSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSection">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Cours__41EDCAC5">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Organ__29221CFB">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYear">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Organ__2EDAF651">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYearCourse" Type="Self.AcademicYearCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourse">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Organ__339FAB6E">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYearCourseClass" Type="Self.AcademicYearCourseClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClass">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Organ__395884C4">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSection" Type="Self.AcademicYearCourseClassSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSection">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Organ__40058253">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Secti__3D2915A8">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSection" Type="Self.AcademicYearCourseClassSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSection">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Secti__43D61337">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Subje__44CA3770">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Applicant__Organ__5165187F">
           <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
           <End Role="ApplicantTest" Type="Self.ApplicantTest" Multiplicity="*" />
@@ -969,6 +1271,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EPortalModelStoreContainer">
+          <EntitySet Name="AcademicYear" EntityType="Self.AcademicYear" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcademicYearCourse" EntityType="Self.AcademicYearCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcademicYearCourseClass" EntityType="Self.AcademicYearCourseClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcademicYearCourseClassSection" EntityType="Self.AcademicYearCourseClassSection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcademicYearCourseClassSectionSubject" EntityType="Self.AcademicYearCourseClassSectionSubject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApplicantTest" EntityType="Self.ApplicantTest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
@@ -1003,6 +1310,82 @@
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTestTIme" EntityType="Self.UserTestTIme" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AcademicY__Acade__2FCF1A8A" Association="Self.FK__AcademicY__Acade__2FCF1A8A">
+            <End Role="AcademicYear" EntitySet="AcademicYear" />
+            <End Role="AcademicYearCourse" EntitySet="AcademicYearCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Acade__3493CFA7" Association="Self.FK__AcademicY__Acade__3493CFA7">
+            <End Role="AcademicYear" EntitySet="AcademicYear" />
+            <End Role="AcademicYearCourseClass" EntitySet="AcademicYearCourseClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Acade__3A4CA8FD" Association="Self.FK__AcademicY__Acade__3A4CA8FD">
+            <End Role="AcademicYear" EntitySet="AcademicYear" />
+            <End Role="AcademicYearCourseClassSection" EntitySet="AcademicYearCourseClassSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Acade__40F9A68C" Association="Self.FK__AcademicY__Acade__40F9A68C">
+            <End Role="AcademicYear" EntitySet="AcademicYear" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Class__367C1819" Association="Self.FK__AcademicY__Class__367C1819">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="AcademicYearCourseClass" EntitySet="AcademicYearCourseClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Class__3C34F16F" Association="Self.FK__AcademicY__Class__3C34F16F">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="AcademicYearCourseClassSection" EntitySet="AcademicYearCourseClassSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Class__42E1EEFE" Association="Self.FK__AcademicY__Class__42E1EEFE">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Cours__30C33EC3" Association="Self.FK__AcademicY__Cours__30C33EC3">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="AcademicYearCourse" EntitySet="AcademicYearCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Cours__3587F3E0" Association="Self.FK__AcademicY__Cours__3587F3E0">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="AcademicYearCourseClass" EntitySet="AcademicYearCourseClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Cours__3B40CD36" Association="Self.FK__AcademicY__Cours__3B40CD36">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="AcademicYearCourseClassSection" EntitySet="AcademicYearCourseClassSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Cours__41EDCAC5" Association="Self.FK__AcademicY__Cours__41EDCAC5">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Organ__29221CFB" Association="Self.FK__AcademicY__Organ__29221CFB">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="AcademicYear" EntitySet="AcademicYear" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Organ__2EDAF651" Association="Self.FK__AcademicY__Organ__2EDAF651">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="AcademicYearCourse" EntitySet="AcademicYearCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Organ__339FAB6E" Association="Self.FK__AcademicY__Organ__339FAB6E">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="AcademicYearCourseClass" EntitySet="AcademicYearCourseClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Organ__395884C4" Association="Self.FK__AcademicY__Organ__395884C4">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="AcademicYearCourseClassSection" EntitySet="AcademicYearCourseClassSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Organ__40058253" Association="Self.FK__AcademicY__Organ__40058253">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Secti__3D2915A8" Association="Self.FK__AcademicY__Secti__3D2915A8">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="AcademicYearCourseClassSection" EntitySet="AcademicYearCourseClassSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Secti__43D61337" Association="Self.FK__AcademicY__Secti__43D61337">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Subje__44CA3770" Association="Self.FK__AcademicY__Subje__44CA3770">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubject" />
+          </AssociationSet>
           <AssociationSet Name="FK__Applicant__Organ__5165187F" Association="Self.FK__Applicant__Organ__5165187F">
             <End Role="Organization" EntitySet="Organization" />
             <End Role="ApplicantTest" EntitySet="ApplicantTest" />
@@ -1193,6 +1576,103 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcademicYear">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsPublish" Type="Boolean" Nullable="false" />
+          <Property Name="ISlock" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AcademicYearFrom" Type="DateTime" Precision="3" />
+          <Property Name="AcademicYearTo" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AcademicYearCourses" Relationship="Self.FK__AcademicY__Acade__2FCF1A8A" FromRole="AcademicYear" ToRole="AcademicYearCourse" />
+          <NavigationProperty Name="AcademicYearCourseClasses" Relationship="Self.FK__AcademicY__Acade__3493CFA7" FromRole="AcademicYear" ToRole="AcademicYearCourseClass" />
+          <NavigationProperty Name="AcademicYearCourseClassSections" Relationship="Self.FK__AcademicY__Acade__3A4CA8FD" FromRole="AcademicYear" ToRole="AcademicYearCourseClassSection" />
+          <NavigationProperty Name="AcademicYearCourseClassSectionSubjects" Relationship="Self.FK__AcademicY__Acade__40F9A68C" FromRole="AcademicYear" ToRole="AcademicYearCourseClassSectionSubject" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__AcademicY__Organ__29221CFB" FromRole="AcademicYear" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="AcademicYearCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AcademicYearId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CourseId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AcademicYear" Relationship="Self.FK__AcademicY__Acade__2FCF1A8A" FromRole="AcademicYearCourse" ToRole="AcademicYear" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__AcademicY__Cours__30C33EC3" FromRole="AcademicYearCourse" ToRole="Course" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__AcademicY__Organ__2EDAF651" FromRole="AcademicYearCourse" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="AcademicYearCourseClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AcademicYearId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CourseId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClassID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AcademicYear" Relationship="Self.FK__AcademicY__Acade__3493CFA7" FromRole="AcademicYearCourseClass" ToRole="AcademicYear" />
+          <NavigationProperty Name="Class" Relationship="Self.FK__AcademicY__Class__367C1819" FromRole="AcademicYearCourseClass" ToRole="Class" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__AcademicY__Cours__3587F3E0" FromRole="AcademicYearCourseClass" ToRole="Course" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__AcademicY__Organ__339FAB6E" FromRole="AcademicYearCourseClass" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="AcademicYearCourseClassSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AcademicYearId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CourseId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClassID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SectionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AcademicYear" Relationship="Self.FK__AcademicY__Acade__3A4CA8FD" FromRole="AcademicYearCourseClassSection" ToRole="AcademicYear" />
+          <NavigationProperty Name="Class" Relationship="Self.FK__AcademicY__Class__3C34F16F" FromRole="AcademicYearCourseClassSection" ToRole="Class" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__AcademicY__Cours__3B40CD36" FromRole="AcademicYearCourseClassSection" ToRole="Course" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__AcademicY__Organ__395884C4" FromRole="AcademicYearCourseClassSection" ToRole="Organization" />
+          <NavigationProperty Name="Section" Relationship="Self.FK__AcademicY__Secti__3D2915A8" FromRole="AcademicYearCourseClassSection" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="AcademicYearCourseClassSectionSubject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AcademicYearId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CourseId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClassID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SectionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubjectId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowState" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AcademicYear" Relationship="Self.FK__AcademicY__Acade__40F9A68C" FromRole="AcademicYearCourseClassSectionSubject" ToRole="AcademicYear" />
+          <NavigationProperty Name="Class" Relationship="Self.FK__AcademicY__Class__42E1EEFE" FromRole="AcademicYearCourseClassSectionSubject" ToRole="Class" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__AcademicY__Cours__41EDCAC5" FromRole="AcademicYearCourseClassSectionSubject" ToRole="Course" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__AcademicY__Organ__40058253" FromRole="AcademicYearCourseClassSectionSubject" ToRole="Organization" />
+          <NavigationProperty Name="Section" Relationship="Self.FK__AcademicY__Secti__43D61337" FromRole="AcademicYearCourseClassSectionSubject" ToRole="Section" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__AcademicY__Subje__44CA3770" FromRole="AcademicYearCourseClassSectionSubject" ToRole="Subject" />
+        </EntityType>
         <EntityType Name="ApplicantTest">
           <Key>
             <PropertyRef Name="Id" />
@@ -1215,6 +1695,9 @@
           <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RowState" Type="Boolean" Nullable="false" />
           <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AcademicYearCourseClasses" Relationship="Self.FK__AcademicY__Class__367C1819" FromRole="Class" ToRole="AcademicYearCourseClass" />
+          <NavigationProperty Name="AcademicYearCourseClassSections" Relationship="Self.FK__AcademicY__Class__3C34F16F" FromRole="Class" ToRole="AcademicYearCourseClassSection" />
+          <NavigationProperty Name="AcademicYearCourseClassSectionSubjects" Relationship="Self.FK__AcademicY__Class__42E1EEFE" FromRole="Class" ToRole="AcademicYearCourseClassSectionSubject" />
           <NavigationProperty Name="Organization" Relationship="Self.FK__Class__Organizat__7A672E12" FromRole="Class" ToRole="Organization" />
         </EntityType>
         <EntityType Name="Course">
@@ -1227,6 +1710,10 @@
           <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RowState" Type="Boolean" Nullable="false" />
           <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AcademicYearCourses" Relationship="Self.FK__AcademicY__Cours__30C33EC3" FromRole="Course" ToRole="AcademicYearCourse" />
+          <NavigationProperty Name="AcademicYearCourseClasses" Relationship="Self.FK__AcademicY__Cours__3587F3E0" FromRole="Course" ToRole="AcademicYearCourseClass" />
+          <NavigationProperty Name="AcademicYearCourseClassSections" Relationship="Self.FK__AcademicY__Cours__3B40CD36" FromRole="Course" ToRole="AcademicYearCourseClassSection" />
+          <NavigationProperty Name="AcademicYearCourseClassSectionSubjects" Relationship="Self.FK__AcademicY__Cours__41EDCAC5" FromRole="Course" ToRole="AcademicYearCourseClassSectionSubject" />
           <NavigationProperty Name="Organization" Relationship="Self.FK__Course__Organiza__778AC167" FromRole="Course" ToRole="Organization" />
         </EntityType>
         <EntityType Name="EMailConfiguration">
@@ -1302,6 +1789,11 @@
           <Property Name="OrgState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Pin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AcademicYears" Relationship="Self.FK__AcademicY__Organ__29221CFB" FromRole="Organization" ToRole="AcademicYear" />
+          <NavigationProperty Name="AcademicYearCourses" Relationship="Self.FK__AcademicY__Organ__2EDAF651" FromRole="Organization" ToRole="AcademicYearCourse" />
+          <NavigationProperty Name="AcademicYearCourseClasses" Relationship="Self.FK__AcademicY__Organ__339FAB6E" FromRole="Organization" ToRole="AcademicYearCourseClass" />
+          <NavigationProperty Name="AcademicYearCourseClassSections" Relationship="Self.FK__AcademicY__Organ__395884C4" FromRole="Organization" ToRole="AcademicYearCourseClassSection" />
+          <NavigationProperty Name="AcademicYearCourseClassSectionSubjects" Relationship="Self.FK__AcademicY__Organ__40058253" FromRole="Organization" ToRole="AcademicYearCourseClassSectionSubject" />
           <NavigationProperty Name="ApplicantTests" Relationship="Self.FK__Applicant__Organ__5165187F" FromRole="Organization" ToRole="ApplicantTest" />
           <NavigationProperty Name="Classes" Relationship="Self.FK__Class__Organizat__7A672E12" FromRole="Organization" ToRole="Class" />
           <NavigationProperty Name="Courses" Relationship="Self.FK__Course__Organiza__778AC167" FromRole="Organization" ToRole="Course" />
@@ -1501,6 +1993,8 @@
           <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RowState" Type="Boolean" Nullable="false" />
           <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AcademicYearCourseClassSections" Relationship="Self.FK__AcademicY__Secti__3D2915A8" FromRole="Section" ToRole="AcademicYearCourseClassSection" />
+          <NavigationProperty Name="AcademicYearCourseClassSectionSubjects" Relationship="Self.FK__AcademicY__Secti__43D61337" FromRole="Section" ToRole="AcademicYearCourseClassSectionSubject" />
           <NavigationProperty Name="Organization" Relationship="Self.FK__Section__Organiz__7D439ABD" FromRole="Section" ToRole="Organization" />
         </EntityType>
         <EntityType Name="Subject">
@@ -1513,6 +2007,7 @@
           <Property Name="OrganizationID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RowState" Type="Boolean" Nullable="false" />
           <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AcademicYearCourseClassSectionSubjects" Relationship="Self.FK__AcademicY__Subje__44CA3770" FromRole="Subject" ToRole="AcademicYearCourseClassSectionSubject" />
           <NavigationProperty Name="Organization" Relationship="Self.FK__Subject__Organiz__160F4887" FromRole="Subject" ToRole="Organization" />
         </EntityType>
         <EntityType Name="Test">
@@ -1696,6 +2191,234 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="UserInfoes" Relationship="Self.FK__UserInfo__UserTy__15502E78" FromRole="UserType" ToRole="UserInfo" />
         </EntityType>
+        <Association Name="FK__AcademicY__Acade__2FCF1A8A">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="1" />
+          <End Role="AcademicYearCourse" Type="Self.AcademicYearCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourse">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Acade__3493CFA7">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="1" />
+          <End Role="AcademicYearCourseClass" Type="Self.AcademicYearCourseClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClass">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Acade__3A4CA8FD">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSection" Type="Self.AcademicYearCourseClassSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSection">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Acade__40F9A68C">
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicYear">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="AcademicYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Organ__29221CFB">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYear" Type="Self.AcademicYear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYear">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Cours__30C33EC3">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="AcademicYearCourse" Type="Self.AcademicYearCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourse">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Organ__2EDAF651">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYearCourse" Type="Self.AcademicYearCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourse">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Class__367C1819">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="AcademicYearCourseClass" Type="Self.AcademicYearCourseClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClass">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Cours__3587F3E0">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="AcademicYearCourseClass" Type="Self.AcademicYearCourseClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClass">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Organ__339FAB6E">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYearCourseClass" Type="Self.AcademicYearCourseClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClass">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Class__3C34F16F">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSection" Type="Self.AcademicYearCourseClassSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSection">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Cours__3B40CD36">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSection" Type="Self.AcademicYearCourseClassSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSection">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Organ__395884C4">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSection" Type="Self.AcademicYearCourseClassSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSection">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Secti__3D2915A8">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSection" Type="Self.AcademicYearCourseClassSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSection">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Class__42E1EEFE">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Cours__41EDCAC5">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Organ__40058253">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Secti__43D61337">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicY__Subje__44CA3770">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="AcademicYearCourseClassSectionSubject" Type="Self.AcademicYearCourseClassSectionSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicYearCourseClassSectionSubject">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Applicant__Organ__5165187F">
           <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
           <End Role="ApplicantTest" Type="Self.ApplicantTest" Multiplicity="*" />
@@ -2249,6 +2972,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EPortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcademicYears" EntityType="Self.AcademicYear" />
+          <EntitySet Name="AcademicYearCourses" EntityType="Self.AcademicYearCourse" />
+          <EntitySet Name="AcademicYearCourseClasses" EntityType="Self.AcademicYearCourseClass" />
+          <EntitySet Name="AcademicYearCourseClassSections" EntityType="Self.AcademicYearCourseClassSection" />
+          <EntitySet Name="AcademicYearCourseClassSectionSubjects" EntityType="Self.AcademicYearCourseClassSectionSubject" />
           <EntitySet Name="ApplicantTests" EntityType="Self.ApplicantTest" />
           <EntitySet Name="Classes" EntityType="Self.Class" />
           <EntitySet Name="Courses" EntityType="Self.Course" />
@@ -2283,6 +3011,82 @@
           <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
           <EntitySet Name="UserTestTImes" EntityType="Self.UserTestTIme" />
           <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <AssociationSet Name="FK__AcademicY__Acade__2FCF1A8A" Association="Self.FK__AcademicY__Acade__2FCF1A8A">
+            <End Role="AcademicYear" EntitySet="AcademicYears" />
+            <End Role="AcademicYearCourse" EntitySet="AcademicYearCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Acade__3493CFA7" Association="Self.FK__AcademicY__Acade__3493CFA7">
+            <End Role="AcademicYear" EntitySet="AcademicYears" />
+            <End Role="AcademicYearCourseClass" EntitySet="AcademicYearCourseClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Acade__3A4CA8FD" Association="Self.FK__AcademicY__Acade__3A4CA8FD">
+            <End Role="AcademicYear" EntitySet="AcademicYears" />
+            <End Role="AcademicYearCourseClassSection" EntitySet="AcademicYearCourseClassSections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Acade__40F9A68C" Association="Self.FK__AcademicY__Acade__40F9A68C">
+            <End Role="AcademicYear" EntitySet="AcademicYears" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Organ__29221CFB" Association="Self.FK__AcademicY__Organ__29221CFB">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="AcademicYear" EntitySet="AcademicYears" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Cours__30C33EC3" Association="Self.FK__AcademicY__Cours__30C33EC3">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="AcademicYearCourse" EntitySet="AcademicYearCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Organ__2EDAF651" Association="Self.FK__AcademicY__Organ__2EDAF651">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="AcademicYearCourse" EntitySet="AcademicYearCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Class__367C1819" Association="Self.FK__AcademicY__Class__367C1819">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="AcademicYearCourseClass" EntitySet="AcademicYearCourseClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Cours__3587F3E0" Association="Self.FK__AcademicY__Cours__3587F3E0">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="AcademicYearCourseClass" EntitySet="AcademicYearCourseClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Organ__339FAB6E" Association="Self.FK__AcademicY__Organ__339FAB6E">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="AcademicYearCourseClass" EntitySet="AcademicYearCourseClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Class__3C34F16F" Association="Self.FK__AcademicY__Class__3C34F16F">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="AcademicYearCourseClassSection" EntitySet="AcademicYearCourseClassSections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Cours__3B40CD36" Association="Self.FK__AcademicY__Cours__3B40CD36">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="AcademicYearCourseClassSection" EntitySet="AcademicYearCourseClassSections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Organ__395884C4" Association="Self.FK__AcademicY__Organ__395884C4">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="AcademicYearCourseClassSection" EntitySet="AcademicYearCourseClassSections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Secti__3D2915A8" Association="Self.FK__AcademicY__Secti__3D2915A8">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="AcademicYearCourseClassSection" EntitySet="AcademicYearCourseClassSections" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Class__42E1EEFE" Association="Self.FK__AcademicY__Class__42E1EEFE">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Cours__41EDCAC5" Association="Self.FK__AcademicY__Cours__41EDCAC5">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Organ__40058253" Association="Self.FK__AcademicY__Organ__40058253">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Secti__43D61337" Association="Self.FK__AcademicY__Secti__43D61337">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicY__Subje__44CA3770" Association="Self.FK__AcademicY__Subje__44CA3770">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="AcademicYearCourseClassSectionSubject" EntitySet="AcademicYearCourseClassSectionSubjects" />
+          </AssociationSet>
           <AssociationSet Name="FK__Applicant__Organ__5165187F" Association="Self.FK__Applicant__Organ__5165187F">
             <End Role="Organization" EntitySet="Organizations" />
             <End Role="ApplicantTest" EntitySet="ApplicantTests" />
@@ -2474,6 +3278,85 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EPortalModelStoreContainer" CdmEntityContainer="EPortalEntities">
+          <EntitySetMapping Name="AcademicYears">
+            <EntityTypeMapping TypeName="EPortalModel.AcademicYear">
+              <MappingFragment StoreEntitySet="AcademicYear">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsPublish" ColumnName="IsPublish" />
+                <ScalarProperty Name="ISlock" ColumnName="ISlock" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="AcademicYearFrom" ColumnName="AcademicYearFrom" />
+                <ScalarProperty Name="AcademicYearTo" ColumnName="AcademicYearTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademicYearCourses">
+            <EntityTypeMapping TypeName="EPortalModel.AcademicYearCourse">
+              <MappingFragment StoreEntitySet="AcademicYearCourse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademicYearCourseClasses">
+            <EntityTypeMapping TypeName="EPortalModel.AcademicYearCourseClass">
+              <MappingFragment StoreEntitySet="AcademicYearCourseClass">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademicYearCourseClassSections">
+            <EntityTypeMapping TypeName="EPortalModel.AcademicYearCourseClassSection">
+              <MappingFragment StoreEntitySet="AcademicYearCourseClassSection">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademicYearCourseClassSectionSubjects">
+            <EntityTypeMapping TypeName="EPortalModel.AcademicYearCourseClassSectionSubject">
+              <MappingFragment StoreEntitySet="AcademicYearCourseClassSectionSubject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="RowState" ColumnName="RowState" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ApplicantTests">
             <EntityTypeMapping TypeName="EPortalModel.ApplicantTest">
               <MappingFragment StoreEntitySet="ApplicantTest">

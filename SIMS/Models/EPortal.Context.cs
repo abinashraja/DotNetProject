@@ -25,6 +25,11 @@ namespace EPortal.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AcademicYear> AcademicYears { get; set; }
+        public virtual DbSet<AcademicYearCourse> AcademicYearCourses { get; set; }
+        public virtual DbSet<AcademicYearCourseClass> AcademicYearCourseClasses { get; set; }
+        public virtual DbSet<AcademicYearCourseClassSection> AcademicYearCourseClassSections { get; set; }
+        public virtual DbSet<AcademicYearCourseClassSectionSubject> AcademicYearCourseClassSectionSubjects { get; set; }
         public virtual DbSet<ApplicantTest> ApplicantTests { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<Course> Courses { get; set; }

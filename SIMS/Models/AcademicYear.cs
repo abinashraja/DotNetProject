@@ -12,11 +12,13 @@ namespace EPortal.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Section
+    public partial class AcademicYear
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Section()
+        public AcademicYear()
         {
+            this.AcademicYearCourses = new HashSet<AcademicYearCourse>();
+            this.AcademicYearCourseClasses = new HashSet<AcademicYearCourseClass>();
             this.AcademicYearCourseClassSections = new HashSet<AcademicYearCourseClassSection>();
             this.AcademicYearCourseClassSectionSubjects = new HashSet<AcademicYearCourseClassSectionSubject>();
         }
@@ -26,8 +28,17 @@ namespace EPortal.Models
         public string Name { get; set; }
         public string OrganizationID { get; set; }
         public bool RowState { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsPublish { get; set; }
+        public bool ISlock { get; set; }
         public System.DateTime CreateDateTime { get; set; }
+        public Nullable<System.DateTime> AcademicYearFrom { get; set; }
+        public Nullable<System.DateTime> AcademicYearTo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYearCourse> AcademicYearCourses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicYearCourseClass> AcademicYearCourseClasses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AcademicYearCourseClassSection> AcademicYearCourseClassSections { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

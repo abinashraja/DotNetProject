@@ -16,8 +16,8 @@ app.directive('datepicker', function () {
 }).filter('jsonDate', ['$filter', function ($filter) {
     return function (input, format) {
         return (input)
-               ? $filter('date')(parseInt(input.substr(6)), format)
-               : '';
+            ? $filter('date')(parseInt(input.substr(6)), format)
+            : '';
     }
 }]).controller('EPortalCont', function ($scope, $http, ngNotify, directiveName) {
 
@@ -54,26 +54,26 @@ app.directive('datepicker', function () {
                 method: "POST",
                 data: $scope.ChangePassword
             })
-           .success(function (data) {
-               if (data.result == true) {
-                   $('#passwordmodel').modal('hide');
-                   $scope.ChangePassword = [];
-                   ngNotify.set("Password change successfully.", 'success');
+                .success(function (data) {
+                    if (data.result == true) {
+                        $('#passwordmodel').modal('hide');
+                        $scope.ChangePassword = [];
+                        ngNotify.set("Password change successfully.", 'success');
 
-               }
-               else {
-                   if (data.msg == "") {
-                       ngNotify.set('Error ocured!please try again.', 'error');
-                   }
-                   else {
-                       ngNotify.set(data.msg, 'error');
-                   }
-               }
-           },
-           function (response) { // optional
-               // failed
+                    }
+                    else {
+                        if (data.msg == "") {
+                            ngNotify.set('Error ocured!please try again.', 'error');
+                        }
+                        else {
+                            ngNotify.set(data.msg, 'error');
+                        }
+                    }
+                },
+                    function (response) { // optional
+                        // failed
 
-           });
+                    });
         }
         else {
             ngNotify.set('Confirm New Password do not match with New Password. ', 'error');
@@ -87,14 +87,14 @@ app.directive('datepicker', function () {
         if ($scope.NewAcademicYear.Name == undefined || $scope.NewAcademicYear.Name == "") {
             erormsg = "Error";
         }
-      
-       
+
+
 
         if (erormsg == "") {
             jQuery.event.trigger("ajaxStart");
             if ($scope.NewAcademicYear.Operation == "Edit") {
                 $scope.Operation = "Updated";
-                
+
             }
             else {
                 $scope.Operation = "Created";
@@ -104,30 +104,30 @@ app.directive('datepicker', function () {
                 method: "POST",
                 data: { academicyear: $scope.NewAcademicYear }
             })
-            .success(function (data) {
-                if (data.result == true) {
-                    $scope.callmethod();
-                    $scope.NewAcademicYear = new Object();
-                    $('#AcademicYearModel').modal('hide');
-                    ngNotify.set('AcademicYear ' + $scope.Operation + ' successfully.', 'success');
-                }
-                else {
-                    if (data.errormsg != "") {
-                        ngNotify.set(data.errormsg, 'error');
+                .success(function (data) {
+                    if (data.result == true) {
+                        $scope.callmethod();
+                        $scope.NewAcademicYear = new Object();
+                        $('#AcademicYearModel').modal('hide');
+                        ngNotify.set('AcademicYear ' + $scope.Operation + ' successfully.', 'success');
                     }
                     else {
+                        if (data.errormsg != "") {
+                            ngNotify.set(data.errormsg, 'error');
+                        }
+                        else {
 
-                        ngNotify.set('Error ocured!please try again.', 'error');
+                            ngNotify.set('Error ocured!please try again.', 'error');
+                        }
+
                     }
+                    jQuery.event.trigger("ajaxStop");
 
-                }
-                jQuery.event.trigger("ajaxStop");
+                },
+                    function (response) { // optional
+                        // failed
 
-            },
-            function (response) { // optional
-                // failed
-
-            });
+                    });
         }
         else {
 
@@ -139,12 +139,12 @@ app.directive('datepicker', function () {
         }
     }
     $scope.ConvertJsonDateToDate = function (x) {
-        var re = /\/Date\(([0-9]*)\)\//;        
-            var m = x.match(re);
-            if (m) {
-               return new Date(parseInt(x.substr(6)));
-            }
-            else return null;
+        var re = /\/Date\(([0-9]*)\)\//;
+        var m = x.match(re);
+        if (m) {
+            return new Date(parseInt(x.substr(6)));
+        }
+        else return null;
 
     }
     $scope.EditAcademicYear = function (org) {
@@ -154,17 +154,17 @@ app.directive('datepicker', function () {
             method: "POST",
             data: org
         })
-        .success(function (data) {
-            $scope.NewAcademicYear = data;
-            $scope.NewAcademicYear.PeriodFrom = $scope.ConvertJsonDateToDate($scope.NewAcademicYear.PeriodFrom);
-            $scope.NewAcademicYear.PeriodTo = $scope.ConvertJsonDateToDate($scope.NewAcademicYear.PeriodTo);
-            $('#AcademicYearModel').modal('show');
-            jQuery.event.trigger("ajaxStop");
-        },
-        function (response) { // optional
-            // failed
+            .success(function (data) {
+                $scope.NewAcademicYear = data;
+                $scope.NewAcademicYear.AcademicYearFrom = $scope.ConvertJsonDateToDate($scope.NewAcademicYear.PeriodFrom);
+                $scope.NewAcademicYear.AcademicYearTo = $scope.ConvertJsonDateToDate($scope.NewAcademicYear.PeriodTo);
+                $('#AcademicYearModel').modal('show');
+                jQuery.event.trigger("ajaxStop");
+            },
+                function (response) { // optional
+                    // failed
 
-        });
+                });
     }
     $scope.DeleteAcademicYear = function (org) {
         jQuery.event.trigger("ajaxStart");
@@ -173,26 +173,26 @@ app.directive('datepicker', function () {
             method: "POST",
             data: org
         })
-        .success(function (data) {
-            if (data.result == true) {
-                $scope.callmethod();
-                $scope.NewAcademicYear = new Object();
-                ngNotify.set('AcademicYear deleted successfully.', 'success');
-            }
-            else {
-                if (data.errormsg == "") {
-                    ngNotify.set('Error ocured!please try again.', 'error');
+            .success(function (data) {
+                if (data.result == true) {
+                    $scope.callmethod();
+                    $scope.NewAcademicYear = new Object();
+                    ngNotify.set('AcademicYear deleted successfully.', 'success');
                 }
                 else {
-                    ngNotify.set(data.errormsg, 'error');
+                    if (data.errormsg == "") {
+                        ngNotify.set('Error ocured!please try again.', 'error');
+                    }
+                    else {
+                        ngNotify.set(data.errormsg, 'error');
+                    }
                 }
-            }
-            jQuery.event.trigger("ajaxStop");
-        },
-        function (response) { // optional
-            // failed
+                jQuery.event.trigger("ajaxStop");
+            },
+                function (response) { // optional
+                    // failed
 
-        });
+                });
     }
     $scope.CourseList = [];
     $scope.MakeObjectEMpty = function () {
@@ -286,9 +286,9 @@ app.directive('datepicker', function () {
                     url: '/AcademicYear/GetAcademicYearList',
                     data: { searchtext: ft }
                 })
-             .success(function (largeLoad) {
-                 $scope.setPagingData(largeLoad, page, pageSize);
-             });
+                    .success(function (largeLoad) {
+                        $scope.setPagingData(largeLoad, page, pageSize);
+                    });
             } else {
                 $http.get("/AcademicYear/GetAcademicYearList").success(function (largeLoad) {
                     $scope.setPagingData(largeLoad, page, pageSize);
@@ -328,11 +328,11 @@ app.directive('datepicker', function () {
         showFilter: true,
         showSelectionCheckbox: true,
         columnDefs: [{ field: 'Id', displayName: 'Id', visible: false },
-                                    { field: 'Code', displayName: 'Code', cellClass: 'CodeClass' },
-                                    { field: 'Name', displayName: 'Name', cellClass: 'NameClass', headerCellClass: 'ageHeader' },
-                                    { field: 'PeriodFrom|jsonDate', displayName: 'From', cellClass: 'NameClass', headerCellClass: 'ageHeader' },
-                                    { field: 'PeriodTo|jsonDate', displayName: 'To', cellClass: 'NameClass', headerCellClass: 'ageHeader' },
-                                    { field: 'Operation', width: 100, cellClass: 'OperationAcademicYear', sortable: false, headerCellClass: 'ageHeader', cellTemplate: "<div class='btnclass'><span style='margin-right: 3%;' ng-click='DeleteAcademicYear(row.entity)' class='label label-danger'>Delete</span></div>" }
+        { field: 'Code', displayName: 'Code', cellClass: 'CodeClass' },
+        { field: 'Name', displayName: 'Name', cellClass: 'NameClass', headerCellClass: 'ageHeader' },
+        { field: 'PeriodFrom|jsonDate', displayName: 'From', cellClass: 'NameClass', headerCellClass: 'ageHeader' },
+        { field: 'PeriodTo|jsonDate', displayName: 'To', cellClass: 'NameClass', headerCellClass: 'ageHeader' },
+        { field: 'Operation', width: 100, cellClass: 'OperationAcademicYear', sortable: false, headerCellClass: 'ageHeader', cellTemplate: "<div class='btnclass'><span style='margin-right: 3%;' ng-click='DeleteAcademicYear(row.entity)' class='label label-danger'>Delete</span></div>" }
         ],
         //showSelectionCheckbox: true,
         //selectWithCheckboxOnly:true,
@@ -346,6 +346,108 @@ app.directive('datepicker', function () {
 
 
 
+    $scope.ShowTree = false;
+    $scope.ConfigureAcYear = function () {
+        $scope.ShowTree = true;
+        $http({
+            url: '/AcademicYear/GetStructure',
+            method: "POST",
+            data: { academicyear: $scope.SelectedAcademicYear.Id }
+        })
+            .success(function (data) {
+
+                $scope.DrawTree(data.data, data.id, data.name, data.selectedvalue);
+                //if (tree.length == 0) {
+
+
+                //}
+                //else {
+                //    if (data.msg == "") {
+                //        ngNotify.set('Error ocured!please try again.', 'error');
+                //    }
+                //    else {
+                //        ngNotify.set(data.msg, 'error');
+                //    }
+                //}
+            },
+                function (response) { // optional
+                    // failed
+
+                });
+
+    }
+    let tree;
+    $scope.DrawTree = function (data, id, name, selectedvalue)
+    {
+
+        //var disabledids = [];
+        //angular.forEach(data, function (key, value) {
+        //    if (key.selected == true) {
+        //        disabledids.push(key.id);
+        //    }
+        //});
+        var c;
+        c = 0;
+
+        tree = new Tree('#Tree', {
+            data: [{ id: id, text: name, children: data }],
+            closeDepth: 1000000,
+            //loaded: function () {
+            //    this.values = selectedvalue;
+            //    //console.log(this.selectedNodes)
+            //    //console.log(this.values)
+            //    //this.disables = selectedvalue  //['0-0-0', '0-0-1', '0-0-2']
+            //}
+        })
+
+    }
+    $scope.GetSelectedNode = function () {
+        jQuery.event.trigger("ajaxStart");
+        var seelctedata = [];
+        let selectedNodes = tree.selectedNodes;
+        angular.forEach(selectedNodes, function (key, value) {
+            if (key.status == '2') {
+                seelctedata.push(key.id);
+            }
+        });
+        $scope.SaveCOnfiguration(seelctedata);
+    }
+
+    $scope.SaveCOnfiguration = function (datatosave) {
+
+        $scope.SelectedAcademicYear;
+
+
+        $http({
+            url: '/AcademicYear/SaveAcYearConfiguration',
+            method: "POST",
+            data: { selecteddata: datatosave, acyearid: $scope.SelectedAcademicYear.Id }
+        })
+            .success(function (data) {
+                if (data == true) {
+                    jQuery.event.trigger("ajaxStop");
+                    ngNotify.set("Academic Year Configuration successful .", 'success');
+
+                }
+                else {
+                    if (data.msg == "") {
+                        ngNotify.set('Error ocured!please try again.', 'error');
+                    }
+                    else {
+                        ngNotify.set(data.msg, 'error');
+                    }
+                }
+            },
+                function (response) { // optional
+                    // failed
+
+                });
+
+    }
+    $scope.CancelSaveAcConfig = function () {
+        $scope.ShowTree = false;
+
+    }
 
 
 
